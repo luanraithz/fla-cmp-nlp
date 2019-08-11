@@ -26,7 +26,7 @@ The study of the computational treatment of natural (human) language.
 ## Basic NLP pipeline
     (`U`)nderstanding and (`G`)eneration
     Language --`U`--> Computer --`G`--> Language
-    
+
 ## References
 
 [Cool playlist](https://www.youtube.com/watch?v=n25JjoixM3I&list=PLLssT5z_DsK8BdawOVCCaTCO99Ya58ryR)
