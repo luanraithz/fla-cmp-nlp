@@ -1,119 +1,62 @@
-import { tokenize, Classes } from './tokenization'
+import { tokenize, Classes, Helpers } from './tokenization'
 
 test('basic test', () => {
-    expect(tokenize(' ')).toEqual([])
-    expect(tokenize('writeln')).toEqual([
-        {
-            "class": Classes.ReservedWord,
-            "lexem": "writeln",
-            line: 1
-        }
-    ])
-    expect(tokenize('writelnn')).toEqual([
-        {
-            "class": Classes.Identifier,
-            "lexem": "writelnn",
-            line: 1
-        }
-    ])
 
-    expect(tokenize('writeln1')).toEqual([
-        {
-            "class": Classes.Identifier,
-            "lexem": "writeln1",
-            line: 1
-        }
-    ])
-    expect(tokenize('writeln0')).toEqual([
-        {
-            "class": Classes.Identifier,
-            "lexem": "writeln0",
-            line: 1
-        }
-    ])
-    expect(tokenize('-')).toEqual([
-        {
-            "class": Classes.SpecialSymbol,
-            "lexem": "-",
-            line: 1
-        }
-    ])
+    const langSpec = {
+        specialSymbolRegexp: /^[;|:|\.|:=|\+|\-|\*|/|\(|\)]/,
+        reservedWordRegexp: /^((begin|end|int|program|var|writeln)(?![a-zA-z0-9]))/,
+        identifierRegexp: /^([a-zA-z][a-zA-Z0-9]*(?![a-zA-z0-9]))/,
+        stringConstantRegxp: /^".*"/,
+        integerConstantRegexp: /^[0-9]+/
+    }
 
-    const script = `
+    const langTokenizer = tokenize(langSpec)
+
+    expect(langTokenizer(' ')).toEqual([])
+
+    expect(langTokenizer(`
+
+
+
+    `)).toEqual([])
+    expect(langTokenizer('writeln')).toEqual([Helpers.WordOfReservedWord('writeln', 1)])
+
+    expect(langTokenizer('writelnn')).toEqual([Helpers.WordOfIdentifier('writelnn', 1)])
+
+    expect(langTokenizer('writeln1')).toEqual([Helpers.WordOfIdentifier('writeln1', 1)])
+
+    expect(langTokenizer('-')).toEqual([Helpers.WordOfSpecialSymbol('-', 1)])
+
+    expect(langTokenizer(`
         writeln(a)
-    `
-    expect(tokenize(script)).toEqual([
-        {
-            "class": Classes.ReservedWord,
-            "lexem": "writeln",
-            line: 2
-        },
-        {
-            "class": Classes.SpecialSymbol,
-            "lexem": "(",
-            line: 2
-        },
-        {
-            "class": Classes.Identifier,
-            "lexem": "a",
-            line: 2
-        },
-        {
-            "class": Classes.SpecialSymbol,
-            "lexem": ")",
-            line: 2
-        },
+    `))
+    .toEqual([
+        Helpers.WordOfReservedWord('writeln', 2),
+        Helpers.WordOfSpecialSymbol('(', 2),
+        Helpers.WordOfIdentifier('a', 2),
+        Helpers.WordOfSpecialSymbol(')', 2)
     ])
 
-    const script2 = `
+    expect(langTokenizer(`
         writeln("a")
-    `
-    expect(tokenize(script2)).toEqual([
-        {
-            "class": Classes.ReservedWord,
-            "lexem": "writeln",
-            line: 2
-        },
-        {
-            "class": Classes.SpecialSymbol,
-            "lexem": "(",
-            line: 2
-        },
-        {
-            "class": Classes.ConstantString,
-            "lexem": "\"a\"",
-            line: 2
-        },
-        {
-            "class": Classes.SpecialSymbol,
-            "lexem": ")",
-            line: 2
-        },
+    `))
+    .toEqual([
+        Helpers.WordOfReservedWord('writeln', 2),
+        Helpers.WordOfSpecialSymbol('(', 2),
+        Helpers.WordOfConstantString('"a"', 2),
+        Helpers.WordOfSpecialSymbol(')', 2)
     ])
 
-    const script3 = `
-        writeln(1)
+    expect(langTokenizer(
     `
-    expect(tokenize(script3)).toEqual([
-        {
-            "class": Classes.ReservedWord,
-            "lexem": "writeln",
-            line: 2
-        },
-        {
-            "class": Classes.SpecialSymbol,
-            "lexem": "(",
-            line: 2
-        },
-        {
-            "class": Classes.ConstantInteger,
-            "lexem": "1",
-            line: 2
-        },
-        {
-            "class": Classes.SpecialSymbol,
-            "lexem": ")",
-            line: 2
-        },
+        writeln(1)
+    `))
+    .toEqual([
+        Helpers.WordOfReservedWord('writeln', 2),
+        Helpers.WordOfSpecialSymbol('(', 2),
+        Helpers.WordOfConstantInteger("1", 2),
+        Helpers.WordOfSpecialSymbol(')', 2)
     ])
+
+    expect(() => langTokenizer('@')).toThrowError('Unexpected token at the start of "@"')
 })

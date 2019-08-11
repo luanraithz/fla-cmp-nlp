@@ -1,3 +1,5 @@
+import { curry } from 'rambda'
+
 export enum Classes {
     SpecialSymbol = 'SpecialSymbol',
     ReservedWord = 'ReservedWord',
@@ -6,87 +8,30 @@ export enum Classes {
     ConstantString = 'ConstantString'
 }
 
-enum SpecialSymbols {
-    ';',
-    ':',
-    '.',
-    ':=',
-    '+',
-    '-',
-    '*',
-    '/',
-    '(',
-    ')',
-}
-
-
-enum ReservedWords {
-    'begin',
-    'end',
-    'int',
-    'program',
-    'var',
-    'writeln'
-}
-
-type ReservedWordToken = {
-    'class': Classes.ReservedWord,
-    'lexem': ReservedWords,
-    'line': number
-}
-
-type SymbolToken = {
-    'class': Classes.SpecialSymbol,
-    'lexem': SpecialSymbols,
-    'line': number
-}
-
-type ConstantIntegerToken = {
-    'class': Classes.ConstantInteger,
-    'lexem': number,
-    'line': number
-}
-
-type ConstantStringToken = {
-    'class': Classes.ConstantString,
+type Token = {
+    'class': Classes,
     'lexem': string,
     'line': number
 }
-
-type IdentifierToken = {
-    'class': Classes.Identifier,
-    'lexem': string,
-    'line': number
-}
-
-type Token = ReservedWordToken
-    | SymbolToken
-    | IdentifierToken
-    | ConstantIntegerToken
-    | ConstantStringToken
 
 type TokenList = Token[]
 
-const getEnumKeys = s => `(${Object.keys(s)
-    .filter(s => isNaN(Number(s)))
-    .join('|')})`
+type LanguageSpec = {
+    integerConstantRegexp: RegExp,
+    reservedWordRegexp: RegExp,
+    identifierRegexp: RegExp,
+    stringConstantRegxp: RegExp,
+    specialSymbolRegexp: RegExp,
+}
 
-const specialSymbolStr = '^[;|:|\.|:=|\\+|\\-|\\*|/|\\(|\\)]'
-
-const specialSymbolRegexp = new RegExp(specialSymbolStr)
-
-const reservedWordRegexp = new RegExp(`^(${getEnumKeys(ReservedWords)}(?![a-zA-z0-9]))`)
-
-const identifierRegexp = new RegExp('^([a-zA-z][a-zA-Z0-9]*(?![a-zA-z0-9]))')
-
-const stringConstantRegxp = new RegExp('^".*"')
-
-const integerConstantRegex = new RegExp('^[0-9]+')
-
-export const tokenize = (str: string): TokenList => {
+export const tokenize = curry((
+    lang: LanguageSpec,
+    str: string
+): TokenList => {
     const tokens: TokenList = []
     let current = str
     let currentLine = 1
+    const getTokenForLang = getToken(lang)
     while(current) {
         if (/^\n/.test(current)) {
             currentLine++;
@@ -94,7 +39,7 @@ export const tokenize = (str: string): TokenList => {
         } else if (/^\s/.test(current)) {
             current = current.replace(/^\s/, '')
         } else {
-            const t = getToken(current, currentLine)
+            const t = getTokenForLang(current, currentLine)
             if (t instanceof Error) {
                 throw t
             } else {
@@ -106,9 +51,19 @@ export const tokenize = (str: string): TokenList => {
     }
 
     return tokens
-}
+})
 
-const getToken = (str: string, currentLine: number): [Token, string] | Error => {
+const getToken = curry((
+    {
+        specialSymbolRegexp,
+        identifierRegexp,
+        reservedWordRegexp,
+        stringConstantRegxp,
+        integerConstantRegexp
+    }: LanguageSpec,
+    str: string,
+    currentLine: number
+): [Token, string] | Error => {
     let match
     let tokenClass
     if ((match = str.match(specialSymbolRegexp))) {
@@ -119,9 +74,10 @@ const getToken = (str: string, currentLine: number): [Token, string] | Error => 
         tokenClass = Classes.Identifier
     } else if ((match = str.match(stringConstantRegxp))) {
         tokenClass = Classes.ConstantString
-    } else if ((match = str.match(integerConstantRegex))) {
+    } else if ((match = str.match(integerConstantRegexp))) {
         tokenClass = Classes.ConstantInteger
     }
+
     if (match) {
         return [{
             'class': tokenClass,
@@ -130,5 +86,23 @@ const getToken = (str: string, currentLine: number): [Token, string] | Error => 
         }, match[0]]
     }
 
-    return new Error(`Unexpected token at the start of ${str}`)
+    return new Error(`Unexpected token at the start of "${str}"`)
+})
+
+const WordOf = curry((
+    lexemClass: Classes,
+    lexem: string,
+    line: number
+) => ({
+    "class": lexemClass,
+    lexem,
+    line
+}))
+
+export const Helpers = {
+    WordOfReservedWord: WordOf(Classes.ReservedWord),
+    WordOfConstantInteger: WordOf(Classes.ConstantInteger),
+    WordOfIdentifier: WordOf(Classes.Identifier),
+    WordOfConstantString: WordOf(Classes.ConstantString),
+    WordOfSpecialSymbol: WordOf(Classes.SpecialSymbol)
 }
