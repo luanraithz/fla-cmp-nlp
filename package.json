@@ -14,7 +14,8 @@
     "ts-jest": "^24.0.2"
   },
   "dependencies": {
-    "rambda": "^2.14.4",
+    "@types/ramda": "^0.26.19",
+    "ramda": "^0.26.1",
     "typescript": "^3.5.3"
   }
 }

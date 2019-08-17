@@ -1,4 +1,4 @@
-import { curry } from 'rambda'
+import { curry } from 'ramda'
 
 export enum Classes {
     SpecialSymbol = 'SpecialSymbol',
