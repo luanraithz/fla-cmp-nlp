@@ -123,7 +123,7 @@ const run = (str: Array<SplitOutput>): Array<Output> =>
         const runNextState = (currentState: State, [sym, ...value]: string, pathSoFar: Array<State>): Output => {
             if (currentState.error)
                 return returnOf({
-                    result: Result.InvalidSymbol,
+                    result: (pathSoFar.length > 1 ? Result.InvalidWord: Result.InvalidSymbol ),
                     path: namesOf([...pathSoFar, currentState])
                 })
             if (!sym)
@@ -132,12 +132,9 @@ const run = (str: Array<SplitOutput>): Array<Output> =>
                     path: namesOf([...pathSoFar, currentState])
                 })
 
-            const nextPath = currentState.paths.find((p: Path) => p.expression.test(sym))
+            const { to } = currentState.paths.find((p: Path) => p.expression.test(sym)) || { to: errorState }
 
-            if (!nextPath)
-                return returnOf({ result: Result.InvalidWord, path: namesOf([...pathSoFar, currentState, errorState]) })
-            else
-                return runNextState(nextPath.to, value.join(''), pathSoFar.concat([currentState]))
+            return runNextState(to, value.join(''), pathSoFar.concat([currentState]))
 
         }
         return runNextState(getGraph(), content, [])
