@@ -92,9 +92,8 @@ const splitByLine = (str: string): Array<string> => str.split('\n')
 
 const split = pipe(splitByLine,
     (str: Array<string>): Array<SplitOutput> =>
-        flatten(str.map((s, i) => {
-            const words = s.split(' ')
-            return flatten(words.map(w => {
+        flatten(str.map((s, i) =>
+            flatten(s.split(' ').map(w => {
                     const rsf: Array<SplitOutput> = []
                     let current = ""
                     function add(content: string) {
@@ -112,31 +111,26 @@ const split = pipe(splitByLine,
                     add(current)
                     return rsf
                 }))
-        })).filter(Boolean))
+        )).filter(Boolean))
 
 
 const namesOf = (states: Array<State>): Array<String> => states.map(p => p.name)
 
 const run = (str: Array<SplitOutput>): Array<Output> =>
     str.map(({ content, line }) => {
-        const returnOf = (r: Partial<Output>): Output => ({ line, content, ...r })
         const runNextState = (currentState: State, [sym, ...value]: string, pathSoFar: Array<State>): Output => {
+            const resultOf = (result: Result): Output => ({ line, content, result, path: namesOf([...pathSoFar, currentState]) })
+
             if (currentState.error)
-                return returnOf({
-                    result: (pathSoFar.length > 1 ? Result.InvalidWord: Result.InvalidSymbol ),
-                    path: namesOf([...pathSoFar, currentState])
-                })
-            if (!sym)
-                return returnOf({
-                    result: currentState.final ? Result.ValidWord : ( currentState === specialSymbolState ?  Result.SpecialSymbol : Result.InvalidWord ),
-                    path: namesOf([...pathSoFar, currentState])
-                })
+                return resultOf(pathSoFar.length > 1 ? Result.InvalidWord: Result.InvalidSymbol )
+            else if (!sym)
+                return resultOf(currentState.final ? Result.ValidWord : ( currentState === specialSymbolState ?  Result.SpecialSymbol : Result.InvalidWord ))
 
             const { to } = currentState.paths.find((p: Path) => p.expression.test(sym)) || { to: errorState }
 
             return runNextState(to, value.join(''), pathSoFar.concat([currentState]))
-
         }
+
         return runNextState(getGraph(), content, [])
     })
 
