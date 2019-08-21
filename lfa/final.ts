@@ -1,17 +1,17 @@
-import { flatten, pipe } from 'ramda'
+import { flatten, pipe, curry } from 'ramda'
 
 type State = { name: string, paths: Array<Path>, final?: boolean, error?: boolean }
 
-type Path = { expression: RegExp, to: State }
+type Path = { expression: string, to: State }
 
-const specialSymbol = /\.|,|;/
-const alphabet = /#|1|0/
+const specialSymbol = '.,;'
+const alphabet = '#10'
 
 let errorState: State;
 errorState = { name: "qError", paths: [], error: true }
 
 let specialSymbolState: State;
-specialSymbolState = { name: "qSymbol", paths: [{ expression: /./, to: specialSymbolState }] }
+specialSymbolState = { name: "qSymbol", paths: [{ expression: '', to: specialSymbolState }] }
 
 function getGraph() {
 
@@ -28,42 +28,42 @@ function getGraph() {
     const q12: State = { name: 'q12', paths: [], final: true }
     const q13: State = { name: 'q13', paths: [] }
 
-    q0.paths.push({ expression: /0/, to: q1q8 })
-    q0.paths.push({ expression: /1/, to: q0q7 })
+    q0.paths.push({ expression: '0', to: q1q8 })
+    q0.paths.push({ expression: '1', to: q0q7 })
     q0.paths.push({ expression: specialSymbol, to: specialSymbolState })
-    q0.paths.push({ expression: /./, to: errorState })
+    q0.paths.push({ expression: '.', to: errorState })
 
-    q1q8.paths.push({ expression: /#/, to: q3 })
-    q1q8.paths.push({ expression: /0/, to: q2q10 })
-    q1q8.paths.push({ expression: /1/, to: q1q6q9 })
+    q1q8.paths.push({ expression: '#', to: q3 })
+    q1q8.paths.push({ expression: '0', to: q2q10 })
+    q1q8.paths.push({ expression: '1', to: q1q6q9 })
 
-    q0q7.paths.push({ expression: /#/, to: q11 })
-    q0q7.paths.push({ expression: /0/, to: q1q8 })
-    q0q7.paths.push({ expression: /1/, to: q0q7 })
+    q0q7.paths.push({ expression: '#', to: q11 })
+    q0q7.paths.push({ expression: '0', to: q1q8 })
+    q0q7.paths.push({ expression: '1', to: q0q7 })
 
-    q2q10.paths.push({ expression: /#/, to: q11 })
-    q2q10.paths.push({ expression: /0/, to: q1q8 })
-    q2q10.paths.push({ expression: /1/, to: q2q7 })
+    q2q10.paths.push({ expression: '#', to: q11 })
+    q2q10.paths.push({ expression: '0', to: q1q8 })
+    q2q10.paths.push({ expression: '1', to: q2q7 })
 
-    q1q6q9.paths.push({ expression: /#/, to: q3 })
-    q1q6q9.paths.push({ expression: /0/, to: q2q10 })
-    q1q6q9.paths.push({ expression: /1/, to: q1q6q9 })
+    q1q6q9.paths.push({ expression: '#', to: q3 })
+    q1q6q9.paths.push({ expression: '0', to: q2q10 })
+    q1q6q9.paths.push({ expression: '1', to: q1q6q9 })
 
-    q2q7.paths.push({ expression: /#/, to: q11 })
-    q2q7.paths.push({ expression: /0/, to: q1q8 })
-    q2q7.paths.push({ expression: /1/, to: q2q7 })
+    q2q7.paths.push({ expression: '#', to: q11 })
+    q2q7.paths.push({ expression: '0', to: q1q8 })
+    q2q7.paths.push({ expression: '1', to: q2q7 })
 
-    q3.paths.push({ expression: /0/, to: q4 })
+    q3.paths.push({ expression: '0', to: q4 })
 
-    q11.paths.push({ expression: /0/, to: q12 })
+    q11.paths.push({ expression: '0', to: q12 })
 
-    q4.paths.push({ expression: /0/, to: q5 })
+    q4.paths.push({ expression: '0', to: q5 })
 
-    q5.paths.push({ expression: /0/, to: q4 })
+    q5.paths.push({ expression: '0', to: q4 })
 
-    q12.paths.push({ expression: /0/, to: q13 })
+    q12.paths.push({ expression: '0', to: q13 })
 
-    q13.paths.push({ expression: /0/, to: q12 })
+    q13.paths.push({ expression: '0', to: q12 })
 
     return q0
 }
@@ -90,7 +90,7 @@ type SplitOutput = {
 
 const splitByLine = (str: string): Array<string> => str.split('\n')
 
-const split = pipe(splitByLine,
+export const split = pipe(splitByLine,
     (str: Array<string>): Array<SplitOutput> =>
         flatten(str.map((s, i) =>
             flatten(s.split(' ').map(w => {
@@ -100,7 +100,7 @@ const split = pipe(splitByLine,
                         if (content) rsf.push({ content, line: i + 1 })
                     }
                     w.split('').forEach(t => {
-                        if (specialSymbol.test(t)) {
+                        if (specialSymbol.includes(t)) {
                             add(current)
                             add(t)
                             current = ''
@@ -114,9 +114,10 @@ const split = pipe(splitByLine,
         )).filter(Boolean))
 
 
+
 const namesOf = (states: Array<State>): Array<String> => states.map(p => p.name)
 
-const run = (str: Array<SplitOutput>): Array<Output> =>
+const run = curry((graph: State, str: Array<SplitOutput>): Array<Output> =>
     str.map(({ content, line }) => {
         const runNextState = (currentState: State, [sym, ...value]: string, pathSoFar: Array<State>): Output => {
             const resultOf = (result: Result): Output => ({ line, content, result, path: namesOf([...pathSoFar, currentState]) })
@@ -126,12 +127,12 @@ const run = (str: Array<SplitOutput>): Array<Output> =>
             else if (!sym)
                 return resultOf(currentState.final ? Result.ValidWord : ( currentState === specialSymbolState ?  Result.SpecialSymbol : Result.InvalidWord ))
 
-            const { to } = currentState.paths.find((p: Path) => p.expression.test(sym)) || { to: errorState }
+            const { to } = currentState.paths.find((p: Path) => p.expression.includes(sym)) || { to: errorState }
 
             return runNextState(to, value.join(''), pathSoFar.concat([currentState]))
         }
 
-        return runNextState(getGraph(), content, [])
-    })
+        return runNextState(graph, content, [])
+    }))
 
-export const validate = pipe(split, run)
+export const validate = pipe(split, run(getGraph()))

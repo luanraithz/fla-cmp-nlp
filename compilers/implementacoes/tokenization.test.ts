@@ -10,7 +10,7 @@ test('basic test', () => {
         integerConstantRegexp: /^[0-9]+/
     }
 
-    const langTokenizer = tokenize(langSpec)
+    const langTokenizer = tokenize(langSpec, true)
 
     expect(langTokenizer(' ')).toEqual([])
 
@@ -19,12 +19,14 @@ test('basic test', () => {
 
 
     `)).toEqual([])
+    expect(langTokenizer(`
+    
+
+
+    `)).toEqual([])
     expect(langTokenizer('writeln')).toEqual([Helpers.WordOfReservedWord('writeln', 1)])
-
     expect(langTokenizer('writelnn')).toEqual([Helpers.WordOfIdentifier('writelnn', 1)])
-
     expect(langTokenizer('writeln1')).toEqual([Helpers.WordOfIdentifier('writeln1', 1)])
-
     expect(langTokenizer('-')).toEqual([Helpers.WordOfSpecialSymbol('-', 1)])
 
     expect(langTokenizer(`
@@ -58,5 +60,5 @@ test('basic test', () => {
         Helpers.WordOfSpecialSymbol(')', 2)
     ])
 
-    expect(() => langTokenizer('@')).toThrowError('Unexpected token at the start of "@"')
+    expect(() => langTokenizer('@')).toThrowError('Unexpected token at the start of "@" at line 1')
 })

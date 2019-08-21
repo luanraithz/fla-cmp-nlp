@@ -5,7 +5,10 @@ export enum Classes {
     ReservedWord = 'ReservedWord',
     Identifier = 'Identifier',
     ConstantInteger = 'ConstantInteger',
-    ConstantString = 'ConstantString'
+    ConstantString = 'ConstantString',
+    LineBreak = 'LineBreak',
+    Whitespace = 'Whitespace',
+    Tab = 'Tab',
 }
 
 type Token = {
@@ -26,27 +29,27 @@ type LanguageSpec = {
 
 export const tokenize = curry((
     lang: LanguageSpec,
-    str: string
+    ignoreFormatCharacters: boolean,
+    str: string,
 ): TokenList => {
     const tokens: TokenList = []
     let current = str
     let currentLine = 1
-    const getTokenForLang = getToken(lang)
+    const getTokenForLang = getToken(lang, ignoreFormatCharacters)
     while(current) {
-        if (/^\n/.test(current)) {
-            currentLine++;
-            current = current.replace(/^\n/, '')
-        } else if (/^\s/.test(current)) {
-            current = current.replace(/^\s/, '')
+        const t = getTokenForLang(current, currentLine)
+        if (typeof t === 'string') {
+            // ignored
+            current = current.replace(t, '')
+        } else if (t instanceof Error) {
+            throw t
         } else {
-            const t = getTokenForLang(current, currentLine)
-            if (t instanceof Error) {
-                throw t
-            } else {
-                const [token, recongnized] = t
-                tokens.push(token)
-                current = current.replace(recongnized, '')
+            const [token, recongnized] = t
+            if (token.class === Classes.LineBreak) {
+                currentLine++
             }
+            tokens.push(token)
+            current = current.replace(recongnized, '')
         }
     }
 
@@ -61,9 +64,10 @@ const getToken = curry((
         stringConstantRegxp,
         integerConstantRegexp
     }: LanguageSpec,
+    ignored: boolean,
     str: string,
-    currentLine: number
-): [Token, string] | Error => {
+    currentLine: number,
+): [Token, string] | Error | string => {
     let match
     let tokenClass
     if ((match = str.match(specialSymbolRegexp))) {
@@ -76,6 +80,15 @@ const getToken = curry((
         tokenClass = Classes.ConstantString
     } else if ((match = str.match(integerConstantRegexp))) {
         tokenClass = Classes.ConstantInteger
+    } else if ((match = str.match(/\n/))) {
+        if (ignored) return match[0]
+        tokenClass = Classes.LineBreak
+    } else if ((match = str.match(/\t/))) {
+        if (ignored) return match[0]
+        tokenClass = Classes.Tab
+    } else if ((match = str.match(/\s/))) {
+        if (ignored) return match[0]
+        tokenClass = Classes.Whitespace
     }
 
     if (match) {
@@ -86,7 +99,7 @@ const getToken = curry((
         }, match[0]]
     }
 
-    return new Error(`Unexpected token at the start of "${str}"`)
+    return new Error(`Unexpected token at the start of "${str}" at line ${currentLine}`)
 })
 
 const WordOf = curry((
@@ -104,5 +117,8 @@ export const Helpers = {
     WordOfConstantInteger: WordOf(Classes.ConstantInteger),
     WordOfIdentifier: WordOf(Classes.Identifier),
     WordOfConstantString: WordOf(Classes.ConstantString),
-    WordOfSpecialSymbol: WordOf(Classes.SpecialSymbol)
+    WordOfSpecialSymbol: WordOf(Classes.SpecialSymbol),
+    WordOfTab: WordOf(Classes.Tab, '\t'),
+    WordOfWhitespace: WordOf(Classes.Whitespace, ' '),
+    WordOfLineBreak: WordOf(Classes.LineBreak, '\n')
 }
