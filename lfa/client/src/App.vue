@@ -1,34 +1,50 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <Table :data="items"/>
-  </div>
+  <v-app>
+        <v-container fluid>
+            <v-row>
+                <v-textarea
+                    name="language"
+                    >
+                </v-textarea>
+            </v-row>
+            <v-row>
+                <v-btn>
+                    Action 1
+                </v-btn>
+                <v-btn>
+                    Action 2
+                </v-btn>
+                <v-btn>
+                    Action 3
+                </v-btn>
+            </v-row>
+      </v-container>
+    <v-content>
+      <Table :data="result"/>
+    </v-content>
+  </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import HelloWorld from './components/HelloWorld.vue';
 import Table from './components/Table.vue';
 
 export default Vue.extend({
-  name: 'app',
+  name: 'App',
   components: {
+    HelloWorld,
     Table
   },
-  data: function() {
-      return {
-        items: ['hey']
-      }
-  }
+  methods: {
+    clear: () => {
+        this.result = []
+        this.content = ""
+    }
+  },
+  data: () => ({
+    result: ['hey'],
+    content: ''
+  }),
 });
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
