@@ -113,8 +113,13 @@ export default Vue.extend({
         this.content = ""
     }
   },
-  data: () => ({
-    result: [] as FormattedOutput[],
+    data: (): {
+        content: string,
+        expand: boolean,
+        dialog: false,
+        result: FormattedOutput[]
+    } => ({
+    result: [],
     content: '',
     expand: false,
     dialog: false

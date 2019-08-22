@@ -20,12 +20,12 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import { FormattedOuput } from '../App.vue';
+import { FormattedOutput } from '../App.vue';
 
 export default Vue.extend({
     name: 'Table',
     props: {
-        data: [] as FormattedOutput[]
+        data: []
     },
 });
 </script>
