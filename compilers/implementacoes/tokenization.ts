@@ -11,6 +11,8 @@ export enum Classes {
     Tab = 'Tab',
 }
 
+const ignorableList = [Classes.Whitespace, Classes.Tab, Classes.LineBreak]
+
 type Token = {
     'class': Classes,
     'lexem': string,
@@ -38,18 +40,18 @@ export const tokenize = curry((
     const getTokenForLang = getToken(lang, ignoreFormatCharacters)
     while(current) {
         const t = getTokenForLang(current, currentLine)
-        if (typeof t === 'string') {
-            // ignored
-            current = current.replace(t, '')
-        } else if (t instanceof Error) {
+        if (t instanceof Error) {
             throw t
         } else {
             const [token, recongnized] = t
             if (token.class === Classes.LineBreak) {
                 currentLine++
             }
-            tokens.push(token)
             current = current.replace(recongnized, '')
+            const mustIgnore = ignoreFormatCharacters && ignorableList.includes(token.class)
+            if (!mustIgnore) {
+                tokens.push(token)
+            }
         }
     }
 
@@ -67,7 +69,7 @@ const getToken = curry((
     ignored: boolean,
     str: string,
     currentLine: number,
-): [Token, string] | Error | string => {
+): [Token, string] | Error => {
     let match
     let tokenClass
     if ((match = str.match(specialSymbolRegexp))) {
@@ -80,14 +82,11 @@ const getToken = curry((
         tokenClass = Classes.ConstantString
     } else if ((match = str.match(integerConstantRegexp))) {
         tokenClass = Classes.ConstantInteger
-    } else if ((match = str.match(/\n/))) {
-        if (ignored) return match[0]
+    } else if ((match = str.match(/^\n/))) {
         tokenClass = Classes.LineBreak
-    } else if ((match = str.match(/\t/))) {
-        if (ignored) return match[0]
+    } else if ((match = str.match(/^\t/))) {
         tokenClass = Classes.Tab
-    } else if ((match = str.match(/\s/))) {
-        if (ignored) return match[0]
+    } else if ((match = str.match(/^\s/))) {
         tokenClass = Classes.Whitespace
     }
 

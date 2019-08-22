@@ -1,4 +1,4 @@
-import { validate, Result, Output, split } from './final'
+import { validate, Result, Output, split } from './client/src/final'
 
 test('basic test', () => {
     const expected: Array<Output> = [
