@@ -11,7 +11,8 @@ let errorState: State;
 errorState = { name: "qError", paths: [], error: true }
 
 let specialSymbolState: State;
-specialSymbolState = { name: "qSymbol", paths: [{ expression: '', to: specialSymbolState }] }
+specialSymbolState = { name: "qSymbol", paths: [{ expression: '', to: errorState }] }
+specialSymbolState.paths[0].to = specialSymbolState
 
 function getGraph() {
 
@@ -76,10 +77,10 @@ export enum Result {
 }
 
 export type Output = {
-    line?: number,
-    result?: Result,
-    path?: Array<String>,
-    content?: string
+    line: number,
+    result: Result,
+    path: Array<String>,
+    content: string
 }
 
 
@@ -127,7 +128,15 @@ const run = curry((graph: State, str: Array<SplitOutput>): Array<Output> =>
             else if (!sym)
                 return resultOf(currentState.final ? Result.ValidWord : ( currentState === specialSymbolState ?  Result.SpecialSymbol : Result.InvalidWord ))
 
-            const { to } = currentState.paths.find((p: Path) => p.expression.includes(sym)) || { to: errorState }
+            let next = currentState.paths.find((p: Path) => p.expression.includes(sym))
+            if(!next) {
+                if (alphabet.includes(sym))
+                    return resultOf(Result.InvalidWord)
+                else
+                    next = { to: errorState, expression: '' }
+            }
+
+            const { to } = next
 
             return runNextState(to, value.join(''), pathSoFar.concat([currentState]))
         }

@@ -22,12 +22,6 @@ test('basic test', () => {
             10110#000
         `))
         .toStrictEqual(expected)
-    console.log(split
-        (`0#0 1#000
-            0100#00
-        00%11   +   ;.
 
-        teste001#
-            10110#000
-        `))
+    expect(validate(`#`)) .toStrictEqual([{ line: 1, result: Result.InvalidWord, content: '#', path: ['q0'] }])
 })
