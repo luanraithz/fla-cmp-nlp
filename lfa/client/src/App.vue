@@ -5,65 +5,76 @@
                 <v-textarea
                     name="language"
                     v-model="content"
-                    v-on:keyup.enter="run"
                     >
                 </v-textarea>
             </v-row>
             <v-row>
-                <v-btn
-                    color="primary"
-                    v-on:click="run">
-                    Analisar
-                </v-btn>
-                <v-btn v-on:click="clear">
-                    Limpar
-                </v-btn>
-                <v-dialog
-                  v-model="dialog"
-                  width="500"
-                >
-                  <template v-slot:activator="{ on }">
+                <v-col cols="sm">
                     <v-btn
-                      color="red lighten-2"
-                      dark
-                      v-on="on"
-                    >
-                      Equipe
-                    </v-btn>
-                  </template>
-
-                  <v-card>
-                    <v-card-title
-                      class="headline grey lighten-2 text-center"
-                      primary-title
-                    >
-                      Equipe
-                    </v-card-title>
-
-                    <v-card-text>
-                      <br/>
-                      Luan Raithz Machado
-
-                      <br/>
-                      <a>
-                          Github
-                      </a>
-                    </v-card-text>
-
-                    <v-divider></v-divider>
-
-                    <v-card-actions>
-                      <div class="flex-grow-1"></div>
-                      <v-btn
                         color="primary"
-                        text
-                        @click="dialog = false"
-                      >
-                        Fechar
-                      </v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
+                        v-on:click="run">
+                        <v-icon >mdi-play</v-icon>
+                        Analisar
+                    </v-btn>
+                </v-col>
+                <v-col cols="sm">
+                    <v-btn
+                        v-on:click="clear"
+                        color="primary"
+                    >
+                        <v-icon >mdi-content-cut</v-icon>
+                        Limpar
+                    </v-btn>
+                </v-col>
+                <v-col cols="sm">
+                    <v-dialog
+                      v-model="dialog"
+                      width="500"
+                    >
+                      <template v-slot:activator="{ on }">
+                        <v-btn
+                          color="primary"
+                          dark
+                          v-on="on"
+                        >
+                            <v-icon >mdi-account-multiple</v-icon>
+                            Equipe
+                        </v-btn>
+                      </template>
+
+                      <v-card>
+                        <v-card-title
+                          class="headline grey lighten-2 text-center"
+                          primary-title
+                        >
+                          Equipe
+                        </v-card-title>
+
+                        <v-card-text>
+                          <br/>
+                          Luan Raithz Machado
+
+                          <br/>
+                          <a href="https://github.com/luanraithz">
+                              Github
+                          </a>
+                        </v-card-text>
+
+                        <v-divider></v-divider>
+
+                        <v-card-actions>
+                          <div class="flex-grow-1"></div>
+                          <v-btn
+                            color="primary"
+                            text
+                            @click="dialog = false"
+                          >
+                            Fechar
+                          </v-btn>
+                        </v-card-actions>
+                      </v-card>
+                    </v-dialog>
+                </v-col>
             </v-row>
       </v-container>
     <v-content>
@@ -74,7 +85,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
 import Table from './components/Table.vue';
 import { validate, Result, Output } from './final';
 
@@ -101,7 +111,6 @@ const toReadable = (result: Output): FormattedOutput => ({
 export default Vue.extend({
   name: 'App',
   components: {
-    HelloWorld,
     Table
   },
   methods: {
@@ -119,14 +128,17 @@ export default Vue.extend({
         dialog: false,
         result: FormattedOutput[]
     } => ({
-    result: [],
-    content: '',
-    expand: false,
-    dialog: false
-  }),
+        result: [],
+        content: '',
+        expand: false,
+        dialog: false
+    }),
 });
 </script>
 <style scoped>
+    button {
+        width: 100%;
+    }
     .team-card {
         height: 100px;
         box-sizing: border-box;

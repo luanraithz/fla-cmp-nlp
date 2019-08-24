@@ -22,11 +22,15 @@
 import Vue from 'vue';
 import { FormattedOutput } from '../App.vue';
 
+type Props = { data: FormattedOutput[] }
+
 export default Vue.extend({
     name: 'Table',
     props: {
-        data: []
-    },
+        data: {
+            type: Array as FormattedOutput[]
+        }
+    }
 });
 </script>
 
