@@ -3,6 +3,7 @@
         <v-container fluid class="container">
             <v-row>
                 <v-textarea
+                    :no-resize="true"
                     name="language"
                     v-model="content"
                     >
@@ -26,55 +27,7 @@
                         Limpar
                     </v-btn>
                 </v-col>
-                <v-col cols="sm">
-                    <v-dialog
-                      v-model="dialog"
-                      width="500"
-                    >
-                      <template v-slot:activator="{ on }">
-                        <v-btn
-                          color="primary"
-                          dark
-                          v-on="on"
-                        >
-                            <v-icon >mdi-account-multiple</v-icon>
-                            Equipe
-                        </v-btn>
-                      </template>
-
-                      <v-card>
-                        <v-card-title
-                          class="headline grey lighten-2 text-center"
-                          primary-title
-                        >
-                          Equipe
-                        </v-card-title>
-
-                        <v-card-text>
-                          <br/>
-                          Luan Raithz Machado
-
-                          <br/>
-                          <a href="https://github.com/luanraithz">
-                              Github
-                          </a>
-                        </v-card-text>
-
-                        <v-divider></v-divider>
-
-                        <v-card-actions>
-                          <div class="flex-grow-1"></div>
-                          <v-btn
-                            color="primary"
-                            text
-                            @click="dialog = false"
-                          >
-                            Fechar
-                          </v-btn>
-                        </v-card-actions>
-                      </v-card>
-                    </v-dialog>
-                </v-col>
+                <TeamModal></TeamModal>
             </v-row>
       </v-container>
     <v-content>
@@ -86,6 +39,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Table from './components/Table.vue';
+import TeamModal from './components/TeamModal.vue';
 import { validate, Result, Output } from './final';
 
 const ResultsMap = {
@@ -111,7 +65,8 @@ const toReadable = (result: Output): FormattedOutput => ({
 export default Vue.extend({
   name: 'App',
   components: {
-    Table
+    Table,
+    TeamModal
   },
   methods: {
     run: function() {
@@ -135,7 +90,10 @@ export default Vue.extend({
     }),
 });
 </script>
-<style scoped>
+<style>
+    body, html {
+        overflow: auto !important;
+    }
     button {
         width: 100%;
     }
@@ -145,4 +103,9 @@ export default Vue.extend({
         max-height: unset;
         padding: 20px;
     }
+    textarea {
+        height: 30vh;
+        min-height: 187px;
+    }
+
 </style>
