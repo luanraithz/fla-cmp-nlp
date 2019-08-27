@@ -30,8 +30,8 @@
               </v-row>
               <br/>
               <v-row justify="center">
-                  <a href="https://github.com/luanraithz">
-                      Github
+                  <a href="https://github.com/luanraithz/fla-cmp-nlp/tree/master/lfa/client">
+                      Github do projeto
                   </a>
               </v-row>
               <br/>
