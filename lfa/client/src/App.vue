@@ -2,12 +2,14 @@
   <v-app>
         <v-container fluid class="container">
             <v-row>
-                <v-textarea
-                    :no-resize="true"
-                    name="language"
-                    v-model="content"
-                    >
-                </v-textarea>
+                <div class="result">
+                    <v-textarea
+                        :no-resize="true"
+                        name="language"
+                        v-model="content"
+                        >
+                    </v-textarea>
+                </div>
             </v-row>
             <v-row>
                 <v-col cols="sm">
@@ -31,7 +33,9 @@
             </v-row>
       </v-container>
     <v-content>
-      <Table :data="result"/>
+        <div class="result">
+            <Table :data="result"/>
+        </div>
     </v-content>
   </v-app>
 </template>
@@ -102,6 +106,11 @@ export default Vue.extend({
         box-sizing: border-box;
         max-height: unset;
         padding: 20px;
+    }
+    .result {
+        padding: 15px;
+        width: 100%;
+        height: 100%;
     }
     textarea {
         height: 30vh;
