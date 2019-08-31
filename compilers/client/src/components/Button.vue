@@ -22,7 +22,7 @@ export default Vue.extend({
         shortcut: String,
     },
     methods: {
-        keyUp(ev) {
+        keyUp(ev: any) {
             const { control, shortcut } = this.$props
             const { key, ctrlKey } = ev
             const hasPressedShortcutKey = shortcut && shortcut.toUpperCase() === key.toUpperCase()
