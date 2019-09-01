@@ -1,11 +1,6 @@
 <template>
     <div class="wrapper">
         <v-row>
-            <div class="index">
-                <span v-for="(_, i) in getLines()">
-                    {{ i + 1 }}
-                </span>
-            </div>
             <div class="content">
                 <v-textarea
                     :no-resize="true"
@@ -34,7 +29,7 @@ export default Vue.extend({
 
 </script>
 
-<style scoped>
+<style>
 .wrapper {
     width: 100%;
     overflow: hidden;
@@ -52,7 +47,8 @@ export default Vue.extend({
 
 }
 .content {
-    width: calc(100% - 50px);
+    width: 100%;
+    height: 100%;
 
 }
 
@@ -64,6 +60,7 @@ textarea {
     width: 100%;
     height: 100%;
     line-height: 17px;
+    height: 60vh;
 }
 </style>
 

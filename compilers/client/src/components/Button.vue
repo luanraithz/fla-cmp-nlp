@@ -3,9 +3,12 @@
         <v-btn
             v-on:click="onClick"
             color="primary"
+            :height="70"
         >
-            <v-icon >mdi-{{ icon }}</v-icon>
-            {{ label }} {{ shortcut && (control ? `[ctrl-${shortcut}]`: `[${shortcut}]`) }}
+            <div>
+                <v-icon >mdi-{{ icon }}</v-icon>
+                <span>{{ label }} {{ shortcut && (control ? `[ctrl-${shortcut}]`: `[${shortcut}]`) }}</span>
+            </div>
         </v-btn>
     </v-col>
 </template>
@@ -50,6 +53,17 @@ export default Vue.extend({
 <style scoped>
 button {
     width: 100%;
+}
+span {
+    font-size: 13px;
+}
+div {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 </style>
