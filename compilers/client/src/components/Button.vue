@@ -53,14 +53,16 @@ export default Vue.extend({
 <style scoped>
 button {
     width: 100%;
+    box-sizing: border-box;
+    padding: 0 5px !important;
 }
 span {
-    font-size: 13px;
+    font-size: 9px;
 }
 div {
     width: 100%;
     height: 100%;
-    padding: 10px;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;

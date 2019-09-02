@@ -33,7 +33,6 @@ export default Vue.extend({
 .wrapper {
     width: 100%;
     overflow: hidden;
-    padding: 20px;
 }
 .index {
     width: 50px;
@@ -48,7 +47,7 @@ export default Vue.extend({
 }
 .content {
     width: 100%;
-    height: 100%;
+    height: 400px;
 
 }
 
@@ -59,8 +58,8 @@ export default Vue.extend({
 textarea {
     width: 100%;
     height: 100%;
-    line-height: 17px;
-    height: 60vh;
+    min-height: 400px !important;
+    padding: 20px !important;
 }
 </style>
 

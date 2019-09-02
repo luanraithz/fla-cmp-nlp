@@ -1,5 +1,6 @@
 <template>
   <v-app>
+      <input class="hidden" type="file" ref="input-file"/>
         <v-container fluid class="container">
             <v-row>
                 <div class="tools">
@@ -71,8 +72,6 @@
                 </div>
             </v-row>
       </v-container>
-    <v-content>
-    </v-content>
   </v-app>
 </template>
 
@@ -93,7 +92,9 @@ export default Vue.extend({
   },
   methods: {
       newFile: () => { console.log('new file') },
-      openFile: () => { console.log('opening file') },
+      openFile: function() {
+          this.$refs['input-file'].click()
+      },
       saveFile: () => { console.log('save file') },
       copySelection: () => { console.log('copy file') },
       pasteContent: () => { console.log('paste file') },
@@ -102,6 +103,13 @@ export default Vue.extend({
           console.log('compiling')
       }
   },
+
+    mounted: function() {
+        this.$refs['input-file'].addEventListener('change', async ({ target }) => {
+            const [file] = target.files
+            this.content = await file.text()
+        })
+    },
   data: (): { content: string } => ({ content: '' }),
 });
 </script>
@@ -111,28 +119,39 @@ export default Vue.extend({
     }
     body, html {
         overflow: auto !important;
+        min-width: 900px;
     }
     .output {
         width: 100%;
-        height: 17vh;
+        height: 100px;
         padding: 10px;
         border: 1px solid gray;
         background-color: #f0f0f0;
+        min-width: 900px;
+        min-height: 100px;
     }
     .status {
-        margin-bottom: 10px;
-        height: 5vh;
+        height: 30px;
         width: 100%;
         padding: 5px;
         background-color: #f0f0f0;
+        min-width: 900px;
+        box-sizing: border-box;
     }
     .tools {
-        min-height: 70px;
+        height: 70px;
         display: flex;
         width: 100%;
+        min-width: 900px;
     }
-    .tools > div {
-        padding: 5px;
+
+    input[type=file]{
+        display: none;
+    }
+    .container {
+        margin: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
 
 </style>
