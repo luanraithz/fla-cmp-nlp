@@ -1,7 +1,6 @@
 import { flatten, pipe, curry } from 'ramda'
 
 type State = { name: string, paths: Array<Path>, final?: boolean, error?: boolean }
-
 type Path = { expression: string, to: State }
 
 const specialSymbol = '.,;'
