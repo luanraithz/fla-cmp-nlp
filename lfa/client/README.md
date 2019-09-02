@@ -31,7 +31,7 @@ yarn install
 ## Teste
 O arquivo de teste pode ser contrado [aqui](../final.test.ts) (Ainda tem poucos testes).
 
-Para rodar deve ser executado na root do [projeto](../../..):
+Para rodar deve ser executado na root do [projeto](../../../..):
 ```
 yarn
 yarn test
