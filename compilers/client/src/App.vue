@@ -93,7 +93,10 @@ export default Vue.extend({
   methods: {
       newFile: () => { console.log('new file') },
       openFile: function() {
-          this.$refs['input-file'].click()
+          const el = this.$refs['input-file']
+          if (el instanceof Element) {
+              (el as HTMLElement).click()
+          }
       },
       saveFile: () => { console.log('save file') },
       copySelection: () => { console.log('copy file') },
@@ -105,10 +108,13 @@ export default Vue.extend({
   },
 
     mounted: function() {
-        this.$refs['input-file'].addEventListener('change', async ({ target }) => {
-            const [file] = target.files
-            this.content = await file.text()
-        })
+        const el = this.$refs['input-file']
+        if (el instanceof Element) {
+            el.addEventListener('change', async ({ target }: any) => {
+                const [file] = target.files
+                this.content = await file.text()
+            })
+        }
     },
   data: (): { content: string } => ({ content: '' }),
 });
