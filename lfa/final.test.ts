@@ -1,6 +1,6 @@
 import { validate, Result, Output, split } from './client/src/final'
 
-test('basic test', () => {
+test('Paper test', () => {
     const expected: Array<Output> = [
         { line: 1, result: Result.InvalidWord,   content: '0#0',       path: ['q0', 'q1q8', 'q3', 'q4'] },
         { line: 1, result: Result.ValidWord,     content: '1#000',     path: ['q0', 'q0q7', 'q11', 'q12', 'q13', 'q12'] },
@@ -23,5 +23,30 @@ test('basic test', () => {
         `))
         .toStrictEqual(expected)
 
-    expect(validate(`#`)) .toStrictEqual([{ line: 1, result: Result.InvalidWord, content: '#', path: ['q0'] }])
+
+})
+
+test('Invalid words', () => {
+    expect(validate(`#`)).toStrictEqual([{ line: 1, result: Result.InvalidWord, content: '#', path: ['q0'] }])
+    expect(validate('1')).toStrictEqual([{ line: 1, result: Result.InvalidWord, content: '1', path: ['q0', 'q0q7'] }])
+    expect(validate('0')).toStrictEqual([{ line: 1, result: Result.InvalidWord, content: '0', path: ['q0', 'q1q8'] }])
+})
+
+test('Special symbols', () => {
+    expect(validate(`;`)).toStrictEqual([{ line: 1, result: Result.SpecialSymbol, content: ';', path: ['q0', 'qSymbol'] }])
+    expect(validate(',')).toStrictEqual([{ line: 1, result: Result.SpecialSymbol, content: ',', path: ['q0', 'qSymbol'] }])
+    expect(validate('.')).toStrictEqual([{ line: 1, result: Result.SpecialSymbol, content: '.', path: ['q0', 'qSymbol'] }])
+
+    expect(validate(`;.,`)).toStrictEqual([
+        { line: 1, result: Result.SpecialSymbol, content: ';', path: ['q0', 'qSymbol']},
+        { line: 1, result: Result.SpecialSymbol, content: '.', path: ['q0', 'qSymbol'] },
+        { line: 1, result: Result.SpecialSymbol, content: ',', path: ['q0', 'qSymbol'] }]
+    )
+})
+
+test('Invalid symbols', () => {
+    expect(validate(`*`)).toStrictEqual([{ line: 1, result: Result.InvalidSymbol, content: '*', path: ['q0', 'qError'] }])
+    expect(validate(')')).toStrictEqual([{ line: 1, result: Result.InvalidSymbol, content: ')', path: ['q0', 'qError'] }])
+    expect(validate('&')).toStrictEqual([{ line: 1, result: Result.InvalidSymbol, content: '&', path: ['q0', 'qError'] }])
+
 })
