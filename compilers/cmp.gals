@@ -1,0 +1,33 @@
+#Options
+GenerateScanner = true
+GenerateParser = false
+Language = Java
+ScannerName = Lexico
+ScannerCaseSensitive = true
+ScannerTable = Hardcode
+Input = Stream
+#RegularDefinitions
+W:[a-z]
+S:[A-Z]
+L:[a-zA-Z]
+M:[a-zA-Z0-9]
+A:(_| ({M}+_)+ | (_{M}+)+ )
+D:[0-9]
+#Tokens
+palavraReservada: {W} ({S}? {W})*
+
+idInt: I_{L}({A}{M})?
+idFloat: F_{L}({A}{M})?
+idString: S_{L}({A}{M})?
+idBool: B_{L}({A}{M})?
+idComposto: C_{L}({A}{M})?
+
+int: {D}+
+float: {D}+,{D}+
+string: \"[^\"\n]*\"
+
+comBloco=/\*(\*+[^/\*]|[*/])*(\*)+/
+com: #[^\n]*
+:[\s\t\n]
+
+
