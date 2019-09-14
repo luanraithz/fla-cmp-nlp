@@ -1,7 +1,11 @@
-package gaals;
+package br.com.joyC.impl;
 
 import java.io.StringReader;
 import java.util.ArrayList;
+
+import br.com.joyC.gaals.LexicalError;
+import br.com.joyC.gaals.Lexico;
+import br.com.joyC.gaals.Token;
 
 public class Main {
 
@@ -25,7 +29,7 @@ public class Main {
 		        System.out.println(t.getLexeme() + " " + t.getPosition() + " " + t.getId());
 		        entries.add(t);
 		    }
-		} catch ( LexicalError e ) {
+		} catch (LexicalError e ) {
 		    System.err.println(e.getMessage() + "e" + e.getPosition());
 		}
 

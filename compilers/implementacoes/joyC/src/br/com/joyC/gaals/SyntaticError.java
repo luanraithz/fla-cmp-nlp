@@ -1,4 +1,4 @@
-package gaals;
+package br.com.joyC.gaals;
 
 public class SyntaticError extends AnalysisError
 {
