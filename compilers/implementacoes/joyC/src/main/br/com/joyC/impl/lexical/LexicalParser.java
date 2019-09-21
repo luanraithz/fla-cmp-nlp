@@ -38,7 +38,7 @@ public class LexicalParser {
         lex.setInput(reader);
         ArrayList<Token> entries = new ArrayList<Token>();
         try {
-            Token t = null;
+            Token t;
             while ( (t = lex.nextToken()) != null )
             {
                 entries.add(t);
