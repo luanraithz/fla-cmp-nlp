@@ -16,5 +16,6 @@ public interface Constants extends ScannerConstants
     int t_string = 10;
     int t_comBloco = 11;
     int t_com = 12;
+    int t_simboloEspecial = 13;
 
 }

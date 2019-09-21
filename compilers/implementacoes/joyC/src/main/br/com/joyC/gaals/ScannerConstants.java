@@ -3,15 +3,21 @@ package main.br.com.joyC.gaals;
 public interface ScannerConstants
 {
 
-    int[] TOKEN_STATE = {-1,  0, -1, 12, -1,  8, -1, -1, -1, -1, -1,  2, 10, -1, -1, -1, -1, -1, -1, -1, -1, -1,  9,  6,  7,  4,  3,  5, 11,  6, -1,  7, -1,  4, -1,  3, -1,  5, -1, -1,  6, -1,  7, -1,  4, -1,  3, -1,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+    int[] TOKEN_STATE = {-1,  0, 13, -1, 12, -1, 13, 13,  8, 13, 13, 13, -1, -1, -1, -1, -1,  2, -1, 10, -1, -1, -1, -1, -1, -1, -1, -1, -1,  9,  6,  7,  4,  3,  5, 11,  6, -1,  7, -1,  4, -1,  3, -1,  5, -1, -1,  6, -1,  7, -1,  4, -1,  3, -1,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 
     String[] SCANNER_ERROR =
     {
         "Caractere não esperado",
         "",
+        "",
         "Erro identificando string",
         "",
-        "Erro identificando comBloco",
+        "Erro identificando simboloEspecial",
+        "",
+        "",
+        "",
+        "",
+        "",
         "",
         "Erro identificando idBool",
         "Erro identificando idComposto",
@@ -19,6 +25,7 @@ public interface ScannerConstants
         "Erro identificando idInt",
         "Erro identificando idString",
         "",
+        "Erro identificando simboloEspecial",
         "",
         "Erro identificando comBloco",
         "Erro identificando float",

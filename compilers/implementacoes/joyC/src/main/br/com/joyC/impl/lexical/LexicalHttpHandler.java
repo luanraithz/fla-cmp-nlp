@@ -1,20 +1,28 @@
 package main.br.com.joyC.impl.lexical;
 
-import main.br.com.joyC.impl.lexical.models.Output;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 public class LexicalHttpHandler {
 
     @RequestMapping(name = "Lexical Parser", method = RequestMethod.POST, value="/lexical", consumes = { "application/json" }, produces = { "application/json" })
-    public ArrayList<Output> parse(@RequestBody Map<String, String> payload) {
+    @CrossOrigin(origins = "*")
+    public Map<String, Object> parse(@RequestBody Map<String, String> payload) {
         var content = payload.get("content");
-        return LexicalParser.parse(content);
+        var result = new HashMap<String, Object>();
+        try {
+            result.put("result", LexicalParser.parse(content));
+        } catch (LexicalContentError err) {
+            var error = new HashMap<String, Object>();
+            error.put("line", err.getLine());
+            error.put("position", err.getPosition());
+            error.put("lexem", err.getLexem());
+            error.put("message", err.getMessage());
+            result.put("error", error);
+        }
+        return result;
     }
 }

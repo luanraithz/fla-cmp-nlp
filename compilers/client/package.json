@@ -1,14 +1,15 @@
 {
-  "name": "LFA",
+  "name": "Compilers",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "vue-cli-service serve",
+    "start": "vue-cli-service serve --port 3001",
     "build": "vue-cli-service build"
   },
   "dependencies": {
     "@types/ramda": "^0.26.19",
     "@vue/cli": "^3.11.0",
+    "axios": "^0.19.0",
     "core-js": "^2.6.5",
     "jest": "^24.9.0",
     "ramda": "^0.26.1",
@@ -25,6 +26,9 @@
     "vue-cli-plugin-vuetify": "^0.6.3",
     "vue-template-compiler": "^2.6.10",
     "vuetify-loader": "^1.2.2"
+  },
+  "resolutions": {
+    "@vue/cli-service/portfinder": "1.0.21"
   },
   "postcss": {
     "plugins": {

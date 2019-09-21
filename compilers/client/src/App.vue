@@ -56,19 +56,27 @@
                 </div>
             </v-row>
             <v-row>
-                <Textarea :content="content">
-                </Textarea>
+                <div class="wrapper">
+                    <v-row>
+                        <div class="content">
+                            <v-textarea
+                                :no-resize="true"
+                                name="language"
+                                v-model="content"
+                                >
+                            </v-textarea>
+                        </div>
+                    </v-row>
+                </div>
             </v-row>
             <v-row>
                 <div class="output">
-                    Some
-                    awesome
-                    output
+                    {{ message }}
                 </div>
             </v-row>
             <v-row>
                 <div class="status">
-                    Some cool status
+                    {{ status }}
                 </div>
             </v-row>
       </v-container>
@@ -78,17 +86,32 @@
 
 <script lang="ts">
 
-import Vue from 'vue';
-import TeamModal from './components/TeamModal.vue';
-import Button from './components/Button.vue';
-import Textarea from './components/Textarea.vue';
+import Vue from 'vue'
+import TeamModal from './components/TeamModal.vue'
+import Button from './components/Button.vue'
+import axios from 'axios'
+
+const Types = {
+    "EPSILON": "Epsilon",
+    "DOLAR": "Dolar",
+    "RESERVED_WORD": "Palavra reservada",
+    "ID_INT": "identificador",
+    "ID_FLOAT": "identificador",
+    "ID_STRING": "identificador",
+    "ID_BOOL": "identificador",
+    "ID_COMPOSTO": "identificaodr",
+    "INT": "constante int",
+    "FLOAT": "constante float",
+    "STRING": "constante string"
+}
+
+const formatType = t => Types[s]
 
 export default Vue.extend({
   name: 'App',
   components: {
       TeamModal,
       Button,
-      Textarea
   },
   methods: {
       newFile: () => { console.log('new file') },
@@ -102,8 +125,12 @@ export default Vue.extend({
       copySelection: () => { console.log('copy file') },
       pasteContent: () => { console.log('paste file') },
       cutSelection: () => { console.log('cut file') },
-      compile: () => {
-          console.log('compiling')
+      compile: async function() {
+          const res = await axios.post('http://localhost:8080/lexical', {content: this.content}).then(({ data }) => data)
+          this.result = res.map(s => ({
+              ...s,
+              type: formatType(s.type)
+          }))
       }
   },
 
@@ -116,7 +143,7 @@ export default Vue.extend({
             })
         }
     },
-  data: (): { content: string } => ({ content: '' }),
+  data: (): { content: string, status: string, message: '' } => ({ content: '', status: '', message: '' }),
 });
 </script>
 <style>
@@ -160,4 +187,35 @@ export default Vue.extend({
         padding-bottom: 0 !important;
     }
 
+    .wrapper {
+        width: 100%;
+        overflow: hidden;
+    }
+    .index {
+        width: 50px;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding-right: 10px;
+    }
+    .index > span {
+        line-height: 18px;
+
+    }
+    .content {
+        width: 100%;
+        height: 400px;
+
+    }
+
+    .content > div {
+        padding-top: 0;
+        margin-top: 0;
+    }
+    textarea {
+        width: 100%;
+        height: 100%;
+        min-height: 400px !important;
+        padding: 20px !important;
+    }
 </style>

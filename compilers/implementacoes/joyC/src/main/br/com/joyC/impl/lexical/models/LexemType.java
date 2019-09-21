@@ -13,7 +13,8 @@ public enum LexemType {
 	t_float(9, "FLOAT"),
 	t_string(10, "STRING"),
 	t_comBloco(11, "COMMENT_BLOCK"),
-	t_com(12, "COMMENT_LINE");
+	t_com(12, "COMMENT_LINE"),
+	t_simboloEspecial(13, "SPECIAL_SYMBOL");
 
 	private Integer value;
 	private String desc;
