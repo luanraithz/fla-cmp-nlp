@@ -11,18 +11,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class LexicalParser {
+public class LexicalParser {
 
-    static ArrayList<Output> parse(String content) {
+    public static ArrayList<Output> parse(String content) {
         return new ArrayList<>(parse(new StringReader(content)));
     }
 
     static private List<Output> parse(StringReader reader) {
         return rawParse(reader).stream().map(s -> {
             var out = new Output();
-            out.lexeme = s.getLexeme();
             out.position = s.getPosition();
-            out.type = LexemType.fromInt(s.getId()).getDesc();
+            try {
+                out.type = LexemType.fromInt(s.getId()).getDesc();
+                out.lexeme = s.getLexeme();
+            } catch (Exception e) {
+                out.type = "UNEXPECTED CHARACTER";
+                out.lexeme = "LEXICAL ERROR";
+            }
             return out;
         }).collect(Collectors.toList());
     }
@@ -36,11 +41,11 @@ class LexicalParser {
             Token t = null;
             while ( (t = lex.nextToken()) != null )
             {
-                System.out.println(t.getLexeme() + " " + t.getPosition() + " " + t.getId());
                 entries.add(t);
             }
         } catch (LexicalError e ) {
-            System.err.println(e.getMessage() + "e" + e.getPosition());
+            var t = new Token(9999, e.getMessage() ,e.getPosition());
+            entries.add(t);
         }
 
         return entries;

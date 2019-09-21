@@ -11,16 +11,16 @@ W:[a-z]
 S:[A-Z]
 L:[a-zA-Z]
 M:[a-zA-Z0-9]
-A:(_| ({M}+_)+ | (_{M}+)+ )
+A:(_| ({M}+_)+ | (_{M}+)+  )?
 D:[0-9]
 #Tokens
 palavraReservada: {W} ({S}? {W})*
 
-idInt: I_{L}({A}{M})?
-idFloat: F_{L}({A}{M})?
-idString: S_{L}({A}{M})?
-idBool: B_{L}({A}{M})?
-idComposto: C_{L}({A}{M})?
+idInt: I_{L}({A}{M}+)?
+idFloat: F_{L}({A}{M}+)?
+idString: S_{L}({A}{M}+)?
+idBool: B_{L}({A}{M}+)?
+idComposto: C_{L}({A}{M}+)?
 
 int: {D}+
 float: {D}+,{D}+

@@ -1,10 +1,5 @@
 package br.com.joyC.impl.lexical.models;
 
-import org.apache.tomcat.jni.Error;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public enum LexemType {
 	EPSILON(0, "EPSILON"),
 	DOLLAR(1, "DOLAR"),

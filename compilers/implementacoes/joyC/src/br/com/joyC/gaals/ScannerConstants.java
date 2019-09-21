@@ -3,7 +3,7 @@ package br.com.joyC.gaals;
 public interface ScannerConstants
 {
 
-    int[] TOKEN_STATE = {-1,  0, -1, 12, -1,  8, -1, -1, -1, -1, -1,  2, 10, -1, -1, -1, -1, -1, -1, -1, -1, -1,  9,  6,  7,  4,  3,  5, 11,  6,  6, -1,  7,  7, -1,  4,  4, -1,  3,  3, -1,  5,  5, -1, -1,  6, -1,  7, -1,  4, -1,  3, -1,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+    int[] TOKEN_STATE = {-1,  0, -1, 12, -1,  8, -1, -1, -1, -1, -1,  2, 10, -1, -1, -1, -1, -1, -1, -1, -1, -1,  9,  6,  7,  4,  3,  5, 11,  6, -1,  7, -1,  4, -1,  3, -1,  5, -1, -1,  6, -1,  7, -1,  4, -1,  3, -1,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 
     String[] SCANNER_ERROR =
     {
@@ -37,18 +37,13 @@ public interface ScannerConstants
         "",
         "",
         "",
-        "",
         "Erro identificando idBool",
-        "",
         "",
         "Erro identificando idComposto",
         "",
-        "",
         "Erro identificando idFloat",
         "",
-        "",
         "Erro identificando idInt",
-        "",
         "",
         "Erro identificando idString",
         "Erro identificando idBool",

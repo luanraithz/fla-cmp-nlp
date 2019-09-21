@@ -2,11 +2,7 @@ package br.com.joyC.gaals;
 
 public class AnalysisError extends Exception
 {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private int position;
+    private int position;
 
     public AnalysisError(String msg, int position)
     {
