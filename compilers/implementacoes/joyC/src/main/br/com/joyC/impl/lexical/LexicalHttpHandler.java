@@ -19,7 +19,7 @@ public class LexicalHttpHandler {
             var error = new HashMap<String, Object>();
             error.put("line", err.getLine());
             error.put("position", err.getPosition());
-            error.put("lexem", err.getLexem());
+            error.put("lexeme", err.getLexem());
             error.put("message", err.getMessage());
             result.put("error", error);
         }

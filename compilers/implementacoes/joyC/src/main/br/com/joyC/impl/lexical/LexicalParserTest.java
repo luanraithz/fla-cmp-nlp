@@ -1,6 +1,6 @@
 package main.br.com.joyC.impl.lexical;
 
-import main.br.com.joyC.impl.lexical.models.LexemType;
+import main.br.com.joyC.impl.lexical.models.LexemeType;
 import org.junit.jupiter.api.Test;
 
 import static main.br.com.joyC.impl.lexical.LexicalParser.parse;
@@ -17,7 +17,7 @@ class LexicalParserTest {
             var res = result.get(0);
             assertEquals(0, res.position);
             assertEquals("I_syop", res.lexeme);
-            assertEquals(LexemType.t_idInt.getDesc(), res.type);
+            assertEquals(LexemeType.t_idInt.getDesc(), res.type);
         } catch (Exception e) {
             fail();
         }
@@ -45,13 +45,13 @@ class LexicalParserTest {
     @Test
     void idString(){
         try {
-            var lexem = "S_syop";
-            var result = parse(lexem);
+            var lexeme = "S_syop";
+            var result = parse(lexeme);
             assertEquals(1, result.size());
             var res = result.get(0);
             assertEquals(0, res.position);
-            assertEquals(lexem, res.lexeme);
-            assertEquals(LexemType.t_idString.getDesc(), res.type);
+            assertEquals(lexeme, res.lexeme);
+            assertEquals(LexemeType.t_idString.getDesc(), res.type);
         } catch (Exception ignored) {
             fail();
         }
@@ -78,7 +78,7 @@ class LexicalParserTest {
     void validReservedWord(String content) {
         try {
             var result = parse(content).get(0);
-            assertEquals(LexemType.t_palavraReservada.getDesc(), result.type);
+            assertEquals(LexemeType.t_palavraReservada.getDesc(), result.type);
             assertEquals(0, result.position);
             assertEquals(content, result.lexeme);
         } catch (Exception ignored) { }

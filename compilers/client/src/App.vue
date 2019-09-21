@@ -71,7 +71,7 @@
             </v-row>
             <v-row>
                 <div class="output">
-                    {{ message }}
+                    {{ error || message }}
                 </div>
             </v-row>
             <v-row>
@@ -105,7 +105,15 @@ const Types = {
     "STRING": "constante string"
 }
 
+type Result = {
+    position: number,
+    lexem: string,
+    type: string,
+}
+
 const formatType = t => Types[s]
+
+const formatData = items => items.map(s => ({ ...s, type: Types[s.type]})).filter(({ type }) => type)
 
 export default Vue.extend({
   name: 'App',
@@ -126,11 +134,15 @@ export default Vue.extend({
       pasteContent: () => { console.log('paste file') },
       cutSelection: () => { console.log('cut file') },
       compile: async function() {
-          const res = await axios.post('http://localhost:8080/lexical', {content: this.content}).then(({ data }) => data)
-          this.result = res.map(s => ({
-              ...s,
-              type: formatType(s.type)
-          }))
+          const { error, result } = await axios.post('http://localhost:8080/lexical', {content: this.content}).then(({ data }) => data)
+          this.error = ""
+          this.result = []
+          console.log(error, result)
+          if (error) {
+              this.error = error.message
+          } else {
+              this.result = formatData(result)
+          }
       }
   },
 
@@ -143,7 +155,7 @@ export default Vue.extend({
             })
         }
     },
-  data: (): { content: string, status: string, message: '' } => ({ content: '', status: '', message: '' }),
+  data: (): { content: string, status: string, message: '', error: string } => ({ content: '', status: '', message: '', error: '', result: [] }),
 });
 </script>
 <style>

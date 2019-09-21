@@ -1,6 +1,6 @@
 package main.br.com.joyC.impl.lexical.models;
 
-public enum LexemType {
+public enum LexemeType {
 	EPSILON(0, "EPSILON"),
 	DOLLAR(1, "DOLAR"),
 	t_palavraReservada(2, "RESERVED_WORD"),
@@ -27,15 +27,15 @@ public enum LexemType {
 		return this.desc;
 	}
 
-	LexemType(Integer i, String desc) {
+	LexemeType(Integer i, String desc) {
 		this.value = i;
 		this.desc = desc;
 	}
 
-	static public LexemType fromInt(Integer i) {
-		for (LexemType lexem: LexemType.values()) {
-			if (lexem.getValue().equals(i)) return lexem;
+	static public LexemeType fromInt(Integer i) {
+		for (LexemeType lexeme: LexemeType.values()) {
+			if (lexeme.getValue().equals(i)) return lexeme;
 		}
-		throw new RuntimeException("Lexem not found");
+		throw new RuntimeException("Lexeme not found");
 	}
 }
