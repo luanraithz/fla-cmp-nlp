@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="joyC:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="b0bf6fa6-8d63-4e87-a44a-723c0c5896d5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/MessageTranslator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../cmp.gals" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmp.gals" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/joyC_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/Lexico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/Lexico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/ScannerConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/ScannerConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/LexicalParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/LexicalParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/LexicalParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/LexicalParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/models/LexemeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/models/LexemeType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/LexicalHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/LexicalHttpHandler.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +31,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1RA6QBAjTv9aFm59IruzDyq2e0o" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
@@ -40,7 +46,11 @@
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="joyc" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
