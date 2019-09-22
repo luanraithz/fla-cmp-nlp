@@ -82,6 +82,7 @@ public class Lexico implements Constants
         else
         {
             String lexeme = input.substring(start, end);
+            token = lookupToken(token, lexeme);
             return new Token(token, lexeme, start);
         }
     }
@@ -3815,6 +3816,27 @@ public class Lexico implements Constants
             return -1;
 
         return TOKEN_STATE[state];
+    }
+
+    public int lookupToken(int base, String key)
+    {
+        int start = SPECIAL_CASES_INDEXES[base];
+        int end   = SPECIAL_CASES_INDEXES[base+1]-1;
+
+        while (start <= end)
+        {
+            int half = (start+end)/2;
+            int comp = SPECIAL_CASES_KEYS[half].compareTo(key);
+
+            if (comp == 0)
+                return SPECIAL_CASES_VALUES[half];
+            else if (comp < 0)
+                start = half+1;
+            else  //(comp > 0)
+                end = half-1;
+        }
+
+        return base;
     }
 
     private boolean hasInput()

@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0bf6fa6-8d63-4e87-a44a-723c0c5896d5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/MessageTranslator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client/src/service/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/src/service/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../cmp.gals" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmp.gals" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/LexicalHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/LexicalHttpHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/Lexico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/Lexico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/ScannerConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/ScannerConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/LexicalParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/LexicalParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/models/Output.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/models/Output.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/LexicalParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/LexicalParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/models/LexemeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/models/LexemeType.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,6 +62,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LexicalParserTest.testReservedWords" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="joyC" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.br.com.joyC.impl.lexical.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.lexical" />
+      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.lexical.LexicalParserTest" />
+      <option name="METHOD_NAME" value="testReservedWords" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Unnamed" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="joyC" />
       <option name="PACKAGE_NAME" value="" />
@@ -73,7 +92,13 @@
     <list>
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="JUnit.Unnamed" />
+      <item itemvalue="JUnit.LexicalParserTest.testReservedWords" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.LexicalParserTest.testReservedWords" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -93,7 +118,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

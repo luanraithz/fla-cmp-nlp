@@ -26,17 +26,15 @@ class LexicalParserTest {
     @Test
     void errorIdInt() {
         try {
-            var result = parse("I_syop__");
+            parse("I_syop__");
             fail();
-        } catch (Exception ignored) {
-
-        }
+        } catch (Exception ignored) { }
     }
 
     @Test
     void invalidIdInt() {
         try {
-            var result = parse("I___op");
+            parse("I___op");
             fail();
         } catch (Exception ignored) { }
     }
@@ -59,9 +57,8 @@ class LexicalParserTest {
 
     @Test
     void errorIdString() {
-
         try {
-            var result = parse("S_syop__");
+            parse("S_syop__");
             fail();
         } catch (Exception ignored) { }
     }
@@ -69,33 +66,49 @@ class LexicalParserTest {
     @Test
     void invalidIdString() {
         try {
-            var result = parse("I___op");
+            parse("I___op");
             fail();
         } catch (Exception ignored) { }
     }
 
 
-    void validReservedWord(String content) {
+    void validReservedWord(String content, LexemeType lexeme) {
         try {
             var result = parse(content).get(0);
-            assertEquals(LexemeType.t_palavraReservada.getDesc(), result.type);
+            assertEquals(lexeme.getDesc(), result.type);
             assertEquals(0, result.position);
             assertEquals(content, result.lexeme);
-        } catch (Exception ignored) { }
+        } catch (Exception ignored) {
+            fail();
+        }
     }
 
     @Test
     void testReservedWords() {
-        validReservedWord("e");
-        validReservedWord("ou");
-        validReservedWord("enquantoVerdadeiro");
+        validReservedWord("isFalseDo", LexemeType.t_isFalseDo);
+        validReservedWord("isTrueDo", LexemeType.t_isTrueDo);
+        validReservedWord("main", LexemeType.t_main);
+        validReservedWord("while", LexemeType.t_while);
+        validReservedWord("types", LexemeType.t_types);
+        validReservedWord("true", LexemeType.t_true);
+        validReservedWord("output", LexemeType.t_output);
+
+        // Should be case sensitive
+        invalidReservedWord("isFalseDO");
+        invalidReservedWord("isTRueDo");
+        invalidReservedWord("maIn");
+        invalidReservedWord("wHile");
+        invalidReservedWord("Types");
+        invalidReservedWord("True");
+        invalidReservedWord("OUTPUT");
+
     }
 
     void invalidReservedWord(String content) {
         try {
-            var result = parse(content).get(0);
+            parse(content);
             fail();
-        } catch (Exception ex) { }
+        } catch (Exception ignored) { }
     }
 
     @Test
@@ -103,14 +116,14 @@ class LexicalParserTest {
         invalidReservedWord("E");
         invalidReservedWord("OU");
         try {
-            var result = parse("enquantoVerdaDEiro");
+            parse("enquantoVerdaDEiro");
             fail();
         } catch (Exception ignored) {}
 
         try {
-            var result = parse("proGRAMA");
+            parse("proGRAMA");
             fail();
-        } catch (Exception ignored) { }
+        } catch (Exception ignored) {}
     }
 
 

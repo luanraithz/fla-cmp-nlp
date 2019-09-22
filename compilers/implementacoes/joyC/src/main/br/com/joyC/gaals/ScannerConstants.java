@@ -3,7 +3,16 @@ package main.br.com.joyC.gaals;
 public interface ScannerConstants
 {
 
-    int[] TOKEN_STATE = {-1,  0, 13, -1, 12, -1, 13, 13,  8, 13, 13, 13, -1, -1, -1, -1, -1,  2, -1, 10, -1, -1, -1, -1, -1, -1, -1, -1, -1,  9,  6,  7,  4,  3,  5, 11,  6, -1,  7, -1,  4, -1,  3, -1,  5, -1, -1,  6, -1,  7, -1,  4, -1,  3, -1,  5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+    int[] TOKEN_STATE = {-2,  0, 19, -1,  0, -1, 19, 19, 16, 19, 19, 19, -1, -1, -1, -1, -1,  2, -1, 18, -2, -1, -1, -1, -1, -1, -1, -1, -2, 17, 14, 15, 12, 11, 13,  0, 14, -1, 15, -1, 12, -1, 11, -1, 13, -1, -1, 14, -1, 15, -1, 12, -1, 11, -1, 13, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+
+    int[] SPECIAL_CASES_INDEXES =
+        { 0, 0, 0, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8 };
+
+    String[] SPECIAL_CASES_KEYS =
+        {  "input", "isFalseDo", "isTrueDo", "main", "output", "true", "types", "while" };
+
+    int[] SPECIAL_CASES_VALUES =
+        {  3, 4, 5, 6, 7, 8, 9, 10 };
 
     String[] SCANNER_ERROR =
     {
@@ -27,7 +36,7 @@ public interface ScannerConstants
         "",
         "Erro identificando simboloEspecial",
         "",
-        "Erro identificando comBloco",
+        "Erro identificando <ignorar>",
         "Erro identificando float",
         "Erro identificando idBool",
         "Erro identificando idComposto",
@@ -35,7 +44,7 @@ public interface ScannerConstants
         "Erro identificando idInt",
         "Erro identificando idString",
         "Erro identificando palavraReservada",
-        "Erro identificando comBloco",
+        "Erro identificando <ignorar>",
         "",
         "",
         "",

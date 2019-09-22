@@ -11,14 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 class LexicalParser {
-
     static List<Output> parse(String str) throws LexicalContentError {
         var arr = new ArrayList<Output>();
         try {
             for (Token t: rawParse(new StringReader(str))) {
                 var out = new Output();
                 out.position = t.getPosition();
-                out.type = LexemeType.fromInt(t.getId()).getDesc();
+                var lexeme = LexemeType.fromInt(t.getId());
+                if (lexeme == LexemeType.t_palavraReservada) {
+                    throw new LexicalError("Palavra reservada invalida", t.getPosition());
+                }
+                out.type = lexeme.getDesc();
                 out.lexeme = t.getLexeme();
                 out.line = countLines(str.substring(0, t.getPosition() + 1));
                 arr.add(out);
@@ -29,7 +32,7 @@ class LexicalParser {
             var position = e.getPosition();
             var line = countLines(str.substring(0, position + 1));
             var lexeme = String.valueOf(str.charAt(position));
-            var message = "Erro na linha " + line + " - " + lexeme +  " " + e.getMessage();
+            var message = "Erro na linha " + line + " - " + lexeme +  " " + MessageTranslator.translate(e.getMessage());
             throw new LexicalContentError(message, position, line, lexeme);
         }
     }
