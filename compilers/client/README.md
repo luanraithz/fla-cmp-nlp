@@ -1,8 +1,10 @@
 # LFA - Client
 
-## Project setup
+## Setup
+
+### Instalar dependências (usando yarn, caso não tenha instalado `npm install -g yarn`)
 ```
-yarn install
+yarn
 ```
 
 ### Iniciar o server
