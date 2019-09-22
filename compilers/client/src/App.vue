@@ -71,15 +71,33 @@
             </v-row>
             <v-row>
                 <div class="output">
-                    {{ error || message }}
-                </div>
-            </v-row>
-            <v-row>
-                <div class="status">
-                    {{ status }}
+                    <div v-if="result.length">
+                        <v-simple-table>
+                            <template v-slot:default>
+                              <thead>
+                                <tr>
+                                  <th class="text-left">Linha</th>
+                                  <th class="text-left">Classe</th>
+                                  <th class="text-left">Lexema</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr v-for="result in result">
+                                  <td>{{ result.line }}</td>
+                                  <td>{{ result.type }}</td>
+                                  <td>{{ result.lexeme }}</td>
+                                </tr>
+                              </tbody>
+                            </template>
+                          </v-simple-table>
+                    </div>
+                    <div v-if="!result.length">
+                        {{ error || message }}
+                    </div>
                 </div>
             </v-row>
       </v-container>
+      <v-snackbar v-model="snackbar"> {{ snackMessage }} </v-snackbar>
   </v-app>
 </template>
 
@@ -89,7 +107,9 @@
 import Vue from 'vue'
 import TeamModal from './components/TeamModal.vue'
 import Button from './components/Button.vue'
-import axios from 'axios'
+import { compileLexical } from './service'
+import FileSaver from 'file-saver'
+import copy from 'copy-to-clipboard'
 
 const Types = {
     "EPSILON": "Epsilon",
@@ -102,13 +122,8 @@ const Types = {
     "ID_COMPOSTO": "identificaodr",
     "INT": "constante int",
     "FLOAT": "constante float",
-    "STRING": "constante string"
-}
-
-type Result = {
-    position: number,
-    lexem: string,
-    type: string,
+    "STRING": "constante string",
+    "SPECIAL_SYMBOL": "símbolo especial"
 }
 
 const formatType = t => Types[s]
@@ -122,22 +137,51 @@ export default Vue.extend({
       Button,
   },
   methods: {
-      newFile: () => { console.log('new file') },
+      reset: function() {
+          this.error = ""
+          this.content = ""
+          this.result = []
+      },
+      newFile: function() {
+          this.reset()
+      },
       openFile: function() {
           const el = this.$refs['input-file']
           if (el instanceof Element) {
               (el as HTMLElement).click()
           }
       },
-      saveFile: () => { console.log('save file') },
-      copySelection: () => { console.log('copy file') },
-      pasteContent: () => { console.log('paste file') },
-      cutSelection: () => { console.log('cut file') },
+      saveFile: function() {
+          if (this.content) {
+              const file = new File([this.content], "result.joyc", { type: "text/plain;charset=utf-8"})
+              this.snack("Salvando `result.joyC`")
+              FileSaver.saveAs(file)
+          } else {
+              this.snack("Não existe nada para ser salvo!");
+          }
+      },
+      copySelection: function() {
+          if (this.content) {
+            copy(this.content);
+            this.snack("Copiado!")
+          }
+      },
+      pasteContent: function() { this.snack("Ainda não foi feito :)") },
+      cutSelection: function() {
+          copy(this.content)
+          this.reset()
+          this.snack("Recortado!")
+      },
+      snack: function(message) {
+          clearTimeout(this.snackTimeout)
+          this.snackbar = true
+          this.snackMessage = message;
+          this.snackTimeout = setTimeout(() => { this.snackbar = false }, 3000)
+      },
       compile: async function() {
-          const { error, result } = await axios.post('http://localhost:8080/lexical', {content: this.content}).then(({ data }) => data)
+          const { error, result } = await compileLexical(this.content)
           this.error = ""
           this.result = []
-          console.log(error, result)
           if (error) {
               this.error = error.message
           } else {
@@ -155,7 +199,25 @@ export default Vue.extend({
             })
         }
     },
-  data: (): { content: string, status: string, message: '', error: string } => ({ content: '', status: '', message: '', error: '', result: [] }),
+  data: (): {
+      content: string,
+      status: string,
+      message: '',
+      error: string,
+      snackMessage: string,
+      result: any[],
+      snackbar: boolean,
+      snackTimeout: string,
+  } => ({
+      content: '',
+      status: '',
+      message: '',
+      error: '',
+      result: [],
+      snackMessage: '',
+      snackbar: false,
+      snackTimeout: -1,
+  }),
 });
 </script>
 <style>
@@ -171,9 +233,9 @@ export default Vue.extend({
         height: 100px;
         padding: 10px;
         border: 1px solid gray;
-        background-color: #f0f0f0;
         min-width: 900px;
         min-height: 100px;
+        max-height: 400px;
     }
     .status {
         height: 30px;

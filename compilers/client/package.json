@@ -10,13 +10,16 @@
     "@types/ramda": "^0.26.19",
     "@vue/cli": "^3.11.0",
     "axios": "^0.19.0",
+    "copy-to-clipboard": "^3.2.0",
     "core-js": "^2.6.5",
+    "file-saver": "^2.0.2",
     "jest": "^24.9.0",
     "ramda": "^0.26.1",
     "vue": "^2.6.10",
     "vuetify": "^2.0.0"
   },
   "devDependencies": {
+    "@types/file-saver": "^2.0.1",
     "@vue/cli-plugin-babel": "^3.10.0",
     "@vue/cli-plugin-typescript": "^3.10.0",
     "@vue/cli-service": "^3.11.0",
