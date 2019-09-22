@@ -1,19 +1,12 @@
 import axios from 'axios'
-
-type LexicalError = {
-    lexeme: string,
-    line: Number,
-    position: Number,
-    message: string
-}
-
-type Result = {
-    position: number,
-    lexeme: string,
-    type: string
-}
+import { LexicalError, LexicalResult } from './../types/lexical'
 
 const BASE = "http://localhost:8080"
 
-export const compileLexical =
-    (content: string): Promise<{ error?: LexicalError, result?: Array<Result> }> => axios.post(`${BASE}/lexical`, { content }).then(({ data }) => data)
+function compileLexical (content: string): Promise<{ error?: LexicalError, result?: LexicalResult }> {
+    return axios.post(`${BASE}/lexical`, { content }).then(({ data }) => data)
+}
+
+export {
+    compileLexical
+}

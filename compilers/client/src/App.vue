@@ -105,30 +105,24 @@
 <script lang="ts">
 
 import Vue from 'vue'
-import TeamModal from './components/TeamModal.vue'
-import Button from './components/Button.vue'
-import { compileLexical } from './service'
 import FileSaver from 'file-saver'
 import copy from 'copy-to-clipboard'
 
-const Types = {
-    "EPSILON": "Epsilon",
-    "DOLAR": "Dolar",
-    "RESERVED_WORD": "Palavra reservada",
-    "ID_INT": "identificador",
-    "ID_FLOAT": "identificador",
-    "ID_STRING": "identificador",
-    "ID_BOOL": "identificador",
-    "ID_COMPOSTO": "identificaodr",
-    "INT": "constante int",
-    "FLOAT": "constante float",
-    "STRING": "constante string",
-    "SPECIAL_SYMBOL": "símbolo especial"
+import TeamModal from './components/TeamModal.vue'
+import Button from './components/Button.vue'
+import { compileLexical } from './service'
+import { formatData } from './utils/lexical'
+
+type Data = {
+  content: string,
+  status: string,
+  message: '',
+  error: string,
+  snackMessage: string,
+  result: any[],
+  snackbar: boolean,
+  snackTimeout: number
 }
-
-const formatType = t => Types[s]
-
-const formatData = items => items.map(s => ({ ...s, type: Types[s.type]})).filter(({ type }) => type)
 
 export default Vue.extend({
   name: 'App',
@@ -142,9 +136,7 @@ export default Vue.extend({
           this.content = ""
           this.result = []
       },
-      newFile: function() {
-          this.reset()
-      },
+      newFile: function() { this.reset() },
       openFile: function() {
           const el = this.$refs['input-file']
           if (el instanceof Element) {
@@ -172,20 +164,24 @@ export default Vue.extend({
           this.reset()
           this.snack("Recortado!")
       },
-      snack: function(message) {
+      snack: function(message: string) {
           clearTimeout(this.snackTimeout)
           this.snackbar = true
           this.snackMessage = message;
           this.snackTimeout = setTimeout(() => { this.snackbar = false }, 3000)
       },
       compile: async function() {
-          const { error, result } = await compileLexical(this.content)
-          this.error = ""
-          this.result = []
-          if (error) {
-              this.error = error.message
-          } else {
-              this.result = formatData(result)
+          try {
+              const { error, result } = await compileLexical(this.content)
+              this.error = ""
+              this.result = []
+              if (error) {
+                  this.error = error.message
+              } else {
+                  this.result = formatData(result)
+              }
+          } catch (err) {
+              this.snack("Houve algum problema ao chamar a api")
           }
       }
   },
@@ -199,16 +195,7 @@ export default Vue.extend({
             })
         }
     },
-  data: (): {
-      content: string,
-      status: string,
-      message: '',
-      error: string,
-      snackMessage: string,
-      result: any[],
-      snackbar: boolean,
-      snackTimeout: string,
-  } => ({
+  data: (): Data => ({
       content: '',
       status: '',
       message: '',
@@ -230,12 +217,12 @@ export default Vue.extend({
     }
     .output {
         width: 100%;
-        height: 100px;
-        padding: 10px;
+        padding: 0;
         border: 1px solid gray;
         min-width: 900px;
         min-height: 100px;
         max-height: 400px;
+        overflow: auto;
     }
     .status {
         height: 30px;
