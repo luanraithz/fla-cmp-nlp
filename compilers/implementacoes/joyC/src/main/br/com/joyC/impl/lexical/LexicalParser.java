@@ -10,9 +10,9 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LexicalParser {
+class LexicalParser {
 
-    static public List<Output> parse(String str) throws LexicalContentError {
+    static List<Output> parse(String str) throws LexicalContentError {
         var arr = new ArrayList<Output>();
         try {
             for (Token t: rawParse(new StringReader(str))) {
@@ -20,13 +20,14 @@ public class LexicalParser {
                 out.position = t.getPosition();
                 out.type = LexemeType.fromInt(t.getId()).getDesc();
                 out.lexeme = t.getLexeme();
+                out.line = countLines(str.substring(0, t.getPosition() + 1));
                 arr.add(out);
             }
             return arr;
         } catch (LexicalError e) {
             // Parse position to line
             var position = e.getPosition();
-            var line = countLines(str.substring(0, position));
+            var line = countLines(str.substring(0, position + 1));
             var lexeme = String.valueOf(str.charAt(position));
             var message = "Erro na linha " + line + " - " + lexeme +  " " + e.getMessage();
             throw new LexicalContentError(message, position, line, lexeme);

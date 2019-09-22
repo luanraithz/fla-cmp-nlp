@@ -3,6 +3,7 @@ GenerateScanner = true
 GenerateParser = false
 Language = Java
 ScannerName = Lexico
+Package = main.br.com.joyC.gaals
 ScannerCaseSensitive = true
 ScannerTable = Hardcode
 Input = Stream
@@ -29,5 +30,6 @@ string: \"[^\"\n]*\"
 comBloco: /\*(\*+[^/\*]|[^\*])*(\*)+/
 com: #[^\n]*
 :[\s\t\n]
+simboloEspecial:([,\.:;\[\]\(\)\+\-\*/=<>!]) | == | != | <= | >= | && | \|\|
 
 
