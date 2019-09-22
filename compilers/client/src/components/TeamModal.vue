@@ -7,7 +7,7 @@
               <Button
                 icon="account-multiple"
                 label="Equipe"
-                shortcut="F1"
+                shortcut="F7"
                 :onClick="on.click"
               >
 

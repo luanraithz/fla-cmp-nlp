@@ -33,7 +33,7 @@ export default Vue.extend({
             if (key !== 'Control' && hasPressedShortcutKey) {
                 if (control) {
                     ctrlKey && this.$props.onClick()
-                } else if (key === "F9" ){
+                } else if (key === "F9" || key === "F7"){
                     this.$props.onClick()
                 }
             }

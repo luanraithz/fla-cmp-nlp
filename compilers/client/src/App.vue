@@ -87,6 +87,7 @@
                                   <td>{{ result.type }}</td>
                                   <td>{{ result.lexeme }}</td>
                                 </tr>
+                                Programa compilado com sucesso!
                               </tbody>
                             </template>
                           </v-simple-table>
@@ -171,17 +172,21 @@ export default Vue.extend({
           this.snackTimeout = setTimeout(() => { this.snackbar = false }, 3000)
       },
       compile: async function() {
-          try {
-              const { error, result } = await compileLexical(this.content)
-              this.error = ""
-              this.result = []
-              if (error) {
-                  this.error = error.message
-              } else {
-                  this.result = formatData(result)
+          if (!this.content) {
+              this.snack("Nenhum programa para compilar.")
+          } else {
+              try {
+                  const { error, result } = await compileLexical(this.content)
+                  this.error = ""
+                  this.result = []
+                  if (error) {
+                      this.error = error.message
+                  } else if(result) {
+                      this.result = formatData(result)
+                  }
+              } catch (err) {
+                  this.snack("Houve algum problema ao chamar a api")
               }
-          } catch (err) {
-              this.snack("Houve algum problema ao chamar a api")
           }
       }
   },
