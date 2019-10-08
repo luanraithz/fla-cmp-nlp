@@ -61,13 +61,24 @@ simboloEspecial:([,\.:;\[\]\(\)\+\-\*/=<>!]) | == | != | <= | >= | && | "||"
 "."
 "&&"
 "||"
+"!"
+"=="
+"!="
+"<"
+"<="
+">"
+">="
+"+"
+"-"
+"/"
+"*"
 #NonTerminals
 <lang>
 
 <opt_tipos>
 <tipos>
 <types_dec>
-<type_dec> 
+<type_dec>
 <lista_de_campos>
 <campo>
 
@@ -106,6 +117,7 @@ simboloEspecial:([,\.:;\[\]\(\)\+\-\*/=<>!]) | == | != | <= | >= | && | "||"
 
 
 <expressao>
+<expressao1> 
 <elemento>
 <relacional>
 <operador_relacional>
@@ -155,13 +167,18 @@ simboloEspecial:([,\.:;\[\]\(\)\+\-\*/=<>!]) | == | != | <= | >= | && | "||"
 <statement> ::= <true_statement> | <false_statement> ;
 <comando_repeticao> ::= while "(" <expressao> ")" <statement> ;
 
-<expressao> ::=  <expressao> "&&" <elemento> | <expressao> "||" <elemento> | <elemento> ;
-<elemento> ::= <relacional> | true | false | ! <elemento> ;
+<expressao> ::=  <elemento> ;
+<expressao1> ::= î | "&&" <elemento><expressao1>  | "||" <elemento><expressao1> ;
+
+<elemento> ::= <relacional> | true | false | "!" <elemento> ;
 <relacional> ::= <aritmetica> <operador_relacional> <aritmetica> | <aritmetica> ;
-<operador_relacional> ::= == | != | < | <= | > | >= ;
-<aritmetica> ::= <aritmetica> + <termo> | <aritmetica> - <termo> | <termo> ;
-<termo> ::= <termo> * <fator> | <termo> / <fator> | <fator> ; 
-<fator> ::= <variavel_uso> | int | float | string | ( <expressao> ) | + <fator> | - <fator> ;
+<operador_relacional> ::= "==" | "!=" | "<" | "<=" | ">" | ">=" ;
+
+<aritmetica> ::= <termo> ;
+<aritmetica1> ::=  î | "+" <termo><aritmetica1>  | "-" <termo><aritmetica1> ;
+
+<termo> ::= <termo> "*" <fator> | <termo> "/" <fator> | <fator> ; 
+<fator> ::= <variavel_uso> | int | float | string | "(" <expressao> ")" | "+" <fator> | "-" <fator> ;
 
 
 
