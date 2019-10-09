@@ -48,8 +48,6 @@ string: \"[^\"\n]*\"
 :[\s\t\n]
 
 
-simboloEspecial:([,\.:;\[\]\(\)\+\-\*/=<>!]) | == | != | <= | >= | && | "||"
-
 "["
 "]"
 "("
@@ -78,13 +76,16 @@ simboloEspecial:([,\.:;\[\]\(\)\+\-\*/=<>!]) | == | != | <= | >= | && | "||"
 <opt_tipos>
 <tipos>
 <types_dec>
+<types_dec1>
 <type_dec>
 <lista_de_campos>
+<lista_de_campos1>
 <campo>
 
 <opt_var_decs>
 <variaveis>
 <variavel_dec>
+<variavel_dec1>
 <id_do_tipo_simples>
 <var_type>
 <opt_arr_size>
@@ -92,6 +93,8 @@ simboloEspecial:([,\.:;\[\]\(\)\+\-\*/=<>!]) | == | != | <= | >= | && | "||"
 <arr_types>
 
 <lista_de_comandos>
+<lista_de_comandos1>
+
 <comando>
 
 <atribuicao>
@@ -102,12 +105,14 @@ simboloEspecial:([,\.:;\[\]\(\)\+\-\*/=<>!]) | == | != | <= | >= | && | "||"
 
 <entrada_de_dados>
 <lista_de_identificadores>
+<lista_de_identificadores1>
 
 <true_statement>
 <false_statement>
 
 <saida_de_dados>
 <lista_expressoes>
+<lista_expressoes1>
 
 <comando_selecao>
 <optional_false>
@@ -120,30 +125,40 @@ simboloEspecial:([,\.:;\[\]\(\)\+\-\*/=<>!]) | == | != | <= | >= | && | "||"
 <expressao1> 
 <elemento>
 <relacional>
+<relacional1>
 <operador_relacional>
 <aritmetica>
+<aritmetica1>
+
 <termo>
+<termo1>
 <fator>
 #Grammar
 <lang> ::= <opt_tipos> main "[" <opt_var_decs> <lista_de_comandos> "]" ;
 
 <opt_tipos> ::= î |  <tipos> ;
 <tipos> ::= types "[" <types_dec> "]" ;
-<types_dec> ::= <type_dec> | <type_dec> <types_dec> ";" ;
+<types_dec> ::= <type_dec> <types_dec1> ;
+<types_dec1> ::= î | <type_dec> <types_dec1> ;
 <type_dec> ::= idComposto ":" "[" <lista_de_campos> "]" ";" ;
-<lista_de_campos> ::= <campo> | <campo> "," <lista_de_campos> ;
+<lista_de_campos> ::= <campo><lista_de_campos1> ;
+<lista_de_campos1> ::= î | "," <campo> <lista_de_campos1> ;
+
 <campo> ::= idInt | idFloat | idString | idBool ;
 
 <opt_var_decs> ::= î | <variaveis> ;
 <variaveis> ::= ":" <variavel_dec> ";" ;
-<variavel_dec> ::= <id_do_tipo_simples> | <id_do_tipo_composto> | <id_do_tipo_simples> "," <variavel_dec> | <id_do_tipo_composto> "," <variavel_dec> ;
+<variavel_dec> ::= <id_do_tipo_simples> <variavel_dec1> | <id_do_tipo_composto> <variavel_dec1> ;
+<variavel_dec1> ::= î | "," <variavel_dec1>  ;
+
 <id_do_tipo_simples> ::= <var_type> <opt_arr_size> ;
 <var_type> ::= idInt | idFloat | idString | idBool ;
 <opt_arr_size> ::= î | "[" int "]" ; 
 <id_do_tipo_composto> ::= idComposto "[" <arr_types> "]" ; 
 <arr_types> ::= idComposto | int "," idComposto ;
 
-<lista_de_comandos> ::= <comando> ";" | <comando> ";" <lista_de_comandos> ;
+<lista_de_comandos> ::= <comando> ";" <lista_de_comandos1> ;
+<lista_de_comandos1> ::= î | <comando> ";"  <lista_de_comandos1> ;
 <comando> ::= <atribuicao> | <entrada_de_dados> | <saida_de_dados> | <comando_selecao> | <comando_repeticao> ;
 
 <atribuicao> ::= <variavel_uso> "=" <expressao> ;
@@ -153,13 +168,15 @@ simboloEspecial:([,\.:;\[\]\(\)\+\-\*/=<>!]) | == | != | <= | >= | && | "||"
 <opt_field> ::= î | "." <campo> ;
 
 <entrada_de_dados> ::= input "(" <lista_de_identificadores> ")" ;
-<lista_de_identificadores> ::= <variavel_uso> | <variavel_uso> "," <lista_de_identificadores> ;
+<lista_de_identificadores> ::= <variavel_uso> <lista_de_identificadores1> ;
+<lista_de_identificadores1> ::=  î  | "," <variavel_uso>  <lista_de_identificadores1> ;
 
 <true_statement> ::= isTrueDo "[" <lista_de_comandos> "]" ;
 <false_statement> ::= isFalseDo "[" <lista_de_comandos> "]" ;
 
 <saida_de_dados> ::= output  "(" <lista_expressoes> ")" ;
-<lista_expressoes> ::= <expressao> | <expressao> "," <lista_expressoes> ;
+<lista_expressoes> ::= <expressao> <lista_expressoes1>;
+<lista_expressoes1> ::= î  | "," <expressao> <lista_expressoes1> ;
 
 <comando_selecao> ::= if "(" <expressao> ")" <true_statement> <optional_false> ;
 <optional_false> ::= î  | <false_statement> ;
@@ -167,17 +184,20 @@ simboloEspecial:([,\.:;\[\]\(\)\+\-\*/=<>!]) | == | != | <= | >= | && | "||"
 <statement> ::= <true_statement> | <false_statement> ;
 <comando_repeticao> ::= while "(" <expressao> ")" <statement> ;
 
-<expressao> ::=  <elemento> ;
+<expressao> ::=  <elemento> <expressao1>;
 <expressao1> ::= î | "&&" <elemento><expressao1>  | "||" <elemento><expressao1> ;
 
 <elemento> ::= <relacional> | true | false | "!" <elemento> ;
-<relacional> ::= <aritmetica> <operador_relacional> <aritmetica> | <aritmetica> ;
+<relacional> ::=  <aritmetica><relacional1> ;
+<relacional1> ::= <operador_relacional> <aritmetica> <aritmetica1>  |  î;
 <operador_relacional> ::= "==" | "!=" | "<" | "<=" | ">" | ">=" ;
 
-<aritmetica> ::= <termo> ;
+<aritmetica> ::= <termo> <aritmetica1>;
 <aritmetica1> ::=  î | "+" <termo><aritmetica1>  | "-" <termo><aritmetica1> ;
 
-<termo> ::= <termo> "*" <fator> | <termo> "/" <fator> | <fator> ; 
+<termo> ::= <fator> <termo1>; 
+<termo1> ::=  î | "*" <fator><termo1>  | "/" <fator><termo1> ; 
+
 <fator> ::= <variavel_uso> | int | float | string | "(" <expressao> ")" | "+" <fator> | "-" <fator> ;
 
 
