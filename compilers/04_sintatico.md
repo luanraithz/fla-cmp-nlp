@@ -16,3 +16,8 @@ simbolos não terminais que não geram palavras ( compostas apenas por simbolos 
 
 ## Inalcançaveis
 Símbolos terminais e não terminais que não Sao alcançados a parties do simbolos inicial da gramatica
+
+
+# Termos uteis
+
+`Homoiconicity`
