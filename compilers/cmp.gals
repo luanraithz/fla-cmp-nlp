@@ -141,7 +141,7 @@ string: \"[^\"\n]*\"
 <types_dec> ::= <type_dec> <types_dec1> ;
 <types_dec1> ::= î | <type_dec> <types_dec1> ;
 
-<type_dec> ::= idComposto ":" "[" <lista_de_campos> "]" ";" ;
+<type_dec> ::= idComposto ":" "[" <lista_de_campos> "]" ;
 <lista_de_campos> ::= <campo><lista_de_campos1> ;
 <lista_de_campos1> ::= î | "," <campo> <lista_de_campos1> ;
 
@@ -150,7 +150,7 @@ string: \"[^\"\n]*\"
 <opt_var_decs> ::= î | <variaveis> ;
 <variaveis> ::= ":" <variavel_dec> ";" ;
 <variavel_dec> ::= <id_do_tipo_simples> <variavel_dec1> | <id_do_tipo_composto> <variavel_dec1> ;
-<variavel_dec1> ::= î | "," <variavel_dec1>  ;
+<variavel_dec1> ::= î | "," <variavel_dec>  ;
 
 <id_do_tipo_simples> ::= <var_type> <opt_arr_size> ;
 <var_type> ::= idInt | idFloat | idString | idBool ;
@@ -190,7 +190,7 @@ string: \"[^\"\n]*\"
 
 <elemento> ::= <relacional> | true | false | "!" <elemento> ;
 <relacional> ::=  <aritmetica><relacional1> ;
-<relacional1> ::= <operador_relacional> <aritmetica> <aritmetica1>  |  î;
+<relacional1> ::= <operador_relacional> <aritmetica>  |  î;
 <operador_relacional> ::= "==" | "!=" | "<" | "<=" | ">" | ">=" ;
 
 <aritmetica> ::= <termo> <aritmetica1>;
