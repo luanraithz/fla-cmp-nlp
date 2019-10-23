@@ -10,17 +10,19 @@ public enum LexemeType {
 	t_main(6, "RESERVED_WORD"),
 	t_output(7, "RESERVED_WORD"),
 	t_true(8, "RESERVED_WORD"),
-	t_types(9, "RESERVED_WORD"),
-	t_while(10, "RESERVED_WORD"),
-	t_idInt(11, "ID_INT"),
-	t_idFloat(12, "ID_FLOAT"),
-	t_idString(13, "ID_STRING"),
-	t_idBool(14, "ID_BOOL"),
-	t_idComposto(15, "ID_COMPOSTO"),
-	t_int(16, "INT"),
-	t_float(17, "FLOAT"),
-	t_string(18, "STRING"),
-	t_simboloEspecial(19, "SPECIAL_SYMBOL");
+	t_if(9, "RESERVED_WORD"),
+	t_false(10, "RESERVED_WORD"),
+	t_types(11, "RESERVED_WORD"),
+	t_while(12, "RESERVED_WORD"),
+	t_idInt(13, "ID_INT"),
+	t_idFloat(14, "ID_FLOAT"),
+	t_idString(15, "ID_STRING"),
+	t_idBool(16, "ID_BOOL"),
+	t_idComposto(17, "ID_COMPOSTO"),
+	t_int(18, "INT"),
+	t_float(19, "FLOAT"),
+	t_string(20, "STRING"),
+	t_simboloEspecial(21, "SPECIAL_SYMBOL");
 
 	private Integer value;
 	private String desc;
