@@ -2,21 +2,15 @@ package main.br.com.joyC.impl.syntatic;
 
 import main.br.com.joyC.gaals.*;
 
-public class Parser {
-    static public String parse(String input) {
+import java.io.StringReader;
+
+class Parser {
+    static String parse(String input) throws SyntaticError, SemanticError, LexicalError {
         var semantic = new Semantico();
         var lexical = new Lexico();
         var syntatic = new Sintatico();
-
-        try {
-            syntatic.parse(lexical, semantic);
-        } catch (LexicalError lexicalError) {
-            lexicalError.printStackTrace();
-        } catch (SemanticError semanticError) {
-            semanticError.printStackTrace();
-        } catch (SyntaticError syntaticError) {
-            syntaticError.printStackTrace();
-        }
+        lexical.setInput(new StringReader(input));
+        syntatic.parse(lexical, semantic);
 
         return "";
     }
