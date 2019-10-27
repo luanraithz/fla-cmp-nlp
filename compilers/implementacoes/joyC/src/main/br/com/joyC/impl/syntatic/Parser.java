@@ -12,6 +12,6 @@ class Parser {
         lexical.setInput(new StringReader(input));
         syntatic.parse(lexical, semantic);
 
-        return "";
+        return "Programa compilado com sucesso";
     }
 }
