@@ -7,12 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b0bf6fa6-8d63-4e87-a44a-723c0c5896d5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client/src/service/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/src/service/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client/src/types/syntatic.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/joyC_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/joyC_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/HttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/LexicHttpHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/HttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/SyntacticHttpHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,9 +75,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Unnamed">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.Main" />
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.Main" />
       <module name="joyC" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -147,9 +144,9 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Unnamed" />
+      <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.Unnamed" />
-      <item itemvalue="JUnit.LexicalParserTest.testReservedWords" />
+      <item itemvalue="JUnit.ParserTest.testReservedWords" />
       <item itemvalue="JUnit.ParserTest.testInvalidEntry" />
       <item itemvalue="JUnit.ParserTest.testOneInvalidCommand" />
     </list>
@@ -157,7 +154,6 @@
       <list>
         <item itemvalue="JUnit.ParserTest.testOneInvalidCommand" />
         <item itemvalue="JUnit.ParserTest.testInvalidEntry" />
-        <item itemvalue="JUnit.LexicalParserTest.testReservedWords" />
       </list>
     </recent_temporary>
   </component>
