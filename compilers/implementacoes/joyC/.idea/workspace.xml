@@ -7,14 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b0bf6fa6-8d63-4e87-a44a-723c0c5896d5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../client/src/service/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/src/service/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/HttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/HttpHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/MessageTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/MessageTranslator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/ParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/utils/LineCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/utils/LineCounter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
