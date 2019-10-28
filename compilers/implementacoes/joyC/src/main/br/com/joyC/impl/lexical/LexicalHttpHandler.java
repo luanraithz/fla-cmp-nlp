@@ -1,5 +1,6 @@
 package main.br.com.joyC.impl.lexical;
 
+import main.br.com.joyC.impl.models.LexicalContentError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;

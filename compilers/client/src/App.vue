@@ -71,7 +71,7 @@
             </v-row>
             <v-row>
                 <div class="output">
-                    <div v-if="result.length">
+                    <div v-if="result.type === 'LEXIC'">
                         <v-simple-table>
                             <template v-slot:default>
                               <thead>
@@ -90,9 +90,12 @@
                                 Programa compilado com sucesso!
                               </tbody>
                             </template>
-                          </v-simple-table>
+                        </v-simple-table>
                     </div>
-                    <div v-if="!result.length">
+                    <div v-if="result.type === 'SYNTATIC'">
+                        {{ result }}
+                    </div>
+                    <div v-if="error">
                         {{ error || message }}
                     </div>
                 </div>
@@ -111,7 +114,7 @@ import copy from 'copy-to-clipboard'
 
 import TeamModal from './components/TeamModal.vue'
 import Button from './components/Button.vue'
-import { compileLexical } from './service'
+import { compileSyntatic } from './service'
 import { formatData } from './utils/lexical'
 
 type Data = {
@@ -120,7 +123,7 @@ type Data = {
   message: '',
   error: string,
   snackMessage: string,
-  result: any[],
+  result: string,
   snackbar: boolean,
   snackTimeout: number
 }
@@ -135,7 +138,7 @@ export default Vue.extend({
       reset: function() {
           this.error = ""
           this.content = ""
-          this.result = []
+          this.result = ""
       },
       newFile: function() { this.reset() },
       openFile: function() {
@@ -176,13 +179,13 @@ export default Vue.extend({
               this.snack("Nenhum programa para compilar.")
           } else {
               try {
-                  const { error, result } = await compileLexical(this.content)
+                  const { error, result } = await compileSyntatic(this.content)
                   this.error = ""
-                  this.result = []
+                  this.result = ""
                   if (error) {
                       this.error = error.message
                   } else if(result) {
-                      this.result = formatData(result)
+                      this.result = result
                   }
               } catch (err) {
                   this.snack("Houve algum problema ao chamar a api")
@@ -205,7 +208,7 @@ export default Vue.extend({
       status: '',
       message: '',
       error: '',
-      result: [],
+      result: "",
       snackMessage: '',
       snackbar: false,
       snackTimeout: -1,

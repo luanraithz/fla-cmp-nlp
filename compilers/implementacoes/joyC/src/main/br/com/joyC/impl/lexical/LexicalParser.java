@@ -5,6 +5,8 @@ import main.br.com.joyC.gaals.Lexico;
 import main.br.com.joyC.gaals.Token;
 import main.br.com.joyC.impl.lexical.models.LexemeType;
 import main.br.com.joyC.impl.lexical.models.Output;
+import main.br.com.joyC.impl.models.LexicalContentError;
+import main.br.com.joyC.impl.utils.LexicalErrorParser;
 
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -28,12 +30,7 @@ class LexicalParser {
             }
             return arr;
         } catch (LexicalError e) {
-            // Parse position to line
-            var position = e.getPosition();
-            var line = countLines(str.substring(0, position + 1));
-            var lexeme = String.valueOf(str.charAt(position));
-            var message = "Erro na linha " + line + " - " + lexeme +  " " + MessageTranslator.translate(e.getMessage());
-            throw new LexicalContentError(message, position, line, lexeme);
+            throw LexicalErrorParser.toException(str, e);
         }
     }
 

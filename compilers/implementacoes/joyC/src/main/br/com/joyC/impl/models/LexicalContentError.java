@@ -1,4 +1,4 @@
-package main.br.com.joyC.impl.lexical;
+package main.br.com.joyC.impl.models;
 
 import main.br.com.joyC.gaals.LexicalError;
 
@@ -10,10 +10,6 @@ public class LexicalContentError extends LexicalError {
         return lexeme;
     }
 
-    public void setLexem(String lexeme) {
-        this.lexeme = lexeme;
-    }
-
     public Integer getLine() {
         return line;
     }
@@ -22,7 +18,7 @@ public class LexicalContentError extends LexicalError {
         this.line = line;
     }
 
-    LexicalContentError(String message, Integer position, Integer line, String lexeme) {
+    public LexicalContentError(String message, Integer position, Integer line, String lexeme) {
         super(message, position);
         this.line = line;
         this.lexeme = lexeme;

@@ -7,7 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b0bf6fa6-8d63-4e87-a44a-723c0c5896d5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../client/src/service/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../client/src/service/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/HttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/HttpHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/MessageTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/MessageTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/ParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/utils/LineCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/utils/LineCounter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,6 +29,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -43,11 +51,22 @@
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="joyc" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="main.br.com.joyC.impl.syntatic" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -73,13 +92,46 @@
       <module name="joyC" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.br.com.joyC.impl.lexical.*" />
+          <option name="PATTERN" value="main.br.com.joyC.impl.models.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.lexical" />
       <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.lexical.LexicalParserTest" />
       <option name="METHOD_NAME" value="testReservedWords" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParserTest.testInvalidEntry" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="joyC" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.br.com.joyC.impl.syntatic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.syntatic" />
+      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.syntatic.ParserTest" />
+      <option name="METHOD_NAME" value="testInvalidEntry" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParserTest.testOneInvalidCommand" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="joyC" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.br.com.joyC.impl.syntatic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.syntatic" />
+      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.syntatic.ParserTest" />
+      <option name="METHOD_NAME" value="testOneInvalidCommand" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -100,9 +152,13 @@
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="JUnit.Unnamed" />
       <item itemvalue="JUnit.LexicalParserTest.testReservedWords" />
+      <item itemvalue="JUnit.ParserTest.testInvalidEntry" />
+      <item itemvalue="JUnit.ParserTest.testOneInvalidCommand" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ParserTest.testOneInvalidCommand" />
+        <item itemvalue="JUnit.ParserTest.testInvalidEntry" />
         <item itemvalue="JUnit.LexicalParserTest.testReservedWords" />
       </list>
     </recent_temporary>
