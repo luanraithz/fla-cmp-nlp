@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="joyC:jar">
+  <artifact type="jar" build-on-make="true" name="joyC:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/joyC_jar</output-path>
     <root id="archive" name="joyC.jar">
       <element id="module-output" name="joyC" />

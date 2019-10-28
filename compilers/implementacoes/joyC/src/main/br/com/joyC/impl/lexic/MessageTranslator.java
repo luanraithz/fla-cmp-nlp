@@ -1,4 +1,4 @@
-package main.br.com.joyC.impl.lexical;
+package main.br.com.joyC.impl.lexic;
 
 public class MessageTranslator {
     static String translate(String str) {

@@ -1,7 +1,6 @@
 package main.br.com.joyC.impl.utils;
 
 import main.br.com.joyC.gaals.LexicalError;
-import main.br.com.joyC.impl.lexical.MessageTranslator;
 import main.br.com.joyC.impl.models.LexicalContentError;
 
 public class LexicalErrorParser {

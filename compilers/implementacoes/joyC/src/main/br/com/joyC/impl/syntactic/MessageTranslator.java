@@ -1,4 +1,4 @@
-package main.br.com.joyC.impl.syntatic;
+package main.br.com.joyC.impl.syntactic;
 
 import main.br.com.joyC.gaals.SyntaticError;
 import main.br.com.joyC.impl.utils.LineCounter;
@@ -11,7 +11,7 @@ import java.util.function.BiFunction;
 
 
 public class MessageTranslator {
-    static final String SIMPLE_ID_MESSAGE = "identificador (de int, float, bool ou string)";
+    private static final String SIMPLE_ID_MESSAGE = "identificador (de int, float, bool ou string)";
     static private BiFunction<SyntaticError, String, String> genericFormattedBuilder(String message) {
         return (SyntaticError err, String entry) -> genericErrorFormatted(err, entry, message);
     }

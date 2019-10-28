@@ -1,4 +1,4 @@
-package main.br.com.joyC.impl.lexical.models;
+package main.br.com.joyC.impl.lexic.models;
 
 public enum LexemeType {
 	EPSILON(0, "EPSILON"),

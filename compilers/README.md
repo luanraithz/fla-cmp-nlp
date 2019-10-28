@@ -2,6 +2,13 @@
 
 Notas e exercícios da matéria de compiladores na faculdade.
 
+Buildando o projeto
+
+```
+    mvn clean install spring-boot:repackage
+```
+> Vai buildar dentro de `target`
+
 ## Utilizando a implementação
 
 [Aqui](https://github.com/luanraithz/fla-cmp-nlp/tree/master/compilers/implementacoes/joyC) está o compilador (se quiser baixar diretamente o `.jar`, vai estar disponível dentro de `lexico.zip`)
