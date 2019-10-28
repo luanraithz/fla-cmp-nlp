@@ -1,18 +1,19 @@
-package main.br.com.joyC.impl.lexical;
+package main.br.com.joyC.impl.lexic;
 
 import main.br.com.joyC.gaals.LexicalError;
 import main.br.com.joyC.gaals.Lexico;
 import main.br.com.joyC.gaals.Token;
-import main.br.com.joyC.impl.lexical.models.LexemeType;
-import main.br.com.joyC.impl.lexical.models.Output;
+import main.br.com.joyC.impl.lexic.models.LexemeType;
+import main.br.com.joyC.impl.lexic.models.Output;
 import main.br.com.joyC.impl.models.LexicalContentError;
 import main.br.com.joyC.impl.utils.LexicalErrorParser;
+import main.br.com.joyC.impl.utils.LineCounter;
 
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-class LexicalParser {
+class Parser {
     static List<Output> parse(String str) throws LexicalContentError {
         var arr = new ArrayList<Output>();
         try {
@@ -25,17 +26,13 @@ class LexicalParser {
                 }
                 out.type = lexeme.getDesc();
                 out.lexeme = t.getLexeme();
-                out.line = countLines(str.substring(0, t.getPosition() + 1));
+                out.line = LineCounter.count(str.substring(0, t.getPosition() + 1));
                 arr.add(out);
             }
             return arr;
         } catch (LexicalError e) {
             throw LexicalErrorParser.toException(str, e);
         }
-    }
-
-    static private Integer countLines(String str) {
-        return str.split(System.getProperty("line.separator")).length;
     }
 
     static private ArrayList<Token> rawParse(StringReader reader) throws LexicalError {

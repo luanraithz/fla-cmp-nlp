@@ -1,4 +1,4 @@
-package main.br.com.joyC.impl.syntatic;
+package main.br.com.joyC.impl.syntactic;
 
 import main.br.com.joyC.gaals.*;
 

@@ -8,6 +8,17 @@
   <component name="ChangeListManager">
     <list default="true" id="b0bf6fa6-8d63-4e87-a44a-723c0c5896d5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/LexicalHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/HttpHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/LexicalParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/LexicalParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/ParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/MessageTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/MessageTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/models/LexemeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/models/LexemeType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexical/models/Output.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/models/Output.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/HttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/HttpHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/MessageTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/MessageTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntatic/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/ParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/utils/LexicalErrorParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/utils/LexicalErrorParser.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,26 +84,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Unnamed">
+  <component name="RunManager" selected="JUnit.Unnamed">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.Main" />
       <module name="joyC" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LexicalParserTest.testReservedWords" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="joyC" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.br.com.joyC.impl.models.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.lexical" />
-      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.lexical.LexicalParserTest" />
-      <option name="METHOD_NAME" value="testReservedWords" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -101,12 +96,12 @@
       <module name="joyC" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.br.com.joyC.impl.syntatic.*" />
+          <option name="PATTERN" value="main.br.com.joyC.impl.syntactic.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.syntatic" />
-      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.syntatic.ParserTest" />
+      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.syntactic" />
+      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.syntactic.ParserTest" />
       <option name="METHOD_NAME" value="testInvalidEntry" />
       <option name="TEST_OBJECT" value="method" />
       <option name="PARAMETERS" value="" />
@@ -118,13 +113,29 @@
       <module name="joyC" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.br.com.joyC.impl.syntatic.*" />
+          <option name="PATTERN" value="main.br.com.joyC.impl.syntactic.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.syntatic" />
-      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.syntatic.ParserTest" />
+      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.syntactic" />
+      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.syntactic.ParserTest" />
       <option name="METHOD_NAME" value="testOneInvalidCommand" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParserTest.testReservedWords" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="joyC" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.br.com.joyC.impl.models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.lexic" />
+      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.lexic.ParserTest" />
+      <option name="METHOD_NAME" value="testReservedWords" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />

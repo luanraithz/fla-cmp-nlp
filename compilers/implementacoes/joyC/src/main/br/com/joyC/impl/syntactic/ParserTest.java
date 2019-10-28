@@ -1,4 +1,4 @@
-package main.br.com.joyC.impl.syntatic;
+package main.br.com.joyC.impl.syntactic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -6,9 +6,11 @@ import static org.junit.jupiter.api.Assertions.fail;
 import main.br.com.joyC.gaals.LexicalError;
 import main.br.com.joyC.gaals.SemanticError;
 import main.br.com.joyC.gaals.SyntaticError;
-import org.apache.logging.log4j.message.Message;
 import org.junit.jupiter.api.Test;
 
+/*
+ * Tests for the syntactic parser
+ */
 class ParserTest {
 
     private String build(String... lines) {
@@ -25,10 +27,10 @@ class ParserTest {
         try {
             Parser.parse("");
             fail("Should throw and error");
-        } catch (SyntaticError syntaticError) {
-            assertEquals("Erro na linha 1 - encontrado fim de arquivo esperado main types", MessageTranslator.translate(syntaticError, ""));
+        } catch (SyntaticError syntacticError) {
+            assertEquals("Erro na linha 1 - encontrado fim de arquivo esperado main types", MessageTranslator.translate(syntacticError, ""));
         } catch (SemanticError | LexicalError er) {
-            fail("Should throw a syntaticError", er);
+            fail("Should throw a syntacticError", er);
         }
     }
 
@@ -38,10 +40,10 @@ class ParserTest {
         try {
             Parser.parse(entry);
             fail("Should throw and error");
-        } catch (SyntaticError syntaticError) {
-            assertEquals("Erro na linha 2 - encontrado S esperado main types", MessageTranslator.translate(syntaticError, entry));
+        } catch (SyntaticError syntacticError) {
+            assertEquals("Erro na linha 2 - encontrado S esperado main types", MessageTranslator.translate(syntacticError, entry));
         } catch (SemanticError | LexicalError er) {
-            fail("Should throw a syntaticError", er);
+            fail("Should throw a syntacticError", er);
         }
     }
 
@@ -51,10 +53,10 @@ class ParserTest {
         try {
             Parser.parse(entry);
             fail("Should throw an error");
-        } catch (SyntaticError syntaticError) {
-            assertEquals("Erro na linha 1 - encontrado ] esperada expressão", MessageTranslator.translate(syntaticError, entry));
+        } catch (SyntaticError syntacticError) {
+            assertEquals("Erro na linha 1 - encontrado ] esperada expressão", MessageTranslator.translate(syntacticError, entry));
         } catch (LexicalError | SemanticError er) {
-            fail("Should throw a syntaticError", er);
+            fail("Should throw a syntacticError", er);
         }
     }
 
@@ -67,10 +69,10 @@ class ParserTest {
         try {
             Parser.parse(entry);
             fail("Should throw an error");
-        } catch (SyntaticError syntaticError) {
-            assertEquals("Erro na linha 2 - encontrado ) esperada expressão", MessageTranslator.translate(syntaticError, entry));
+        } catch (SyntaticError syntacticError) {
+            assertEquals("Erro na linha 2 - encontrado ) esperada expressão", MessageTranslator.translate(syntacticError, entry));
         } catch (LexicalError | SemanticError er) {
-            fail("Should throw a syntaticError", er);
+            fail("Should throw a syntacticError", er);
         }
     }
 
@@ -83,10 +85,10 @@ class ParserTest {
         try {
             Parser.parse(entry);
             fail("Should throw an error");
-        } catch (SyntaticError syntaticError) {
-            assertEquals("Erro na linha 2 - encontrado ) esperada expressão", MessageTranslator.translate(syntaticError, entry));
+        } catch (SyntaticError syntacticError) {
+            assertEquals("Erro na linha 2 - encontrado ) esperada expressão", MessageTranslator.translate(syntacticError, entry));
         } catch (LexicalError | SemanticError er) {
-            fail("Should throw a syntaticError", er);
+            fail("Should throw a syntacticError", er);
         }
     }
 
@@ -135,8 +137,8 @@ class ParserTest {
         try {
             Parser.parse(entry);
             fail();
-        } catch (SyntaticError syntaticError) {
-            assertEquals("Erro na linha 2 - encontrado ) esperada expressão", MessageTranslator.translate(syntaticError, entry));
+        } catch (SyntaticError syntacticError) {
+            assertEquals("Erro na linha 2 - encontrado ) esperada expressão", MessageTranslator.translate(syntacticError, entry));
         } catch (LexicalError | SemanticError er) {
             fail("Program should throw a syntatic error", er);
         }
@@ -153,9 +155,8 @@ class ParserTest {
         try {
             Parser.parse(entry);
             fail();
-        } catch (SyntaticError syntaticError) {
-            System.out.println(syntaticError.getMessage());
-            assertEquals("Era esperado \";\"", MessageTranslator.translate(syntaticError, entry));
+        } catch (SyntaticError syntacticError) {
+            assertEquals("Era esperado \";\"", MessageTranslator.translate(syntacticError, entry));
         } catch (LexicalError | SemanticError er) {
             fail("Program should throw a syntatic error", er);
         }

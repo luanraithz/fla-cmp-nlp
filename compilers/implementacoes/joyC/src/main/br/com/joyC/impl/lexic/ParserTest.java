@@ -1,13 +1,13 @@
-package main.br.com.joyC.impl.lexical;
+package main.br.com.joyC.impl.lexic;
 
-import main.br.com.joyC.impl.lexical.models.LexemeType;
+import main.br.com.joyC.impl.lexic.models.LexemeType;
 import org.junit.jupiter.api.Test;
 
-import static main.br.com.joyC.impl.lexical.LexicalParser.parse;
+import static main.br.com.joyC.impl.lexic.Parser.parse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-class LexicalParserTest {
+class ParserTest {
 
     @Test
     void idInt(){
