@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-public class HttpHandler {
+public class LexicHttpHandler {
 
     @RequestMapping(name = "Lexical Parser", method = RequestMethod.POST, value="/lexical", consumes = { "application/json" }, produces = { "application/json" })
     @CrossOrigin(origins = { "http://cmp.luan.raithz.com", "http://localhost:3001" })

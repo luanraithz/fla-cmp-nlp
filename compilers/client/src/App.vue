@@ -92,7 +92,7 @@
                             </template>
                         </v-simple-table>
                     </div>
-                    <div v-if="result.type === 'SYNTATIC'">
+                    <div v-if="result">
                         {{ result }}
                     </div>
                     <div v-if="error">
@@ -114,7 +114,7 @@ import copy from 'copy-to-clipboard'
 
 import TeamModal from './components/TeamModal.vue'
 import Button from './components/Button.vue'
-import { compileSyntatic } from './service'
+import { compileSyntactic } from './service'
 import { formatData } from './utils/lexical'
 
 type Data = {
@@ -179,7 +179,7 @@ export default Vue.extend({
               this.snack("Nenhum programa para compilar.")
           } else {
               try {
-                  const { error, result } = await compileSyntatic(this.content)
+                  const { error, result } = await compileSyntactic(this.content)
                   this.error = ""
                   this.result = ""
                   if (error) {
