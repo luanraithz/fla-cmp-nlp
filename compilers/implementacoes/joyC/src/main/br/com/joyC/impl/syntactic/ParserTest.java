@@ -121,7 +121,7 @@ class ParserTest {
             Parser.parse(entry);
             fail("Program should throw an syntatic error");
         } catch (SyntaticError err) {
-            assertEquals("Esperado fim de arquivo", MessageTranslator.translate(err, entry));
+            assertEquals("Erro na linha 3 - encontrado S esperado fim de arquivo", MessageTranslator.translate(err, entry));
         } catch (LexicalError | SemanticError er) {
             fail("Program should throw an syntatic error", er);
         }
@@ -156,7 +156,7 @@ class ParserTest {
             Parser.parse(entry);
             fail();
         } catch (SyntaticError syntacticError) {
-            assertEquals("Era esperado \";\"", MessageTranslator.translate(syntacticError, entry));
+            assertEquals("Erro na linha 3 - encontrado ] esperado ;", MessageTranslator.translate(syntacticError, entry));
         } catch (LexicalError | SemanticError er) {
             fail("Program should throw a syntatic error", er);
         }
