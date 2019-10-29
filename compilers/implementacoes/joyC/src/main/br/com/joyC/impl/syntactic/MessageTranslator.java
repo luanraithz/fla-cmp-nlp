@@ -27,25 +27,28 @@ public class MessageTranslator {
         return genericErrorFormatted(err, entry, "Erro na linha {0} - encontrado {1} esperada expressão");
     }
 
+    static private BiFunction<SyntaticError, String, String> withDefaultPrefix(String value) {
+        return genericFormattedBuilder("Erro na linha {0} - encontrado {1} " + value);
+    }
+
     private static final Map<String, BiFunction<SyntaticError, String, String>> messages = new HashMap<>();
     static {
-        messages.put("", (SyntaticError err, String entry) -> "");
-        messages.put("Era esperado fim de programa", (SyntaticError err, String entry) -> "Esperado fim de arquivo");
-        messages.put("Era esperado palavraReservada", (SyntaticError err, String entry) -> "Era esperado palavraReservada");
-        messages.put("Era esperado input", (SyntaticError err, String entry) -> "Era esperado input");
-        messages.put("Era esperado isFalseDo", (SyntaticError err, String entry) -> "Era esperado isFalseDo");
-        messages.put("Era esperado isTrueDo", (SyntaticError err, String entry) -> "Era esperado isTrueDo");
-        messages.put("Era esperado main", (SyntaticError err, String entry) -> "Era esperado main");
-        messages.put("Era esperado output", (SyntaticError err, String entry) -> "Era esperado output");
-        messages.put("Era esperado true", (SyntaticError err, String entry) -> "Era esperado true");
-        messages.put("Era esperado types", (SyntaticError err, String entry) -> "Era esperado types");
-        messages.put("Era esperado while", (SyntaticError err, String entry) -> "Era esperado while");
-        messages.put("Era esperado if", (SyntaticError err, String entry) -> "Era esperado if");
-        messages.put("Era esperado false", (SyntaticError err, String entry) -> "Era esperado false");
-        messages.put("Era esperado idInt", (SyntaticError err, String entry) -> "Era esperado idInt");
-        messages.put("Era esperado idFloat", (SyntaticError err, String entry) -> "Era esperado idFloat");
-        messages.put("Era esperado idString", (SyntaticError err, String entry) -> "Era esperado idString");
-        messages.put("Era esperado idBool", (SyntaticError err, String entry) -> "Era esperado idBool");
+        messages.put("Era esperado fim de programa", withDefaultPrefix("Esperado fim de arquivo"));
+        messages.put("Era esperado palavraReservada", withDefaultPrefix("Era esperado palavraReservada"));
+        messages.put("Era esperado input", withDefaultPrefix("Era esperado input"));
+        messages.put("Era esperado isFalseDo", withDefaultPrefix("Era esperado isFalseDo"));
+        messages.put("Era esperado isTrueDo", withDefaultPrefix("Era esperado isTrueDo"));
+        messages.put("Era esperado main", withDefaultPrefix("Era esperado main"));
+        messages.put("Era esperado output", withDefaultPrefix("Era esperado output"));
+        messages.put("Era esperado true", withDefaultPrefix("Era esperado true"));
+        messages.put("Era esperado types", withDefaultPrefix("Era esperado types"));
+        messages.put("Era esperado while", withDefaultPrefix("Era esperado while"));
+        messages.put("Era esperado if", withDefaultPrefix("Era esperado if"));
+        messages.put("Era esperado false", withDefaultPrefix("Era esperado false"));
+        messages.put("Era esperado idInt", withDefaultPrefix("Era esperado idInt"));
+        messages.put("Era esperado idFloat", withDefaultPrefix("Era esperado idFloat"));
+        messages.put("Era esperado idString", withDefaultPrefix("Era esperado idString"));
+        messages.put("Era esperado idBool", withDefaultPrefix("Era esperado idBool"));
         messages.put("Era esperado idComposto", (SyntaticError err, String entry) -> "Era esperado idComposto");
         messages.put("Era esperado int", (SyntaticError err, String entry) -> "Era esperado int");
         messages.put("Era esperado float", (SyntaticError err, String entry) -> "Era esperado float");
