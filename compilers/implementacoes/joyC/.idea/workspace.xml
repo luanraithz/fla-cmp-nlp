@@ -8,6 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b0bf6fa6-8d63-4e87-a44a-723c0c5896d5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/models/LexemeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/models/LexemeType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/MessageTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/MessageTranslator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/ParserTest.java" afterDir="false" />
     </list>
@@ -83,6 +85,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ParserTest.fileEnd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="joyC" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.br.com.joyC.impl.syntactic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.syntactic" />
+      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.syntactic.ParserTest" />
+      <option name="METHOD_NAME" value="fileEnd" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ParserTest.testInvalidEntry" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joyC" />
       <extension name="coverage">
@@ -116,17 +134,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ParserTest.testReservedWords" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ParserTest.testProgramList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joyC" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.br.com.joyC.impl.models.*" />
+          <option name="PATTERN" value="main.br.com.joyC.impl.syntactic.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.lexic" />
-      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.lexic.ParserTest" />
-      <option name="METHOD_NAME" value="testReservedWords" />
+      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.syntactic" />
+      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.syntactic.ParserTest" />
+      <option name="METHOD_NAME" value="testProgramList" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParserTest.testWhile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="joyC" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.br.com.joyC.impl.syntactic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.syntactic" />
+      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.syntactic.ParserTest" />
+      <option name="METHOD_NAME" value="testWhile" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -146,12 +180,17 @@
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.Unnamed" />
-      <item itemvalue="JUnit.ParserTest.testReservedWords" />
       <item itemvalue="JUnit.ParserTest.testInvalidEntry" />
       <item itemvalue="JUnit.ParserTest.testOneInvalidCommand" />
+      <item itemvalue="JUnit.ParserTest.testProgramList" />
+      <item itemvalue="JUnit.ParserTest.testWhile" />
+      <item itemvalue="JUnit.ParserTest.fileEnd" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ParserTest.fileEnd" />
+        <item itemvalue="JUnit.ParserTest.testWhile" />
+        <item itemvalue="JUnit.ParserTest.testProgramList" />
         <item itemvalue="JUnit.ParserTest.testOneInvalidCommand" />
         <item itemvalue="JUnit.ParserTest.testInvalidEntry" />
       </list>
@@ -182,5 +221,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/br/com/joyC/impl/utils/LexicalErrorParser.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

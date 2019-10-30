@@ -1,6 +1,10 @@
 package main.br.com.joyC.impl.syntactic;
 
 import main.br.com.joyC.gaals.SyntaticError;
+import main.br.com.joyC.impl.lexic.Parser;
+import main.br.com.joyC.impl.lexic.models.LexemeType;
+import main.br.com.joyC.impl.lexic.models.Output;
+import main.br.com.joyC.impl.models.LexicalContentError;
 import main.br.com.joyC.impl.utils.LineCounter;
 import org.springframework.util.StringUtils;
 
@@ -18,8 +22,21 @@ public class MessageTranslator {
 
     static private String genericErrorFormatted(SyntaticError err, String entry, String format) {
         var position = err.getPosition();
-        var errorKey = entry.charAt(position);
-        var lineCount = LineCounter.count(entry.substring(0, position + 1));
+        String errorKey = null;
+        var startSinceToken = entry.substring(position);
+        try {
+            var result = Parser.parse(startSinceToken);
+            if (result.isEmpty()) {
+                errorKey = "fim de arquivo";
+            } else {
+                errorKey = result.get(0).lexeme;
+            }
+        } catch (LexicalContentError lexicalContentError) {
+            lexicalContentError.printStackTrace();
+        }
+        var rest = entry.substring(0, position + 1);
+        var lineCount = LineCounter.count(rest);
+
         return MessageFormat.format(format, lineCount, String.valueOf(errorKey));
     }
 

@@ -13,8 +13,8 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-class Parser {
-    static List<Output> parse(String str) throws LexicalContentError {
+public class Parser {
+    public static List<Output> parse(String str) throws LexicalContentError {
         var arr = new ArrayList<Output>();
         try {
             for (Token t: rawParse(new StringReader(str))) {

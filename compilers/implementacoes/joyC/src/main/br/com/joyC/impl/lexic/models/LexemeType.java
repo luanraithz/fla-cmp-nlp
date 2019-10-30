@@ -1,29 +1,49 @@
 package main.br.com.joyC.impl.lexic.models;
 
 public enum LexemeType {
-	EPSILON(0, "EPSILON"),
-	DOLLAR(1, "DOLAR"),
-	t_palavraReservada(2, "RESERVED_WORD"),
-	t_input(3, "RESERVED_WORD"),
-	t_isFalseDo(4, "RESERVED_WORD"),
-	t_isTrueDo(5, "RESERVED_WORD"),
-	t_main(6, "RESERVED_WORD"),
-	t_output(7, "RESERVED_WORD"),
-	t_true(8, "RESERVED_WORD"),
-	t_if(9, "RESERVED_WORD"),
-	t_false(10, "RESERVED_WORD"),
-	t_types(11, "RESERVED_WORD"),
-	t_while(12, "RESERVED_WORD"),
-	t_idInt(13, "ID_INT"),
-	t_idFloat(14, "ID_FLOAT"),
-	t_idString(15, "ID_STRING"),
-	t_idBool(16, "ID_BOOL"),
-	t_idComposto(17, "ID_COMPOSTO"),
-	t_int(18, "INT"),
-	t_float(19, "FLOAT"),
-	t_string(20, "STRING"),
-	t_simboloEspecial(21, "SPECIAL_SYMBOL");
-
+	EPSILON(0, ""),
+	DOLLAR (1, "SE"),
+	t_palavraReservada(2, ""),
+	t_input(3, ""),
+	t_isFalseDo(4, ""),
+	t_isTrueDo(5, ""),
+	t_main(6, ""),
+	t_output(7, ""),
+	t_true(8, ""),
+	t_types(9, ""),
+	t_while(10, ""),
+	t_if(11, ""),
+	t_false(12, ""),
+	t_idInt(13, ""),
+	t_idFloat(14, ""),
+	t_idString(15, ""),
+	t_idBool(16, ""),
+	t_idComposto(17, ""),
+	t_int(18, ""),
+	t_float(19, ""),
+	t_string(20, ""),
+	t_TOKEN_21(21, "["),
+	t_TOKEN_22(22,"]"),
+	t_TOKEN_23(23,"("),
+	t_TOKEN_24(24,")"),
+	t_TOKEN_25(25,";"),
+	t_TOKEN_26(26,":"),
+	t_TOKEN_27(27,","),
+	t_TOKEN_28(28,"="),
+	t_TOKEN_29(29,"."),
+	t_TOKEN_30(30,"&&"),
+	t_TOKEN_31(31,"||"),
+	t_TOKEN_32(32,"!"),
+	t_TOKEN_33(33,"=="),
+	t_TOKEN_34(34,"!="),
+	t_TOKEN_35(35,"<"),
+	t_TOKEN_36(36,"<="),
+	t_TOKEN_37(37,">"),
+	t_TOKEN_38(38,">="),
+	t_TOKEN_39(39,"+"),
+	t_TOKEN_40(40,"-"),
+	t_TOKEN_41(41,"/"),
+	t_TOKEN_42(42,"*");
 	private Integer value;
 	private String desc;
 
@@ -44,6 +64,6 @@ public enum LexemeType {
 		for (LexemeType lexeme: LexemeType.values()) {
 			if (lexeme.getValue().equals(i)) return lexeme;
 		}
-		throw new RuntimeException("Lexeme not found");
+		throw new RuntimeException("No lexeme found");
 	}
 }

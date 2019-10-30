@@ -41,7 +41,7 @@ class ParserTest {
             Parser.parse(entry);
             fail("Should throw and error");
         } catch (SyntaticError syntacticError) {
-            assertEquals("Erro na linha 2 - encontrado S esperado main types", MessageTranslator.translate(syntacticError, entry));
+            assertEquals("Erro na linha 2 - encontrado S_i esperado main types", MessageTranslator.translate(syntacticError, entry));
         } catch (SemanticError | LexicalError er) {
             fail("Should throw a syntacticError", er);
         }
@@ -121,7 +121,7 @@ class ParserTest {
             Parser.parse(entry);
             fail("Program should throw an syntatic error");
         } catch (SyntaticError err) {
-            assertEquals("Erro na linha 3 - encontrado S esperado fim de arquivo", MessageTranslator.translate(err, entry));
+            assertEquals("Erro na linha 3 - encontrado S_i esperado fim de arquivo", MessageTranslator.translate(err, entry));
         } catch (LexicalError | SemanticError er) {
             fail("Program should throw an syntatic error", er);
         }
@@ -161,5 +161,56 @@ class ParserTest {
             fail("Program should throw a syntatic error", er);
         }
     }
+
+    @Test
+    void testProgramList() {
+        var entry = this.build(
+                "main [",
+                "]"
+        );
+        try {
+            Parser.parse(entry);
+            fail();
+        } catch (SyntaticError syntacticError) {
+            assertEquals("Erro na linha 2 - encontrado ] esperado identificador if while output input :", MessageTranslator.translate(syntacticError, entry));
+        } catch (LexicalError | SemanticError er) {
+            fail("Program should throw a syntatic error", er);
+        }
+    }
+
+    @Test
+    void testWhile() {
+        var entry = this.build(
+                "main [",
+                "output (2 == 2)",
+                "]"
+        );
+        try {
+            Parser.parse(entry);
+            fail("Should throw a syntatic error");
+        } catch (SyntaticError syntacticError) {
+            assertEquals("Erro na linha 3 - encontrado ] esperado ;", MessageTranslator.translate(syntacticError, entry));
+        } catch (LexicalError | SemanticError er) {
+            fail("Program should throw a syntatic error", er);
+        }
+    }
+
+    @Test
+    void fileEnd()  {
+        var entry = this.build(
+                "main [",
+                "output (2 == 2);",
+                ""
+        );
+        try {
+            Parser.parse(entry);
+            fail("Should throw a syntatic error");
+        } catch (SyntaticError syntacticError) {
+            assertEquals("Erro na linha 2 - encontrado fim de arquivo esperado input output while if identificador ]", MessageTranslator.translate(syntacticError, entry));
+        } catch (LexicalError | SemanticError er) {
+            fail("Program should throw a syntatic error", er);
+        }
+    }
+
 
 }
