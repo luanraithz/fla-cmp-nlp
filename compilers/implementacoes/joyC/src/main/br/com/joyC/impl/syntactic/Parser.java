@@ -8,9 +8,9 @@ class Parser {
     static String parse(String input) throws SyntaticError, SemanticError, LexicalError {
         var semantic = new Semantico();
         var lexical = new Lexico();
-        var syntatic = new Sintatico();
+        var syntactic = new Sintatico();
         lexical.setInput(new StringReader(input));
-        syntatic.parse(lexical, semantic);
+        syntactic.parse(lexical, semantic);
 
         return "Programa compilado com sucesso";
     }

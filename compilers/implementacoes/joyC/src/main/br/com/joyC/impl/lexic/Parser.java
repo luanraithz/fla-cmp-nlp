@@ -22,7 +22,7 @@ public class Parser {
                 out.position = t.getPosition();
                 var lexeme = LexemeType.fromInt(t.getId());
                 if (lexeme == LexemeType.t_palavraReservada) {
-                    throw new LexicalError("Palavra reservada invalida", t.getPosition());
+                    throw new LexicalError("palavra reservada invalida", t.getPosition());
                 }
                 out.type = lexeme.getDesc();
                 out.lexeme = t.getLexeme();

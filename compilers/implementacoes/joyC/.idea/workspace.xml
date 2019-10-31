@@ -9,9 +9,8 @@
     <list default="true" id="b0bf6fa6-8d63-4e87-a44a-723c0c5896d5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/models/LexemeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/models/LexemeType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/MessageTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/MessageTranslator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/ParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/Parser.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +76,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Unnamed">
+  <component name="RunManager" selected="Maven.Build">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.Main" />
       <module name="joyC" />
@@ -177,6 +176,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Build" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="install" />
+                <option value="spring-boot:repackage" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.Unnamed" />
@@ -185,6 +211,7 @@
       <item itemvalue="JUnit.ParserTest.testProgramList" />
       <item itemvalue="JUnit.ParserTest.testWhile" />
       <item itemvalue="JUnit.ParserTest.fileEnd" />
+      <item itemvalue="Maven.Build" />
     </list>
     <recent_temporary>
       <list>
@@ -221,16 +248,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/br/com/joyC/impl/utils/LexicalErrorParser.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

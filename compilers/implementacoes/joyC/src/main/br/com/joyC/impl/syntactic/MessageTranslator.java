@@ -32,9 +32,9 @@ public class MessageTranslator {
                 errorKey = result.get(0).lexeme;
             }
         } catch (LexicalContentError lexicalContentError) {
-            lexicalContentError.printStackTrace();
+            return lexicalContentError.getMessage();
         }
-        var rest = entry.substring(0, position + 1);
+        var rest = entry.substring(0, position);
         var lineCount = LineCounter.count(rest);
 
         return MessageFormat.format(format, lineCount, String.valueOf(errorKey));
