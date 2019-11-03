@@ -13,8 +13,8 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-class Parser {
-    static List<Output> parse(String str) throws LexicalContentError {
+public class Parser {
+    public static List<Output> parse(String str) throws LexicalContentError {
         var arr = new ArrayList<Output>();
         try {
             for (Token t: rawParse(new StringReader(str))) {
@@ -22,7 +22,7 @@ class Parser {
                 out.position = t.getPosition();
                 var lexeme = LexemeType.fromInt(t.getId());
                 if (lexeme == LexemeType.t_palavraReservada) {
-                    throw new LexicalError("Palavra reservada invalida", t.getPosition());
+                    throw new LexicalError("palavra reservada invalida", t.getPosition());
                 }
                 out.type = lexeme.getDesc();
                 out.lexeme = t.getLexeme();

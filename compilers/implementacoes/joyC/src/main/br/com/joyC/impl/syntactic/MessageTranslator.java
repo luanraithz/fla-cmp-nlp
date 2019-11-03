@@ -1,6 +1,10 @@
 package main.br.com.joyC.impl.syntactic;
 
 import main.br.com.joyC.gaals.SyntaticError;
+import main.br.com.joyC.impl.lexic.Parser;
+import main.br.com.joyC.impl.lexic.models.LexemeType;
+import main.br.com.joyC.impl.lexic.models.Output;
+import main.br.com.joyC.impl.models.LexicalContentError;
 import main.br.com.joyC.impl.utils.LineCounter;
 import org.springframework.util.StringUtils;
 
@@ -18,8 +22,21 @@ public class MessageTranslator {
 
     static private String genericErrorFormatted(SyntaticError err, String entry, String format) {
         var position = err.getPosition();
-        var errorKey = entry.charAt(position);
-        var lineCount = LineCounter.count(entry.substring(0, position + 1));
+        String errorKey = null;
+        var startSinceToken = entry.substring(position);
+        try {
+            var result = Parser.parse(startSinceToken);
+            if (result.isEmpty()) {
+                errorKey = "fim de arquivo";
+            } else {
+                errorKey = result.get(0).lexeme;
+            }
+        } catch (LexicalContentError lexicalContentError) {
+            return lexicalContentError.getMessage();
+        }
+        var rest = entry.substring(0, position);
+        var lineCount = LineCounter.count(rest);
+
         return MessageFormat.format(format, lineCount, String.valueOf(errorKey));
     }
 
@@ -27,51 +44,54 @@ public class MessageTranslator {
         return genericErrorFormatted(err, entry, "Erro na linha {0} - encontrado {1} esperada expressão");
     }
 
+    static private BiFunction<SyntaticError, String, String> withDefaultPrefix(String value) {
+        return genericFormattedBuilder("Erro na linha {0} - encontrado {1} " + value);
+    }
+
     private static final Map<String, BiFunction<SyntaticError, String, String>> messages = new HashMap<>();
     static {
-        messages.put("", (SyntaticError err, String entry) -> "");
-        messages.put("Era esperado fim de programa", (SyntaticError err, String entry) -> "Esperado fim de arquivo");
-        messages.put("Era esperado palavraReservada", (SyntaticError err, String entry) -> "Era esperado palavraReservada");
-        messages.put("Era esperado input", (SyntaticError err, String entry) -> "Era esperado input");
-        messages.put("Era esperado isFalseDo", (SyntaticError err, String entry) -> "Era esperado isFalseDo");
-        messages.put("Era esperado isTrueDo", (SyntaticError err, String entry) -> "Era esperado isTrueDo");
-        messages.put("Era esperado main", (SyntaticError err, String entry) -> "Era esperado main");
-        messages.put("Era esperado output", (SyntaticError err, String entry) -> "Era esperado output");
-        messages.put("Era esperado true", (SyntaticError err, String entry) -> "Era esperado true");
-        messages.put("Era esperado types", (SyntaticError err, String entry) -> "Era esperado types");
-        messages.put("Era esperado while", (SyntaticError err, String entry) -> "Era esperado while");
-        messages.put("Era esperado if", (SyntaticError err, String entry) -> "Era esperado if");
-        messages.put("Era esperado false", (SyntaticError err, String entry) -> "Era esperado false");
-        messages.put("Era esperado idInt", (SyntaticError err, String entry) -> "Era esperado idInt");
-        messages.put("Era esperado idFloat", (SyntaticError err, String entry) -> "Era esperado idFloat");
-        messages.put("Era esperado idString", (SyntaticError err, String entry) -> "Era esperado idString");
-        messages.put("Era esperado idBool", (SyntaticError err, String entry) -> "Era esperado idBool");
-        messages.put("Era esperado idComposto", (SyntaticError err, String entry) -> "Era esperado idComposto");
-        messages.put("Era esperado int", (SyntaticError err, String entry) -> "Era esperado int");
-        messages.put("Era esperado float", (SyntaticError err, String entry) -> "Era esperado float");
-        messages.put("Era esperado string", (SyntaticError err, String entry) -> "Era esperado string");
-        messages.put("Era esperado \"[\"", (SyntaticError err, String entry) -> "Era esperado \"[\"");
-        messages.put("Era esperado \"]\"", (SyntaticError err, String entry) -> "Era esperado \"]\"");
-        messages.put("Era esperado \"(\"", (SyntaticError err, String entry) -> "Era esperado \"(\"");
-        messages.put("Era esperado \")\"", (SyntaticError err, String entry) -> "Era esperado \")\"");
-        messages.put("Era esperado \";\"", (SyntaticError err, String entry) -> "Era esperado \";\"");
-        messages.put("Era esperado \":\"", (SyntaticError err, String entry) -> "Era esperado \":\"");
-        messages.put("Era esperado \",\"", (SyntaticError err, String entry) -> "Era esperado \",\"");
-        messages.put("Era esperado \"=\"", (SyntaticError err, String entry) -> "Era esperado \"=\"");
-        messages.put("Era esperado \".\"", (SyntaticError err, String entry) -> "Era esperado \".\"");
-        messages.put("Era esperado \"&&\"", (SyntaticError err, String entry) -> "Era esperado \"&&\"");
-        messages.put("Era esperado \"||\"", (SyntaticError err, String entry) -> "Era esperado \"||\"");
-        messages.put("Era esperado \"!\"", (SyntaticError err, String entry) -> "Era esperado \"!\"");
-        messages.put("Era esperado \"==\"", (SyntaticError err, String entry) -> "Era esperado \"==\"");
-        messages.put("Era esperado \"!=\"", (SyntaticError err, String entry) -> "Era esperado \"!=\"");
-        messages.put("Era esperado \"<\"", (SyntaticError err, String entry) -> "Era esperado \"<\"");
-        messages.put("Era esperado \"<=\"", (SyntaticError err, String entry) -> "Era esperado \"<=\"");
-        messages.put("Era esperado \">\"", (SyntaticError err, String entry) -> "Era esperado \">\"");
-        messages.put("Era esperado \">=\"", (SyntaticError err, String entry) -> "Era esperado \">=\"");
-        messages.put("Era esperado \"+\"", (SyntaticError err, String entry) -> "Era esperado \"+\"");
-        messages.put("Era esperado \"-\"", (SyntaticError err, String entry) -> "Era esperado \"-\"");
-        messages.put("Era esperado \"/\"", (SyntaticError err, String entry) -> "Era esperado \"/\"");
-        messages.put("Era esperado \"*\"", (SyntaticError err, String entry) -> "Era esperado \"*\"");
+        messages.put("Era esperado fim de programa", withDefaultPrefix("esperado fim de arquivo"));
+        messages.put("Era esperado palavraReservada", withDefaultPrefix("esperado palavraReservada"));
+        messages.put("Era esperado input", withDefaultPrefix("esperado input"));
+        messages.put("Era esperado isFalseDo", withDefaultPrefix("esperado isFalseDo"));
+        messages.put("Era esperado isTrueDo", withDefaultPrefix("esperado isTrueDo"));
+        messages.put("Era esperado main", withDefaultPrefix("esperado main"));
+        messages.put("Era esperado output", withDefaultPrefix("esperado output"));
+        messages.put("Era esperado true", withDefaultPrefix("esperado true"));
+        messages.put("Era esperado types", withDefaultPrefix("esperado types"));
+        messages.put("Era esperado while", withDefaultPrefix("esperado while"));
+        messages.put("Era esperado if", withDefaultPrefix("esperado if"));
+        messages.put("Era esperado false", withDefaultPrefix("esperado false"));
+        messages.put("Era esperado idInt", withDefaultPrefix("esperado idInt"));
+        messages.put("Era esperado idFloat", withDefaultPrefix("esperado idFloat"));
+        messages.put("Era esperado idString", withDefaultPrefix("esperado idString"));
+        messages.put("Era esperado idBool", withDefaultPrefix("esperado idBool"));
+        messages.put("Era esperado idComposto", withDefaultPrefix("esperado idComposto"));
+        messages.put("Era esperado int", withDefaultPrefix("esperado int"));
+        messages.put("Era esperado float", withDefaultPrefix("esperado float"));
+        messages.put("Era esperado string", withDefaultPrefix("esperado string"));
+        messages.put("Era esperado \"[\"", withDefaultPrefix("esperado ["));
+        messages.put("Era esperado \"]\"", withDefaultPrefix("esperado ]"));
+        messages.put("Era esperado \"(\"", withDefaultPrefix("esperado ("));
+        messages.put("Era esperado \")\"", withDefaultPrefix("esperado )"));
+        messages.put("Era esperado \";\"", withDefaultPrefix("esperado ;"));
+        messages.put("Era esperado \":\"", withDefaultPrefix("esperado :"));
+        messages.put("Era esperado \",\"", withDefaultPrefix("esperado ,"));
+        messages.put("Era esperado \"=\"", withDefaultPrefix("esperado ="));
+        messages.put("Era esperado \".\"", withDefaultPrefix("esperado ."));
+        messages.put("Era esperado \"&&\"", withDefaultPrefix("esperado &&"));
+        messages.put("Era esperado \"||\"", withDefaultPrefix("esperado ||"));
+        messages.put("Era esperado \"!\"", withDefaultPrefix("esperado !"));
+        messages.put("Era esperado \"==\"", withDefaultPrefix("esperado =="));
+        messages.put("Era esperado \"!=\"", withDefaultPrefix("esperado !="));
+        messages.put("Era esperado \"<\"", withDefaultPrefix("esperado <"));
+        messages.put("Era esperado \"<=\"", withDefaultPrefix("esperado <="));
+        messages.put("Era esperado \">\"", withDefaultPrefix("esperado >"));
+        messages.put("Era esperado \">=\"", withDefaultPrefix("esperado >="));
+        messages.put("Era esperado \"+\"", withDefaultPrefix("esperado +"));
+        messages.put("Era esperado \"-\"", withDefaultPrefix("esperado -"));
+        messages.put("Era esperado \"/\"", withDefaultPrefix("esperado /"));
+        messages.put("Era esperado \"*\"", withDefaultPrefix("esperado *"));
         messages.put("<lang> inválido", (SyntaticError err, String entry) -> {
             if (StringUtils.isEmpty(entry)) {
                 return "Erro na linha 1 - encontrado fim de arquivo esperado main types";
