@@ -8,9 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b0bf6fa6-8d63-4e87-a44a-723c0c5896d5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/MessageTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/MessageTranslator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/SyntacticHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/SyntacticHttpHandler.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +74,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Maven.Build">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.Main" />
       <module name="joyC" />
@@ -100,7 +98,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ParserTest.testInvalidEntry" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ParserTest.testInvalidEntry" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="joyC" />
       <extension name="coverage">
         <pattern>
@@ -219,7 +217,6 @@
         <item itemvalue="JUnit.ParserTest.testWhile" />
         <item itemvalue="JUnit.ParserTest.testProgramList" />
         <item itemvalue="JUnit.ParserTest.testOneInvalidCommand" />
-        <item itemvalue="JUnit.ParserTest.testInvalidEntry" />
       </list>
     </recent_temporary>
   </component>

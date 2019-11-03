@@ -13,7 +13,7 @@ import java.util.Map;
 public class SyntacticHttpHandler {
 
     @RequestMapping(name = "Syntatic Parser", method = RequestMethod.POST, value="/syntactic", consumes = { "application/json" }, produces = { "application/json" })
-    @CrossOrigin(origins = { "http://cmp.luan.raithz.com", "http://localhost:3001" })
+    @CrossOrigin(origins = { "http://syntactic.cmp.luan.raithz.com", "http://cmp.luan.raithz.com", "http://localhost:3001" })
     public Map<String, Object> parse(@RequestBody Map<String, String> payload) {
         var content = payload.get("content");
         var result = new HashMap<String, Object>();
