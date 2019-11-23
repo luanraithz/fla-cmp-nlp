@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="joyC:jar" />
-    </artifacts-to-build>
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="b0bf6fa6-8d63-4e87-a44a-723c0c5896d5" name="Default Changelist" comment="">
+    <list default="true" id="6cf5ed65-400d-49a1-84d5-1eb30f8ab1e3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/models/IdentifierMetadata.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/SemanticTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/joyC_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/SyntacticHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/SyntacticHttpHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/lexic/ParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/SemanticHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/SemanticHttpHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/MessageTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/MessageTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/syntatic/ParserTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,51 +19,20 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="joyC" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
-  <component name="ProjectId" id="1RA6QBAjTv9aFm59IruzDyq2e0o" />
+  <component name="ProjectId" id="1U1gaxDdPyN9oUtfkuMGdFQ25xL" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
-    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
-    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
-    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="joyc" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="create.test.in.the.same.root" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="main.br.com.joyC.impl.syntatic" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -74,149 +46,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.Main" />
-      <module name="joyC" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ParserTest.fileEnd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="joyC" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.br.com.joyC.impl.syntactic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.syntactic" />
-      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.syntactic.ParserTest" />
-      <option name="METHOD_NAME" value="fileEnd" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ParserTest.testInvalidEntry" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
-      <module name="joyC" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.br.com.joyC.impl.syntactic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.syntactic" />
-      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.syntactic.ParserTest" />
-      <option name="METHOD_NAME" value="testInvalidEntry" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="PARAMETERS" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ParserTest.testOneInvalidCommand" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="joyC" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.br.com.joyC.impl.syntactic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.syntactic" />
-      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.syntactic.ParserTest" />
-      <option name="METHOD_NAME" value="testOneInvalidCommand" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ParserTest.testProgramList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="joyC" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.br.com.joyC.impl.syntactic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.syntactic" />
-      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.syntactic.ParserTest" />
-      <option name="METHOD_NAME" value="testProgramList" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ParserTest.testWhile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="joyC" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.br.com.joyC.impl.syntactic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="main.br.com.joyC.impl.syntactic" />
-      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.impl.syntactic.ParserTest" />
-      <option name="METHOD_NAME" value="testWhile" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Unnamed" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="All in joyC" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joyC" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
-      <option name="PARAMETERS" value="" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Build" type="MavenRunConfiguration" factoryName="Maven">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="clean" />
-                <option value="install" />
-                <option value="spring-boot:repackage" />
-              </list>
-            </option>
-            <option name="pomFileName" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.Unnamed" />
-      <item itemvalue="JUnit.ParserTest.testInvalidEntry" />
-      <item itemvalue="JUnit.ParserTest.testOneInvalidCommand" />
-      <item itemvalue="JUnit.ParserTest.testProgramList" />
-      <item itemvalue="JUnit.ParserTest.testWhile" />
-      <item itemvalue="JUnit.ParserTest.fileEnd" />
-      <item itemvalue="Maven.Build" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ParserTest.fileEnd" />
-        <item itemvalue="JUnit.ParserTest.testWhile" />
-        <item itemvalue="JUnit.ParserTest.testProgramList" />
-        <item itemvalue="JUnit.ParserTest.testOneInvalidCommand" />
+        <item itemvalue="JUnit.All in joyC" />
       </list>
     </recent_temporary>
   </component>
@@ -225,11 +66,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b0bf6fa6-8d63-4e87-a44a-723c0c5896d5" name="Default Changelist" comment="" />
-      <created>1569097534659</created>
+      <changelist id="6cf5ed65-400d-49a1-84d5-1eb30f8ab1e3" name="Default Changelist" comment="" />
+      <created>1574529582589</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1569097534659</updated>
+      <updated>1574529582589</updated>
     </task>
     <servers />
   </component>
@@ -238,9 +79,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>

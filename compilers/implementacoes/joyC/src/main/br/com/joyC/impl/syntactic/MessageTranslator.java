@@ -34,7 +34,7 @@ public class MessageTranslator {
         } catch (LexicalContentError lexicalContentError) {
             return lexicalContentError.getMessage();
         }
-        var rest = entry.substring(0, position);
+        var rest = entry.substring(0, position + 1);
         var lineCount = LineCounter.count(rest);
 
         return MessageFormat.format(format, lineCount, String.valueOf(errorKey));

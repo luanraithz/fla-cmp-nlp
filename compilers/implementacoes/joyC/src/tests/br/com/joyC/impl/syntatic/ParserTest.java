@@ -1,4 +1,4 @@
-package main.br.com.joyC.impl.syntactic;
+package tests.br.com.joyC.impl.syntatic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -6,11 +6,13 @@ import static org.junit.jupiter.api.Assertions.fail;
 import main.br.com.joyC.gaals.LexicalError;
 import main.br.com.joyC.gaals.SemanticError;
 import main.br.com.joyC.gaals.SyntaticError;
+import main.br.com.joyC.impl.syntactic.MessageTranslator;
+import main.br.com.joyC.impl.syntactic.Parser;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/*
- * Tests for the syntactic parser
- */
+@DisplayName("Syntatic parser")
 class ParserTest {
 
     private String build(String... lines) {
@@ -28,7 +30,7 @@ class ParserTest {
             Parser.parse("");
             fail("Should throw and error");
         } catch (SyntaticError syntacticError) {
-            assertEquals("Erro na linha 1 - encontrado fim de arquivo esperado main types", MessageTranslator.translate(syntacticError, ""));
+            Assertions.assertEquals("Erro na linha 1 - encontrado fim de arquivo esperado main types", MessageTranslator.translate(syntacticError, ""));
         } catch (SemanticError | LexicalError er) {
             fail("Should throw a syntacticError", er);
         }

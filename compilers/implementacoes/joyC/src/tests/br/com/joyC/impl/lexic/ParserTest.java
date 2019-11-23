@@ -1,12 +1,14 @@
-package main.br.com.joyC.impl.lexic;
+package tests.br.com.joyC.impl.lexic;
 
 import main.br.com.joyC.impl.lexic.models.LexemeType;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static main.br.com.joyC.impl.lexic.Parser.parse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+@DisplayName("Lexic parser")
 class ParserTest {
 
     @Test
