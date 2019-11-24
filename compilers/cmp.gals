@@ -133,7 +133,7 @@ string: \"[^\"\n]*\"
 <termo1>
 <fator>
 #Grammar
-<lang> ::= <opt_tipos> main "[" <opt_var_decs> <lista_de_comandos> "]" ;
+<lang> ::= #15 #16 <opt_tipos> main "[" <opt_var_decs> <lista_de_comandos> "]" #17;
 
 <opt_tipos> ::= î |  <tipos> ;
 <tipos> ::= types "[" <types_dec> "]" ";" ;
@@ -152,9 +152,9 @@ string: \"[^\"\n]*\"
 <variavel_dec> ::= <id_do_tipo_simples> <variavel_dec1> | <id_do_tipo_composto> <variavel_dec1> ;
 <variavel_dec1> ::= î | "," <variavel_dec>  ;
 
-<id_do_tipo_simples> ::= <var_type> <opt_arr_size> ;
+<id_do_tipo_simples> ::= <var_type>#30 #32 <opt_arr_size> #31 ;
 <var_type> ::= idInt | idFloat | idString | idBool ;
-<opt_arr_size> ::= î | "[" int "]" ; 
+<opt_arr_size> ::= î | "[" int #36 "]" ;
 <id_do_tipo_composto> ::= idComposto "[" <arr_types> "]" ; 
 <arr_types> ::= idComposto | int "," idComposto ;
 
@@ -190,16 +190,22 @@ string: \"[^\"\n]*\"
 
 <elemento> ::= <relacional> | true | false | "!" <elemento> ;
 <relacional> ::=  <aritmetica><relacional1> ;
-<relacional1> ::= <operador_relacional> <aritmetica>  |  î;
+<relacional1> ::= <operador_relacional> #9 <aritmetica> #10  |  î;
 <operador_relacional> ::= "==" | "!=" | "<" | "<=" | ">" | ">=" ;
 
 <aritmetica> ::= <termo> <aritmetica1>;
-<aritmetica1> ::=  î | "+" <termo><aritmetica1>  | "-" <termo><aritmetica1> ;
+<aritmetica1> ::=  î | "+" <termo> #1 <aritmetica1>  | "-" <termo> #2 <aritmetica1> ;
 
 <termo> ::= <fator> <termo1>; 
-<termo1> ::=  î | "*" <fator><termo1>  | "/" <fator><termo1> ; 
+<termo1> ::=  î | "*" <fator> #3 <termo1>  | "/" <fator> #4 <termo1> ; 
 
-<fator> ::= <variavel_uso> | int | float | string | "(" <expressao> ")" | "+" <fator> | "-" <fator> ;
+<fator> ::= <variavel_uso> #33 |
+		           int #5 |
+		        float #6 |
+                                        string #20 |
+	     "(" <expressao> ")" |
+	            "+" <fator> #7 |
+	              "-" <fator> #8 ;
 
 
 
