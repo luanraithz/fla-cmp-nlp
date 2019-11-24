@@ -1,0 +1,8 @@
+main [ :I_lado, I_area;
+  input (I_lado);
+  I_area = 0;
+  if (I_lado > 0) isTrueDo [
+    I_area = I_lado * I_lado;
+  ];
+  output(I_area);
+]

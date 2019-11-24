@@ -185,6 +185,38 @@ public class CustomSemantic extends Semantico {
         addCommandLine("ldstr " + currentToken.getLexeme());
     }
 
+    private void action30() throws SemanticError {
+        addCommandLine(".locals (");
+        var identifier = currentToken.getLexeme();
+        if (symbolTable.containsKey(identifier)) {
+            throw new SemanticError("Identificador ja declarado");
+        }
+        var metadata = new IdentifierMetadata();
+        System.out.println(identifier);
+        metadata.type = Utils.getVariableType(identifier);
+        symbolTable.put(identifier, metadata);
+    }
+
+    private void action31() throws SemanticError {
+    }
+
+    private void action32() throws SemanticError {
+        System.out.println("getting " + currentToken.getLexeme());
+        if (!symbolTable.containsKey(currentToken.getLexeme())) {
+            throw new SemanticError("Identificador nao declarado");
+        }
+    }
+
+    private void action33() throws SemanticError {
+        var identifier = currentToken.getLexeme();
+        System.out.println("getting metadata for " + identifier);
+        var metadata = symbolTable.get(identifier);
+        varTypeStack.push(metadata.type);
+    }
+
+    private void action34() throws SemanticError {
+    }
+
     @Override
     public void executeAction(int action, Token token) throws SemanticError
     {

@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6cf5ed65-400d-49a1-84d5-1eb30f8ab1e3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example02/entry.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example02/output.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/models/IdentifierMetadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/models/IdentifierMetadata.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/VariableType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/VariableType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/SemanticTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/SemanticTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -43,7 +41,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SemanticTest.test02">
+  <component name="RunManager" selected="JUnit.SemanticTest.test03">
     <configuration name="All in joyC" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joyC" />
       <option name="PACKAGE_NAME" value="" />
@@ -68,10 +66,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SemanticTest.test03" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="joyC" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.br.com.joyC.impl.semantic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests.br.com.joyC.impl.semantic" />
+      <option name="MAIN_CLASS_NAME" value="tests.br.com.joyC.impl.semantic.SemanticTest" />
+      <option name="METHOD_NAME" value="test03" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SemanticTest.test02" />
+        <item itemvalue="JUnit.SemanticTest.test03" />
         <item itemvalue="JUnit.All in joyC" />
+        <item itemvalue="JUnit.SemanticTest.test02" />
       </list>
     </recent_temporary>
   </component>

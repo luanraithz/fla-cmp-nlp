@@ -1,0 +1,32 @@
+.assembly extern mscorlib {}
+.assembly _codigo_objeto{}
+.module _codigo_objeto.exe
+.class public _UNICA {
+.method static public void _principal() {
+    .entrypoint
+    .locals (int64 I_lado)
+    .locals (int64 I_area)
+    call String [mscorlib]System.Console::ReadLine()
+    call int64 [mscorlib]System.Int64::Parse(string)
+    stloc I_lado
+    ldc.i8 0
+    conv.r8
+    conv.i8
+    stloc I_area
+    ldloc I_lado
+    conv.r8
+    ldc.i8 0
+    conv.r8
+    cgt
+    brfalse r1
+    ldloc I_lado
+    conv.r8
+    mul
+    conv.i8
+    stloc I_area
+    r1:
+    ldloc I_area
+    call void [mscorlib]System.Console::Write(int64)
+    ret
+}
+}

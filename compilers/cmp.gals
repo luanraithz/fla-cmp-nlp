@@ -152,7 +152,7 @@ string: \"[^\"\n]*\"
 <variavel_dec> ::= <id_do_tipo_simples> <variavel_dec1> | <id_do_tipo_composto> <variavel_dec1> ;
 <variavel_dec1> ::= î | "," <variavel_dec>  ;
 
-<id_do_tipo_simples> ::= <var_type>#30 #32 <opt_arr_size> #31 ;
+<id_do_tipo_simples> ::= <var_type> #30 #32 <opt_arr_size> #31 ;
 <var_type> ::= idInt | idFloat | idString | idBool ;
 <opt_arr_size> ::= î | "[" int #36 "]" ;
 <id_do_tipo_composto> ::= idComposto "[" <arr_types> "]" ; 
@@ -162,33 +162,32 @@ string: \"[^\"\n]*\"
 <lista_de_comandos1> ::= î | <comando> ";"  <lista_de_comandos1> ;
 <comando> ::= <atribuicao> | <entrada_de_dados> | <saida_de_dados> | <comando_selecao> | <comando_repeticao> ;
 
-<atribuicao> ::= <variavel_uso> "=" <expressao> ;
+<atribuicao> ::= <variavel_uso> "=" <expressao> #34 ;
 <identificador> ::= <var_type> | idComposto ;
-<variavel_uso> ::= <identificador> <opt_expr> <opt_field> ;
-<opt_expr> ::= î | "[" <expressao> "]" ;
+<variavel_uso> ::= <identificador> #32 <opt_expr> <opt_field> ;
+<opt_expr> ::= î | "[" <expressao> "]" #38 ;
 <opt_field> ::= î | "." <campo> ;
 
-<entrada_de_dados> ::= input "(" <lista_de_identificadores> ")" ;
+<entrada_de_dados> ::= input "(" <lista_de_identificadores>#35  ")" ;
 <lista_de_identificadores> ::= <variavel_uso> <lista_de_identificadores1> ;
 <lista_de_identificadores1> ::=  î  | "," <variavel_uso>  <lista_de_identificadores1> ;
 
-<true_statement> ::= isTrueDo "[" <lista_de_comandos> "]" ;
-<false_statement> ::= isFalseDo "[" <lista_de_comandos> "]" ;
-
 <saida_de_dados> ::= output  "(" <lista_expressoes> ")" ;
-<lista_expressoes> ::= <expressao> <lista_expressoes1>;
-<lista_expressoes1> ::= î  | "," <expressao> <lista_expressoes1> ;
+<lista_expressoes> ::= <expressao> #14 <lista_expressoes1>;
+<lista_expressoes1> ::= î  | "," <expressao> #14 <lista_expressoes1> ;
 
-<comando_selecao> ::= if "(" <expressao> ")" <true_statement> <optional_false> ;
-<optional_false> ::= î  | <false_statement> ;
+<comando_selecao> ::= if "(" <expressao> ")" #39 isTrueDo   "[" <lista_de_comandos> "]" <optional_false> #40 ;
+<optional_false> ::= î  | #42 <false_statement> ;
 
+<true_statement> ::= isTrueDo #43  "[" <lista_de_comandos> "]" ;
+<false_statement> ::= isFalseDo #43 "[" <lista_de_comandos> "]" ;
 <statement> ::= <true_statement> | <false_statement> ;
-<comando_repeticao> ::= while "(" <expressao> ")" <statement> ;
+<comando_repeticao> ::= #42 while "(" <expressao> ")" <statement> #44 ;
 
 <expressao> ::=  <elemento> <expressao1>;
-<expressao1> ::= î | "&&" <elemento><expressao1>  | "||" <elemento><expressao1> ;
+<expressao1> ::= î | "&&" <elemento> #18 <expressao1>  | "||" <elemento> #19 <expressao1> ;
 
-<elemento> ::= <relacional> | true | false | "!" <elemento> ;
+<elemento> ::= <relacional> | true #11 | false #12 | "!" <elemento> #13 ;
 <relacional> ::=  <aritmetica><relacional1> ;
 <relacional1> ::= <operador_relacional> #9 <aritmetica> #10  |  î;
 <operador_relacional> ::= "==" | "!=" | "<" | "<=" | ">" | ">=" ;
