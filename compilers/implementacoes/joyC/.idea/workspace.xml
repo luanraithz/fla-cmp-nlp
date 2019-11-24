@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6cf5ed65-400d-49a1-84d5-1eb30f8ab1e3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/models/IdentifierMetadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/models/IdentifierMetadata.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/SemanticTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/SemanticTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example03/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example03/output.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -115,5 +114,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java</url>
+          <line>219</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

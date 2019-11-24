@@ -4,20 +4,22 @@ import main.br.com.joyC.gaals.SemanticError;
 import main.br.com.joyC.gaals.Semantico;
 import main.br.com.joyC.gaals.Token;
 import main.br.com.joyC.impl.models.IdentifierMetadata;
+import org.apache.logging.log4j.message.Message;
 import org.springframework.jmx.access.InvalidInvocationException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
-import java.util.HashMap;
-import java.util.Stack;
+import java.util.*;
 
 public class CustomSemantic extends Semantico {
     private final StringBuilder output = new StringBuilder();
     private final HashMap<String, IdentifierMetadata> symbolTable = new HashMap();
     private final String MODULE_NAME = "_principal";
-    private Token currentToken = null;
+    private Token currentToken;
     private Stack<VariableType> varTypeStack = new Stack<>();
-    private String operator = null;
+    private String operator;
+    private Queue<String> ids = new ArrayDeque<>();
+    private VariableType currentVarDecType;
 
     CustomSemantic() {
     }
@@ -186,35 +188,76 @@ public class CustomSemantic extends Semantico {
     }
 
     private void action30() throws SemanticError {
-        addCommandLine(".locals (");
-        var identifier = currentToken.getLexeme();
-        if (symbolTable.containsKey(identifier)) {
-            throw new SemanticError("Identificador ja declarado");
+        var type = Utils.getVariableType(currentToken.getLexeme());
+        if (type != null) {
+            currentVarDecType = type;
+        } else {
+            System.out.println("variable not implemented yet");
         }
-        var metadata = new IdentifierMetadata();
-        System.out.println(identifier);
-        metadata.type = Utils.getVariableType(identifier);
-        symbolTable.put(identifier, metadata);
     }
 
     private void action31() throws SemanticError {
+        for (String identifier: ids) {
+            if (symbolTable.containsKey(identifier)) throw new SemanticError("Identificador ja declarado");
+            var metadata = new IdentifierMetadata();
+            metadata.type = currentVarDecType;
+            symbolTable.put(identifier, metadata);
+            addCommandLine(MessageFormat.format(".locals ({0} {1})", metadata.type.getPrimitiveType(), identifier));
+        }
+        ids.clear();
     }
 
     private void action32() throws SemanticError {
-        System.out.println("getting " + currentToken.getLexeme());
-        if (!symbolTable.containsKey(currentToken.getLexeme())) {
-            throw new SemanticError("Identificador nao declarado");
-        }
+        ids.add(currentToken.getLexeme());
     }
 
     private void action33() throws SemanticError {
-        var identifier = currentToken.getLexeme();
-        System.out.println("getting metadata for " + identifier);
-        var metadata = symbolTable.get(identifier);
-        varTypeStack.push(metadata.type);
+        var id = currentToken.getLexeme();
+        if (!symbolTable.containsKey(id)) throw new SemanticError("Identificador nao declarado");
+        var type = Utils.getVariableType(id);
+        varTypeStack.push(type);
+        addCommandLine("ldloc " + id);
+        if (type == VariableType.Int64) {
+            addCommandLine("conv.r8");
+        }
     }
 
     private void action34() throws SemanticError {
+                // @todo devia ser uma fila?
+        var id = ids.peek();
+        if (!symbolTable.containsKey(id)) {
+            throw new SemanticError("Identificador nao declarado");
+        }
+        var type = Utils.getVariableType(id);
+        var expressionType = varTypeStack.pop();
+        if (type != expressionType) {
+            throw new SemanticError("tipos incompativeis");
+        }
+        if (type == VariableType.Int64) {
+            addCommandLine("conv.i8");
+        }
+        addCommandLine("stloc " + id);
+    }
+
+    private void action35() throws SemanticError {
+        for (String id: ids) {
+            if (!symbolTable.containsKey(id)) {
+                throw new SemanticError("Identificador nao declarado");
+            }
+            var type = Utils.getVariableType(id);
+            addCommandLine("call string [mscorlib]System.Console::ReadLine()");
+            addCommandLine(MessageFormat.format("call {0} [mscorlib]System.{1}::Parse(string)", type.getPrimitiveType(), type.getClassType()));
+            addCommandLine(MessageFormat.format("stloc {0}", id));
+        }
+        ids.clear();
+    }
+
+    private void action39() throws SemanticError {
+        addCommandLine("brfalse r1");
+    }
+
+    private void action40() throws SemanticError {
+        addCommandLine("r1:");
     }
 
     @Override
@@ -233,6 +276,7 @@ public class CustomSemantic extends Semantico {
             System.out.println("Some method was implemented wrongly");
             e.printStackTrace();
         } catch (InvocationTargetException err) {
+            err.printStackTrace();
             var ex = (SemanticError) err.getCause();
             throw ex;
         }
