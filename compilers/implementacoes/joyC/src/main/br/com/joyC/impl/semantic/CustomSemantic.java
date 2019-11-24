@@ -4,8 +4,6 @@ import main.br.com.joyC.gaals.SemanticError;
 import main.br.com.joyC.gaals.Semantico;
 import main.br.com.joyC.gaals.Token;
 import main.br.com.joyC.impl.models.IdentifierMetadata;
-import org.apache.logging.log4j.message.Message;
-import org.springframework.jmx.access.InvalidInvocationException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
@@ -142,9 +140,7 @@ public class CustomSemantic extends Semantico {
         }
         addCommandLine("ldc.i4.1");
         addCommandLine("xor");
-
     }
-
 
     private void action14() {
         var type = varTypeStack.pop();
@@ -214,7 +210,7 @@ public class CustomSemantic extends Semantico {
     private void action33() throws SemanticError {
         var id = currentToken.getLexeme();
         if (!symbolTable.containsKey(id)) throw new SemanticError("Identificador nao declarado");
-        var type = Utils.getVariableType(id);
+        var type = symbolTable.get(id).type;
         varTypeStack.push(type);
         addCommandLine("ldloc " + id);
         if (type == VariableType.Int64) {
@@ -225,26 +221,20 @@ public class CustomSemantic extends Semantico {
     private void action34() throws SemanticError {
                 // @todo devia ser uma fila?
         var id = ids.peek();
-        if (!symbolTable.containsKey(id)) {
-            throw new SemanticError("Identificador nao declarado");
-        }
-        var type = Utils.getVariableType(id);
+        if (!symbolTable.containsKey(id)) throw new SemanticError("Identificador nao declarado");
+        var type = symbolTable.get(id).type;
         var expressionType = varTypeStack.pop();
-        if (type != expressionType) {
-            throw new SemanticError("tipos incompativeis");
-        }
-        if (type == VariableType.Int64) {
-            addCommandLine("conv.i8");
-        }
+        // @TODO ver com a professora
+        // if (type != expressionType) throw new SemanticError("tipos incompativeis");
+
+        if (type == VariableType.Int64) addCommandLine("conv.i8");
         addCommandLine("stloc " + id);
     }
 
     private void action35() throws SemanticError {
         for (String id: ids) {
-            if (!symbolTable.containsKey(id)) {
-                throw new SemanticError("Identificador nao declarado");
-            }
-            var type = Utils.getVariableType(id);
+            if (!symbolTable.containsKey(id)) throw new SemanticError("Identificador nao declarado");
+            var type = symbolTable.get(id).type;
             addCommandLine("call string [mscorlib]System.Console::ReadLine()");
             addCommandLine(MessageFormat.format("call {0} [mscorlib]System.{1}::Parse(string)", type.getPrimitiveType(), type.getClassType()));
             addCommandLine(MessageFormat.format("stloc {0}", id));
@@ -258,6 +248,10 @@ public class CustomSemantic extends Semantico {
 
     private void action40() throws SemanticError {
         addCommandLine("r1:");
+    }
+
+    private void action41() throws SemanticError {
+
     }
 
     @Override

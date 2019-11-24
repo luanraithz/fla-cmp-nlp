@@ -1,0 +1,6 @@
+main [ : F_valor;
+    input (F_valor);
+    if (F_valor > 0,0)
+    isTrueDo [ output ("maior"); ]
+    isFalseDo [ output ("menor ou igual"); ];
+]

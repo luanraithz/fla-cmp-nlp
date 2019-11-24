@@ -4,7 +4,8 @@
     <list default="true" id="6cf5ed65-400d-49a1-84d5-1eb30f8ab1e3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example03/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example03/output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/ParserTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/SemanticTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/SemanticTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,11 +41,27 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SemanticTest.test03">
+  <component name="RunManager" selected="JUnit.All in joyC">
     <configuration name="All in joyC" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joyC" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SemanticTest.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="joyC" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.br.com.joyC.impl.semantic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests.br.com.joyC.impl.semantic" />
+      <option name="MAIN_CLASS_NAME" value="tests.br.com.joyC.impl.semantic.SemanticTest" />
+      <option name="METHOD_NAME" value="test01" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -83,8 +100,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SemanticTest.test03" />
         <item itemvalue="JUnit.All in joyC" />
+        <item itemvalue="JUnit.SemanticTest.test01" />
+        <item itemvalue="JUnit.SemanticTest.test03" />
         <item itemvalue="JUnit.SemanticTest.test02" />
       </list>
     </recent_temporary>
@@ -120,10 +138,15 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java</url>
-          <line>219</line>
-          <option name="timeStamp" value="5" />
+          <line>147</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="this.output.toString()" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

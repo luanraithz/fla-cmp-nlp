@@ -176,8 +176,8 @@ string: \"[^\"\n]*\"
 <lista_expressoes> ::= <expressao> #14 <lista_expressoes1>;
 <lista_expressoes1> ::= î  | "," <expressao> #14 <lista_expressoes1> ;
 
-<comando_selecao> ::= if "(" <expressao> ")" #39 isTrueDo   "[" <lista_de_comandos> "]" <optional_false> #40 ;
-<optional_false> ::= î  | #42 <false_statement> ;
+<comando_selecao> ::= if "(" <expressao> ")" #39 isTrueDo "[" <lista_de_comandos> "]" <optional_false> #40 ;
+<optional_false> ::= î  | #41 isFalseDo "[" <lista_de_comandos> "]" ;
 
 <true_statement> ::= isTrueDo #43  "[" <lista_de_comandos> "]" ;
 <false_statement> ::= isFalseDo #43 "[" <lista_de_comandos> "]" ;
