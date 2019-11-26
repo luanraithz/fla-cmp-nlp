@@ -29,6 +29,8 @@
     stloc I_area
     r1:
     ldloc I_area
+    conv.r8
+    conv.i8
     call void [mscorlib]System.Console::Write(int64)
     ret
   }

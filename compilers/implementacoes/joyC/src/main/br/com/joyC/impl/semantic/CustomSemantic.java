@@ -18,6 +18,8 @@ public class CustomSemantic extends Semantico {
     private String operator;
     private Queue<String> ids = new ArrayDeque<>();
     private VariableType currentVarDecType;
+    private Integer contextCount = 0;
+    private Integer currentContext = 0;
 
     CustomSemantic() {
     }
@@ -243,14 +245,41 @@ public class CustomSemantic extends Semantico {
     }
 
     private void action39() throws SemanticError {
-        addCommandLine("brfalse r1");
+        currentContext++;
+        contextCount++;
+        addCommandLine("brfalse r"+ currentContext);
     }
 
     private void action40() throws SemanticError {
-        addCommandLine("r1:");
+        addCommandLine("r"+currentContext + ":");
+        currentContext--;
     }
 
     private void action41() throws SemanticError {
+        currentContext++;
+        addCommandLine("br r"+currentContext);
+        addCommandLine("r"+ contextCount + ":");
+        contextCount++;
+    }
+
+    private void action42() {
+        currentContext++;
+        contextCount++;
+        addCommandLine("r"+contextCount + ":");
+    }
+
+    private void action43() {
+        ids.clear();
+        var lexeme = currentToken.getLexeme();
+        if(lexeme.equals("isTrueDo")) {
+            addCommandLine("brfalse r" + currentContext++);
+        } else {
+            addCommandLine("brtrue r" + currentContext++);
+        }
+
+    }
+
+    private void action44() {
 
     }
 
@@ -258,7 +287,7 @@ public class CustomSemantic extends Semantico {
     public void executeAction(int action, Token token) throws SemanticError
     {
         this.currentToken = token;
-        System.out.println("Ação #"+action+", Token: "+token);
+        System.out.println("action:" + action + "token:" + (token != null ? token.getLexeme(): ""));
         try {
             var method = this.getClass().getDeclaredMethod("action"+action);
             method.setAccessible(true);
