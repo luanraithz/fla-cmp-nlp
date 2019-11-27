@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6cf5ed65-400d-49a1-84d5-1eb30f8ab1e3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example05/entry.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example05/output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example06/entry.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example06/output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/models/IdentifierMetadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/models/IdentifierMetadata.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/SemanticTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/SemanticTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example03/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example03/output.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example04/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example04/output.txt" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,22 +31,21 @@
   </component>
   <component name="ProjectId" id="1U1gaxDdPyN9oUtfkuMGdFQ25xL" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn install" />
+      <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SemanticTest.test05">
+  <component name="RunManager" selected="JUnit.All in joyC">
     <configuration name="All in joyC" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joyC" />
       <option name="PACKAGE_NAME" value="" />
@@ -122,13 +120,25 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SemanticTest.test05" />
         <item itemvalue="JUnit.All in joyC" />
+        <item itemvalue="JUnit.SemanticTest.test05" />
         <item itemvalue="JUnit.SemanticTest.test04" />
         <item itemvalue="JUnit.SemanticTest.test01" />
         <item itemvalue="JUnit.SemanticTest.test03" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -156,7 +166,66 @@
       </map>
     </option>
   </component>
+  <component name="WindowStateProjectService">
+    <state x="2885" y="11" width="928" height="1042" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1574817165659">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2885" y="11" width="928" height="1042" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1574817165659" />
+    <state width="1820" height="343" key="GridCell.Tab.0.bottom" timestamp="1574820136683">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1820" height="343" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1574820136683" />
+    <state width="1820" height="343" key="GridCell.Tab.0.center" timestamp="1574820136682">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1820" height="343" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1574820136682" />
+    <state width="1820" height="343" key="GridCell.Tab.0.left" timestamp="1574820136682">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1820" height="343" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1574820136682" />
+    <state width="1820" height="343" key="GridCell.Tab.0.right" timestamp="1574820136683">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1820" height="343" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1574820136683" />
+    <state width="1820" height="343" key="GridCell.Tab.1.bottom" timestamp="1574820136683">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1820" height="343" key="GridCell.Tab.1.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1574820136683" />
+    <state width="1820" height="343" key="GridCell.Tab.1.center" timestamp="1574820136683">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1820" height="343" key="GridCell.Tab.1.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1574820136683" />
+    <state width="1820" height="343" key="GridCell.Tab.1.left" timestamp="1574820136683">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1820" height="343" key="GridCell.Tab.1.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1574820136683" />
+    <state width="1820" height="343" key="GridCell.Tab.1.right" timestamp="1574820136683">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1820" height="343" key="GridCell.Tab.1.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1574820136683" />
+    <state x="2534" y="272" width="692" height="520" key="find.popup" timestamp="1574814740294">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2534" y="272" width="692" height="520" key="find.popup/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1574814740294" />
+    <state x="2542" y="245" width="672" height="677" key="run.anything.popup" timestamp="1574814650146">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2542" y="245" width="672" height="677" key="run.anything.popup/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1574814650146" />
+    <state x="2543" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1574816420002">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2543" y="240" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1574816420002" />
+  </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/tests/br/com/joyC/impl/syntatic/ParserTest.java</url>
+          <line>191</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="this.output.toString()" language="JAVA" />

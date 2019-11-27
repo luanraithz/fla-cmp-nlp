@@ -1,0 +1,16 @@
+main [ : I_ch[6], I_i, I_total;
+    I_i = 0;
+    while (I_i < 5) isTrueDo [
+        output(I_i + 1, "a. disciplina: carga horaria? ");
+        input (I_ch[I_i]);
+        I_i = I_i + 1;
+    ];
+    I_ch[5] = 18;
+    I_i = 0;
+    I_total = 0;
+    while (I_i < 5) isTrueDo [
+        I_total = I_total + I_ch[I_i];
+        I_i = I_i + 1;
+    ];
+    output ("total de creditos: ", I_total / I_ch[5]);
+]

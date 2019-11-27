@@ -18,6 +18,8 @@ public class CustomSemantic extends Semantico {
     private String operator;
     private Queue<String> ids = new ArrayDeque<>();
     private VariableType currentVarDecType;
+    private Integer currentArraySize;
+    private Boolean currentVarIsArray;
     private Integer contextCount = 0;
     private Integer currentContext = 0;
 
@@ -118,7 +120,7 @@ public class CustomSemantic extends Semantico {
             case "<":
                 addCommandLine("clt");
                 break;
-            case "=":
+            case "==":
                 addCommandLine("ceq");
         }
     }
@@ -188,6 +190,7 @@ public class CustomSemantic extends Semantico {
     private void action30() throws SemanticError {
         var type = Utils.getVariableType(currentToken.getLexeme());
         if (type != null) {
+            currentVarIsArray = false;
             currentVarDecType = type;
         } else {
             System.out.println("variable not implemented yet");
@@ -199,34 +202,49 @@ public class CustomSemantic extends Semantico {
             if (symbolTable.containsKey(identifier)) throw new SemanticError("Identificador ja declarado");
             var metadata = new IdentifierMetadata();
             metadata.type = currentVarDecType;
+            metadata.isArray = currentVarIsArray;
+            metadata.arraySize = currentArraySize;
             symbolTable.put(identifier, metadata);
-            addCommandLine(MessageFormat.format(".locals ({0} {1})", metadata.type.getPrimitiveType(), identifier));
+            if (currentVarIsArray) {
+                addCommandLine(MessageFormat.format(".locals ({0}[] {1})", metadata.type.getPrimitiveType(), identifier));
+                addCommandLine("ldc.i8 " + currentArraySize);
+                addCommandLine(MessageFormat.format("newarr [mscorlib]System.{0}", metadata.type.getClassType()));
+                addCommandLine("stloc " + identifier);
+            } else {
+                addCommandLine(MessageFormat.format(".locals ({0} {1})", metadata.type.getPrimitiveType(), identifier));
+            }
         }
         ids.clear();
     }
 
     private void action32() throws SemanticError {
+        var id = currentToken.getLexeme();
+        if (!symbolTable.containsKey(id)) throw new SemanticError("Identificador nao declarado:" + id);
         ids.add(currentToken.getLexeme());
     }
 
     private void action33() throws SemanticError {
         var id = currentToken.getLexeme();
-        if (!symbolTable.containsKey(id)) throw new SemanticError("Identificador nao declarado");
-        var type = symbolTable.get(id).type;
-        varTypeStack.push(type);
-        addCommandLine("ldloc " + id);
-        if (type == VariableType.Int64) {
-            addCommandLine("conv.r8");
+        if (id.equals("]")) {
+            // @TODO implement array access and validation
+
+        } else {
+            var type = symbolTable.get(id).type;
+            varTypeStack.push(type);
+            addCommandLine("ldloc " + id);
+            if (type == VariableType.Int64) {
+                addCommandLine("conv.r8");
+            }
         }
     }
 
     private void action34() throws SemanticError {
-                // @todo devia ser uma fila?
+        // @TODO devia ser uma fila?
         var id = ids.peek();
         if (!symbolTable.containsKey(id)) throw new SemanticError("Identificador nao declarado");
         var type = symbolTable.get(id).type;
-        var expressionType = varTypeStack.pop();
         // @TODO ver com a professora
+        // var expressionType = varTypeStack.pop();
         // if (type != expressionType) throw new SemanticError("tipos incompativeis");
 
         if (type == VariableType.Int64) addCommandLine("conv.i8");
@@ -242,6 +260,20 @@ public class CustomSemantic extends Semantico {
             addCommandLine(MessageFormat.format("stloc {0}", id));
         }
         ids.clear();
+    }
+
+
+    /* * action chamada dentro da declaracao do tamanho de um array */
+    private void action36() throws SemanticError {
+        var size = Integer.valueOf(currentToken.getLexeme());
+        if (size <= 0) {
+            throw new SemanticError("Tamanho do array deve ser maior que 0");
+        }
+        currentVarIsArray = true;
+        currentArraySize = size;
+    }
+
+    private void action38() {
     }
 
     private void action39() throws SemanticError {
@@ -262,25 +294,28 @@ public class CustomSemantic extends Semantico {
         contextCount++;
     }
 
+    /* Action a ser chamada antes da palavra "while" */
     private void action42() {
         currentContext++;
         contextCount++;
-        addCommandLine("r"+contextCount + ":");
+        addCommandLine("r"+currentContext + ":");
     }
 
+    /* Action a ser chamada depois da palavra "isFalseDo" ou "isTrueDo" no comando de loop */
     private void action43() {
         ids.clear();
-        var lexeme = currentToken.getLexeme();
-        if(lexeme.equals("isTrueDo")) {
-            addCommandLine("brfalse r" + currentContext++);
+        currentContext++;
+        if(currentToken.getLexeme().equals("isTrueDo")) {
+            addCommandLine("brfalse r" + currentContext);
         } else {
-            addCommandLine("brtrue r" + currentContext++);
+            addCommandLine("brtrue r" + currentContext);
         }
-
     }
 
+    /* Action a ser chamada ao comando ser finalizado */
     private void action44() {
-
+        addCommandLine("br r" + (currentContext - 1));
+        addCommandLine("r" + currentContext + ":");
     }
 
     @Override
