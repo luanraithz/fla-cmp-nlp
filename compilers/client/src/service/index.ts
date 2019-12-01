@@ -12,7 +12,12 @@ function compileSyntactic (content: string): Promise<{ error?: SyntacticError, r
     return axios.post(`${BASE}/syntactic`, { content }).then(({ data }) => data)
 }
 
+function compileSemantic (content: string): Promise<{ error?: any, result: string }> {
+    return axios.post(`${BASE}/semantic`, { content }).then(({ data }) => data)
+}
+
 export {
     compileLexical,
-    compileSyntactic
+    compileSyntactic,
+    compileSemantic
 }
