@@ -4,6 +4,11 @@ import main.br.com.joyC.gaals.SemanticError;
 import main.br.com.joyC.gaals.Semantico;
 import main.br.com.joyC.gaals.Token;
 import main.br.com.joyC.impl.models.IdentifierMetadata;
+import main.br.com.joyC.impl.semantic.impl.IfContextControllerImpl;
+import main.br.com.joyC.impl.semantic.impl.LoopContextControllerImpl;
+import main.br.com.joyC.impl.semantic.interfaces.IfContextController;
+import main.br.com.joyC.impl.semantic.interfaces.LoopContextController;
+import org.apache.logging.log4j.message.Message;
 
 import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
@@ -20,11 +25,13 @@ public class CustomSemantic extends Semantico {
     private Integer currentArraySize;
     private String currentVarName;
     private Boolean currentVarIsArray = false;
-    private Integer contextCount = 0;
-    private Integer currentContext = 0;
     private Boolean arrayContext = false;
+    private IfContextController ifContextController;
+    private LoopContextController loopContextController;
 
     CustomSemantic() {
+        ifContextController = new IfContextControllerImpl();
+        loopContextController = new LoopContextControllerImpl();
     }
 
     private void addLine(String line){
@@ -324,46 +331,48 @@ public class CustomSemantic extends Semantico {
     }
 
     private void action39() {
-        currentContext++;
-        contextCount++;
-        addCommandLine("brfalse r"+ currentContext);
+        addCommandLine("brfalse r"+ ifContextController.createIf());
         ids.clear();
     }
 
+    /**
+        Fecha o contexto o else (ou apenas if) atual
+     */
     private void action40() {
-        addCommandLine("r"+currentContext + ":");
-        currentContext--;
+        var currentClosingContext = ifContextController.closeIf();
+        addCommandLine(MessageFormat.format("r{0}:", currentClosingContext));
     }
 
+    /**
+     * Inicia um contexto de false se for chamado
+     */
     private void action41() {
-        currentContext++;
-        addCommandLine("br r"+currentContext);
-        addCommandLine("r"+ contextCount + ":");
-        contextCount++;
+        var pair = ifContextController.createElse();
+        addCommandLine("br r"+pair.right);
+        addCommandLine(MessageFormat.format("r{0}:", pair.left));
     }
 
     /* Action a ser chamada antes da palavra "while" */
     private void action42() {
-        currentContext++;
-        contextCount++;
-        addCommandLine("r"+currentContext + ":");
+        var startingContext = loopContextController.startContext();
+        addCommandLine("l"+startingContext.left + ":");
     }
 
     /* Action a ser chamada depois da palavra "isFalseDo" ou "isTrueDo" no comando de loop */
     private void action43() {
         ids.clear();
-        currentContext++;
-        if(currentToken.getLexeme().equals("isTrueDo")) {
-            addCommandLine("brfalse r" + currentContext);
-        } else {
-            addCommandLine("brtrue r" + currentContext);
-        }
+        var currentContext = loopContextController.getCurrentContext();
+        if(currentToken.getLexeme().equals("isTrueDo"))
+            addCommandLine("brfalse l" + currentContext.right);
+        else
+            addCommandLine("brtrue l" + currentContext.right);
     }
 
     /* Action a ser chamada ao comando ser finalizado */
     private void action44() {
-        addCommandLine("br r" + (currentContext - 1));
-        addCommandLine("r" + currentContext + ":");
+        var closingContext = loopContextController.closeCurrentContext();
+        addCommandLine("br l" + closingContext.left);
+        addCommandLine("l" + closingContext.right + ":");
     }
 
     @Override

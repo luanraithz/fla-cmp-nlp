@@ -9,25 +9,25 @@
     call string [mscorlib]System.Console::ReadLine()
     call int64 [mscorlib]System.Int64::Parse(string)
     stloc I_valor
-    r1:
+    l1:
     ldloc I_valor
     conv.r8
     ldc.i8 0
     conv.r8
     clt
-    brfalse r2
+    brfalse l2
     call string [mscorlib]System.Console::ReadLine()
     call int64 [mscorlib]System.Int64::Parse(string)
     stloc I_valor
-    br r1
-    r2:
-    r3:
+    br l1
+    l2:
+    l3:
     ldloc I_valor
     conv.r8
     ldc.i8 0
     conv.r8
     ceq
-    brtrue r4
+    brtrue l4
     ldloc I_valor
     conv.r8
     conv.i8
@@ -41,8 +41,8 @@
     sub
     conv.i8
     stloc I_valor
-    br r3
-    r4:
+    br l3
+    l4:
     ret
   }
 }

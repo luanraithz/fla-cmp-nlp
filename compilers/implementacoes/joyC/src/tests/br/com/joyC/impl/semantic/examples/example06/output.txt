@@ -15,13 +15,13 @@
     conv.r8
     conv.i8
     stloc I_i
-    r1:
+    l1:
     ldloc I_i
     conv.r8
     ldc.i8 5
     conv.r8
     clt
-    brfalse r2
+    brfalse l2
     ldloc I_i
     conv.r8
     ldc.i8 1
@@ -45,8 +45,8 @@
     add
     conv.i8
     stloc I_i
-    br r1
-    r2:
+    br l1
+    l2:
     ldloc I_ch
     ldc.i8 5
     conv.r8
@@ -63,13 +63,13 @@
     conv.r8
     conv.i8
     stloc I_total
-    r3:
+    l3:
     ldloc I_i
     conv.r8
     ldc.i8 5
     conv.r8
     clt
-    brfalse r4
+    brfalse l4
     ldloc I_total
     conv.r8
     ldloc I_ch
@@ -88,8 +88,8 @@
     add
     conv.i8
     stloc I_i
-    br r3
-    r4:
+    br l3
+    l4:
     ldstr "total de creditos: "
     call void [mscorlib]System.Console::Write(string)
     ldloc I_total

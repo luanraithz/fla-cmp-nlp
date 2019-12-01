@@ -74,26 +74,27 @@ class ParserTest {
     }
 
 
-    void validReservedWord(String content, LexemeType lexeme) {
-        try {
-            var result = parse(content).get(0);
-            assertEquals(lexeme.getDesc(), result.type);
-            assertEquals(0, result.position);
-            assertEquals(content, result.lexeme);
-        } catch (Exception ignored) {
-            fail();
-        }
+    void validReservedWord(String content, LexemeType lexeme) throws Exception {
+        var result = parse(content).get(0);
+        assertEquals(lexeme.getDesc(), result.type);
+        assertEquals(0, result.position);
+        assertEquals(content, result.lexeme);
     }
 
     @Test
     void testReservedWords() {
-        validReservedWord("isFalseDo", LexemeType.t_isFalseDo);
-        validReservedWord("isTrueDo", LexemeType.t_isTrueDo);
-        validReservedWord("main", LexemeType.t_main);
-        validReservedWord("while", LexemeType.t_while);
-        validReservedWord("types", LexemeType.t_types);
-        validReservedWord("true", LexemeType.t_true);
-        validReservedWord("output", LexemeType.t_output);
+        try {
+            validReservedWord("isFalseDo", LexemeType.t_isFalseDo);
+            validReservedWord("isTrueDo", LexemeType.t_isTrueDo);
+            validReservedWord("main", LexemeType.t_main);
+            validReservedWord("while", LexemeType.t_while);
+            validReservedWord("types", LexemeType.t_types);
+            validReservedWord("true", LexemeType.t_true);
+            validReservedWord("output", LexemeType.t_output);
+        } catch (Exception e) {
+            fail();
+            e.printStackTrace();
+        }
 
         // Should be case sensitive
         invalidReservedWord("isFalseDO");
