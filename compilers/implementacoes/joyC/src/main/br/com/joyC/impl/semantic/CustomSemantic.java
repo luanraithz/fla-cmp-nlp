@@ -17,11 +17,12 @@ public class CustomSemantic extends Semantico {
     private Stack<VariableType> varTypeStack = new Stack<>();
     private String operator;
     private Queue<String> ids = new ArrayDeque<>();
-    private VariableType currentVarDecType;
     private Integer currentArraySize;
-    private Boolean currentVarIsArray;
+    private String currentVarName;
+    private Boolean currentVarIsArray = false;
     private Integer contextCount = 0;
     private Integer currentContext = 0;
+    private Boolean arrayContext = false;
 
     CustomSemantic() {
     }
@@ -152,6 +153,7 @@ public class CustomSemantic extends Semantico {
             addCommandLine("conv.i8");
         }
         addCommandLine(MessageFormat.format("call void [mscorlib]System.Console::Write({0})", type.getPrimitiveType()));
+        ids.clear();
     }
 
 
@@ -188,10 +190,16 @@ public class CustomSemantic extends Semantico {
     }
 
     private void action30() throws SemanticError {
-        var type = Utils.getVariableType(currentToken.getLexeme());
+        var id = currentToken.getLexeme();
+        if (symbolTable.containsKey(id)) throw new SemanticError("Identificador ja declarado");
+        var type = Utils.getVariableType(id);
         if (type != null) {
+            var metadata = new IdentifierMetadata();
+            metadata.isArray = false;
             currentVarIsArray = false;
-            currentVarDecType = type;
+            currentVarName = id;
+            metadata.type = type;
+            symbolTable.put(id, metadata);
         } else {
             System.out.println("variable not implemented yet");
         }
@@ -199,9 +207,7 @@ public class CustomSemantic extends Semantico {
 
     private void action31() throws SemanticError {
         for (String identifier: ids) {
-            if (symbolTable.containsKey(identifier)) throw new SemanticError("Identificador ja declarado");
-            var metadata = new IdentifierMetadata();
-            metadata.type = currentVarDecType;
+            var metadata = symbolTable.get(identifier);
             metadata.isArray = currentVarIsArray;
             metadata.arraySize = currentArraySize;
             symbolTable.put(identifier, metadata);
@@ -220,13 +226,20 @@ public class CustomSemantic extends Semantico {
     private void action32() throws SemanticError {
         var id = currentToken.getLexeme();
         if (!symbolTable.containsKey(id)) throw new SemanticError("Identificador nao declarado:" + id);
-        ids.add(currentToken.getLexeme());
+        if (!arrayContext) {
+            ids.add(currentToken.getLexeme());
+        }
     }
 
     private void action33() throws SemanticError {
         var id = currentToken.getLexeme();
         if (id.equals("]")) {
-            // @TODO implement array access and validation
+            var metadata = symbolTable.get(currentVarName);
+            var type = metadata.type;
+            addCommandLine(MessageFormat.format("ldelem {0}", type.getPrimitiveType()));
+            if (type == VariableType.Int64) {
+                addCommandLine("conv.r8");
+            }
 
         } else {
             var type = symbolTable.get(id).type;
@@ -240,28 +253,39 @@ public class CustomSemantic extends Semantico {
 
     private void action34() throws SemanticError {
         // @TODO devia ser uma fila?
-        var id = ids.peek();
+        var id = ids.poll();
         if (!symbolTable.containsKey(id)) throw new SemanticError("Identificador nao declarado");
-        var type = symbolTable.get(id).type;
+        var metadata = symbolTable.get(id);
+        var type = metadata.type;
+
         // @TODO ver com a professora
         // var expressionType = varTypeStack.pop();
         // if (type != expressionType) throw new SemanticError("tipos incompativeis");
 
         if (type == VariableType.Int64) addCommandLine("conv.i8");
-        addCommandLine("stloc " + id);
+        if (metadata.isArray) {
+            addCommandLine(MessageFormat.format("stelem {0}", metadata.type.getPrimitiveType()));
+        } else {
+            addCommandLine("stloc " + id);
+        }
+        ids.clear();
     }
 
     private void action35() throws SemanticError {
         for (String id: ids) {
             if (!symbolTable.containsKey(id)) throw new SemanticError("Identificador nao declarado");
-            var type = symbolTable.get(id).type;
+            var metadata = symbolTable.get(id);
+            var type = metadata.type;
             addCommandLine("call string [mscorlib]System.Console::ReadLine()");
             addCommandLine(MessageFormat.format("call {0} [mscorlib]System.{1}::Parse(string)", type.getPrimitiveType(), type.getClassType()));
-            addCommandLine(MessageFormat.format("stloc {0}", id));
+            if (metadata.isArray) {
+                addCommandLine(MessageFormat.format("stelem {0}", type.getPrimitiveType()));
+            } else {
+                addCommandLine(MessageFormat.format("stloc {0}", id));
+            }
         }
         ids.clear();
     }
-
 
     /* * action chamada dentro da declaracao do tamanho de um array */
     private void action36() throws SemanticError {
@@ -273,13 +297,26 @@ public class CustomSemantic extends Semantico {
         currentArraySize = size;
     }
 
+    private void action37() throws SemanticError {
+        var id = currentToken.getLexeme();
+        var metadata = symbolTable.get(id);
+        if (!metadata.isArray) {
+            throw new SemanticError("Variavel nao 'e um array :)");
+        }
+        arrayContext = true;
+        addCommandLine("ldloc I_ch");
+    }
+
     private void action38() {
+        addCommandLine("conv.i8");
+        arrayContext = false;
     }
 
     private void action39() throws SemanticError {
         currentContext++;
         contextCount++;
         addCommandLine("brfalse r"+ currentContext);
+        ids.clear();
     }
 
     private void action40() throws SemanticError {

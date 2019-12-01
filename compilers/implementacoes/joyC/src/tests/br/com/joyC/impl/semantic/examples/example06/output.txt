@@ -29,7 +29,7 @@
     add
     conv.i8
     call void [mscorlib]System.Console::Write(int64)
-    ldstr "a disciplina: carga horaria? "
+    ldstr "a. disciplina: carga horaria? "
     call void [mscorlib]System.Console::Write(string)
     ldloc I_ch
     ldloc I_i
@@ -40,9 +40,11 @@
     stelem int64
     ldloc I_i
     conv.r8
-    add
+    ldc.i8 1
     conv.r8
-    stlod I_i
+    add
+    conv.i8
+    stloc I_i
     br r1
     r2:
     ldloc I_ch

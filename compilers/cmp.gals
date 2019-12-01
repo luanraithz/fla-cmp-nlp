@@ -165,7 +165,7 @@ string: \"[^\"\n]*\"
 <atribuicao> ::= <variavel_uso> "=" <expressao> #34 ;
 <identificador> ::= <var_type> | idComposto ;
 <variavel_uso> ::= <identificador> #32 <opt_expr> <opt_field> ;
-<opt_expr> ::= î | "[" <expressao> "]" #38 ;
+<opt_expr> ::= î | #37 "[" <expressao> "]" #38 ;
 <opt_field> ::= î | "." <campo> ;
 
 <entrada_de_dados> ::= input "(" <lista_de_identificadores>#35  ")" ;
