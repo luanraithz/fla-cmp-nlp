@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6cf5ed65-400d-49a1-84d5-1eb30f8ab1e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../cmp.gals" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmp.gals" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/MessageParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/ParserConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/ParserConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/SemanticError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/SemanticError.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example06/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example06/output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/SemanticHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/SemanticHttpHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/MessageTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/MessageTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example05/output.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example06/output.exe" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +55,20 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SemanticTest.test06">
+  <component name="RunManager" selected="JUnit.All in joyC">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.Main" />
+      <module name="joyC" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.Main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All in joyC" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joyC" />
       <option name="PACKAGE_NAME" value="" />
@@ -123,10 +141,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.All in joyC" />
+      <item itemvalue="JUnit.SemanticTest.test01" />
+      <item itemvalue="JUnit.SemanticTest.test04" />
+      <item itemvalue="JUnit.SemanticTest.test05" />
+      <item itemvalue="JUnit.SemanticTest.test06" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SemanticTest.test06" />
         <item itemvalue="JUnit.All in joyC" />
+        <item itemvalue="JUnit.SemanticTest.test06" />
         <item itemvalue="JUnit.SemanticTest.test01" />
         <item itemvalue="JUnit.SemanticTest.test05" />
         <item itemvalue="JUnit.SemanticTest.test04" />
@@ -172,47 +198,67 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="645" y="38" width="630" height="1015" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1575201397420">
+    <state x="834" y="154" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575202087460">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state x="834" y="154" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575202087460" />
+    <state x="2885" y="11" width="928" height="1042" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1575209242502">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
     <state x="645" y="38" width="630" height="1015" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1575201397420" />
-    <state x="965" y="38" width="928" height="1015" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575201282723" />
-    <state width="1820" height="277" key="GridCell.Tab.0.bottom" timestamp="1575200855249">
+    <state x="2885" y="11" width="928" height="1042" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575209242502" />
+    <state x="2684" y="208" width="378" height="565" key="#com.intellij.ide.util.MemberChooser" timestamp="1575207181793">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1820" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575200855249" />
-    <state width="1820" height="277" key="GridCell.Tab.0.center" timestamp="1575200855249">
+    <state x="2684" y="208" width="378" height="565" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575207181793" />
+    <state x="2190" y="282" width="529" height="417" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1575202075845">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1820" height="277" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575200855249" />
-    <state width="1820" height="277" key="GridCell.Tab.0.left" timestamp="1575200855249">
+    <state x="2190" y="282" width="529" height="417" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575202075845" />
+    <state width="491" height="466" key="DebuggerActiveHint" timestamp="1575207138493">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1820" height="277" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575200855249" />
-    <state width="1820" height="277" key="GridCell.Tab.0.right" timestamp="1575200855249">
+    <state width="491" height="466" key="DebuggerActiveHint/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575207138493" />
+    <state width="1820" height="277" key="GridCell.Tab.0.bottom" timestamp="1575209451715">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1820" height="277" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575200855249" />
-    <state width="882" height="343" key="GridCell.Tab.1.bottom" timestamp="1575199970900">
+    <state width="1820" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575209451715" />
+    <state width="1820" height="277" key="GridCell.Tab.0.center" timestamp="1575209451714">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="882" height="343" key="GridCell.Tab.1.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575199970900" />
-    <state width="882" height="343" key="GridCell.Tab.1.center" timestamp="1575199970900">
+    <state width="1820" height="277" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575209451714" />
+    <state width="1820" height="277" key="GridCell.Tab.0.left" timestamp="1575209451714">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="882" height="343" key="GridCell.Tab.1.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575199970900" />
-    <state width="882" height="343" key="GridCell.Tab.1.left" timestamp="1575199970900">
+    <state width="1820" height="277" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575209451714" />
+    <state width="1820" height="277" key="GridCell.Tab.0.right" timestamp="1575209451715">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="882" height="343" key="GridCell.Tab.1.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575199970900" />
-    <state width="882" height="343" key="GridCell.Tab.1.right" timestamp="1575199970900">
+    <state width="1820" height="277" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575209451715" />
+    <state width="1820" height="343" key="GridCell.Tab.1.bottom" timestamp="1575209233234">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="882" height="343" key="GridCell.Tab.1.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575199970900" />
+    <state width="1820" height="343" key="GridCell.Tab.1.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575209233234" />
+    <state width="1820" height="343" key="GridCell.Tab.1.center" timestamp="1575209233234">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1820" height="343" key="GridCell.Tab.1.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575209233234" />
+    <state width="1820" height="343" key="GridCell.Tab.1.left" timestamp="1575209233234">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1820" height="343" key="GridCell.Tab.1.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575209233234" />
+    <state width="1820" height="343" key="GridCell.Tab.1.right" timestamp="1575209233234">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1820" height="343" key="GridCell.Tab.1.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575209233234" />
     <state width="933" height="521" key="XDebugger.FullValuePopup" timestamp="1575199740930">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="933" height="521" key="XDebugger.FullValuePopup/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575199740930" />
+    <state x="2542" y="176" width="666" height="665" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1575208147620">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2542" y="176" width="666" height="665" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575208147620" />
     <state x="2534" y="272" width="692" height="520" key="find.popup" timestamp="1574814740294">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -221,10 +267,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2542" y="245" width="672" height="677" key="run.anything.popup/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1574814650146" />
-    <state x="2543" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1575200788990">
+    <state x="2543" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1575207872948">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2543" y="240" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575200788990" />
+    <state x="2543" y="240" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575207872948" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -233,6 +279,11 @@
           <url>file://$PROJECT_DIR$/src/tests/br/com/joyC/impl/syntatic/ParserTest.java</url>
           <line>191</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/SemanticHttpHandler.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

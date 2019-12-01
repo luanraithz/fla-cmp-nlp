@@ -6,7 +6,17 @@ public class Utils {
             return VariableType.Int64;
         } else if (name.startsWith("F")) {
             return VariableType.Float64;
+        } else if (name.startsWith("B")) {
+            return VariableType.Bool;
         }
         return VariableType.String;
+    }
+
+    static Boolean isNumber(VariableType type) {
+        return type == VariableType.Int64 || type == VariableType.Float64;
+    }
+
+    static Boolean canSumTypes(VariableType type1, VariableType type2) {
+        return isNumber(type1) && isNumber(type2);
     }
 }

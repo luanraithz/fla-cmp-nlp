@@ -34,27 +34,30 @@ public class CustomSemantic extends Semantico {
 
     private void addCommandLine(String str) {
         addLine("    "+ str);
-
     }
 
-    private void assignNextExpressionType() {
+    private void assignNextExpressionType() throws SemanticError {
         var type1 = varTypeStack.pop();
         var type2 = varTypeStack.pop();
-        var expressionType = type1 == VariableType.Float64 || type2 == VariableType.Float64 ? VariableType.Float64 : VariableType.Int64;
-        varTypeStack.push(expressionType);
+        if (Utils.canSumTypes(type1, type2)) {
+            var expressionType = type1 == VariableType.Float64 || type2 == VariableType.Float64 ? VariableType.Float64 : VariableType.Int64;
+            varTypeStack.push(expressionType);
+        } else {
+            throw new SemanticError(Errors.incompatibleTypesInArithmeticExpression);
+        }
     }
 
-    private void action1() {
+    private void action1() throws SemanticError {
         assignNextExpressionType();
         addCommandLine("add");
     }
 
-    private void action2() {
+    private void action2() throws SemanticError {
         assignNextExpressionType();
         addCommandLine("sub");
     }
 
-    private void action3() {
+    private void action3() throws SemanticError {
         assignNextExpressionType();
         addCommandLine("mul");
     }
@@ -65,7 +68,7 @@ public class CustomSemantic extends Semantico {
         if (type1 == type2) {
             varTypeStack.push(type1);
         } else {
-            throw new SemanticError("Tipos invalidos");
+            throw new SemanticError(Errors.incompatibleTypesInArithmeticExpression);
         }
         addCommandLine("div");
     }
@@ -83,11 +86,10 @@ public class CustomSemantic extends Semantico {
 
     private void validateExpressionType() throws SemanticError {
         var type = varTypeStack.pop();
-        if (type == VariableType.Float64 || type == VariableType.Int64) {
+        if (Utils.isNumber(type))
             varTypeStack.push(type);
-        } else {
-            throw new SemanticError("Esperado int ou float");
-        }
+        else
+            throw new SemanticError(Errors.incompatibleTypesInArithmeticExpression);
     }
     private void action7() throws SemanticError {
         validateExpressionType();
@@ -100,7 +102,6 @@ public class CustomSemantic extends Semantico {
         addCommandLine("mul");
     }
 
-
     private void action9() {
         this.operator = currentToken.getLexeme();
     }
@@ -111,7 +112,7 @@ public class CustomSemantic extends Semantico {
         if (type1 == type2) {
             varTypeStack.push(VariableType.Bool);
         } else {
-            throw new SemanticError("Tipos invalidos");
+            throw new SemanticError(Errors.incompatibleTypesInRelationalExpression);
         }
         // @TODO implement greater/less or equal
         switch (operator) {
@@ -141,7 +142,7 @@ public class CustomSemantic extends Semantico {
         if (type == VariableType.Bool) {
             varTypeStack.push(VariableType.Bool);
         } else {
-            throw new SemanticError("Esperado bool em expressao");
+            throw new SemanticError(Errors.incompatibleTypesInLogicExpression);
         }
         addCommandLine("ldc.i4.1");
         addCommandLine("xor");
@@ -176,11 +177,23 @@ public class CustomSemantic extends Semantico {
         addLine("}");
     }
 
-    private void action18() {
+    private void action18() throws SemanticError {
+        var type = varTypeStack.pop();
+        if (type == VariableType.Bool) {
+            varTypeStack.push(VariableType.Bool);
+        } else {
+            throw new SemanticError(Errors.incompatibleTypesInLogicExpression);
+        }
         addCommandLine("and");
     }
 
-    private void action19() {
+    private void action19() throws SemanticError {
+        var type = varTypeStack.pop();
+        if (type == VariableType.Bool) {
+            varTypeStack.push(VariableType.Bool);
+        } else {
+            throw new SemanticError(Errors.incompatibleTypesInLogicExpression);
+        }
         addCommandLine("or");
     }
 
@@ -191,7 +204,7 @@ public class CustomSemantic extends Semantico {
 
     private void action30() throws SemanticError {
         var id = currentToken.getLexeme();
-        if (symbolTable.containsKey(id)) throw new SemanticError("Identificador ja declarado");
+        if (symbolTable.containsKey(id)) throw new SemanticError(Errors.variableAlreadyDeclared(id));
         var type = Utils.getVariableType(id);
         if (type != null) {
             var metadata = new IdentifierMetadata();
@@ -201,7 +214,7 @@ public class CustomSemantic extends Semantico {
             metadata.type = type;
             symbolTable.put(id, metadata);
         } else {
-            System.out.println("variable not implemented yet");
+            throw new SemanticError("Tipo ainda nao implementado");
         }
     }
 
@@ -225,7 +238,7 @@ public class CustomSemantic extends Semantico {
 
     private void action32() throws SemanticError {
         var id = currentToken.getLexeme();
-        if (!symbolTable.containsKey(id)) throw new SemanticError("Identificador nao declarado:" + id);
+        if (!symbolTable.containsKey(id)) throw new SemanticError(Errors.undeclaredVariable(id));
         if (!arrayContext) {
             ids.add(currentToken.getLexeme());
         }
@@ -234,6 +247,7 @@ public class CustomSemantic extends Semantico {
     private void action33() throws SemanticError {
         var id = currentToken.getLexeme();
         if (id.equals("]")) {
+            if (!symbolTable.containsKey(currentVarName)) throw new SemanticError(Errors.undeclaredVariable(id));
             var metadata = symbolTable.get(currentVarName);
             var type = metadata.type;
             addCommandLine(MessageFormat.format("ldelem {0}", type.getPrimitiveType()));
@@ -242,6 +256,7 @@ public class CustomSemantic extends Semantico {
             }
 
         } else {
+            if (!symbolTable.containsKey(id)) throw new SemanticError(Errors.undeclaredVariable(id));
             var type = symbolTable.get(id).type;
             varTypeStack.push(type);
             addCommandLine("ldloc " + id);
@@ -254,13 +269,9 @@ public class CustomSemantic extends Semantico {
     private void action34() throws SemanticError {
         // @TODO devia ser uma fila?
         var id = ids.poll();
-        if (!symbolTable.containsKey(id)) throw new SemanticError("Identificador nao declarado");
+        if (!symbolTable.containsKey(id)) throw new SemanticError(Errors.undeclaredVariable(id));
         var metadata = symbolTable.get(id);
         var type = metadata.type;
-
-        // @TODO ver com a professora
-        // var expressionType = varTypeStack.pop();
-        // if (type != expressionType) throw new SemanticError("tipos incompativeis");
 
         if (type == VariableType.Int64) addCommandLine("conv.i8");
         if (metadata.isArray) {
@@ -273,7 +284,7 @@ public class CustomSemantic extends Semantico {
 
     private void action35() throws SemanticError {
         for (String id: ids) {
-            if (!symbolTable.containsKey(id)) throw new SemanticError("Identificador nao declarado");
+            if (!symbolTable.containsKey(id)) throw new SemanticError(Errors.undeclaredVariable(id));
             var metadata = symbolTable.get(id);
             var type = metadata.type;
             addCommandLine("call string [mscorlib]System.Console::ReadLine()");
@@ -289,7 +300,7 @@ public class CustomSemantic extends Semantico {
 
     /* * action chamada dentro da declaracao do tamanho de um array */
     private void action36() throws SemanticError {
-        var size = Integer.valueOf(currentToken.getLexeme());
+        var size = Integer.parseInt(currentToken.getLexeme());
         if (size <= 0) {
             throw new SemanticError("Tamanho do array deve ser maior que 0");
         }
@@ -312,19 +323,19 @@ public class CustomSemantic extends Semantico {
         arrayContext = false;
     }
 
-    private void action39() throws SemanticError {
+    private void action39() {
         currentContext++;
         contextCount++;
         addCommandLine("brfalse r"+ currentContext);
         ids.clear();
     }
 
-    private void action40() throws SemanticError {
+    private void action40() {
         addCommandLine("r"+currentContext + ":");
         currentContext--;
     }
 
-    private void action41() throws SemanticError {
+    private void action41() {
         currentContext++;
         addCommandLine("br r"+currentContext);
         addCommandLine("r"+ contextCount + ":");
@@ -372,8 +383,13 @@ public class CustomSemantic extends Semantico {
             e.printStackTrace();
         } catch (InvocationTargetException err) {
             err.printStackTrace();
-            var ex = (SemanticError) err.getCause();
-            throw ex;
+            var cause = err.getCause();
+            if (cause instanceof  SemanticError) {
+                var semanticError = (SemanticError) cause;
+                semanticError.position = currentToken.getPosition();
+                System.out.println(semanticError.position);
+                throw semanticError;
+            }
         }
     }
 

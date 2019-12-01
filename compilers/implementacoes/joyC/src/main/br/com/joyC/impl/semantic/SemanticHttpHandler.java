@@ -29,7 +29,8 @@ public class SemanticHttpHandler {
             error.put("type", "SYNTACTIC");
         } catch (SemanticError semanticError) {
             error.put("type", "SEMANTIC");
-            error.put("message", "NOT IMPLEMENTED YET");
+            var message = MessageParser.parseError(content, semanticError);
+            error.put("message", message);
             result.put("error", error);
             semanticError.printStackTrace();
         } catch (LexicalError lexicalError) {
