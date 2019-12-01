@@ -8,7 +8,6 @@ import java.util.Stack;
 
 public class IfContextControllerImpl implements IfContextController {
     private Integer contextCount;
-    private Integer currentContext;
     private Stack<Integer> contextStack;
     public IfContextControllerImpl() {
         contextCount = 0;
@@ -18,18 +17,16 @@ public class IfContextControllerImpl implements IfContextController {
     @Override
     public Integer createIf() {
         contextCount++;
-        currentContext = contextCount;
-        contextStack.push(currentContext);
-        return currentContext;
+        contextStack.push(contextCount);
+        return contextCount;
     }
 
     @Override
     public Pair<Integer, Integer> createElse() {
         var closingContext = contextStack.pop();
-        var next = closingContext + 1;
-        contextStack.push(next);
         contextCount++;
-        return new Pair(closingContext, next);
+        contextStack.push(contextCount);
+        return new Pair(closingContext, contextCount);
     }
 
     @Override

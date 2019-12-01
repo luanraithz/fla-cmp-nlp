@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6cf5ed65-400d-49a1-84d5-1eb30f8ab1e3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/LoopContextControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/lexic/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/lexic/ParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example05/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example05/output.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example06/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples/example06/output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/impl/IfContextControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/impl/IfContextControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/IfContextControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/IfContextControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +49,7 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.All in joyC">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.Main" />
       <module name="joyC" />
@@ -74,7 +71,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IfContextControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IfContextControllerTest.multipleLevels" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joyC" />
       <extension name="coverage">
         <pattern>
@@ -84,12 +81,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="tests.br.com.joyC.impl.semantic" />
       <option name="MAIN_CLASS_NAME" value="tests.br.com.joyC.impl.semantic.IfContextControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="multipleLevels" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IfContextControllerTest.ifStatement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IfContextControllerTest.multipleNestedContextInsideElse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joyC" />
       <extension name="coverage">
         <pattern>
@@ -99,7 +97,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="tests.br.com.joyC.impl.semantic" />
       <option name="MAIN_CLASS_NAME" value="tests.br.com.joyC.impl.semantic.IfContextControllerTest" />
-      <option name="METHOD_NAME" value="ifStatement" />
+      <option name="METHOD_NAME" value="multipleNestedContextInsideElse" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -139,18 +137,18 @@
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.All in joyC" />
-      <item itemvalue="JUnit.IfContextControllerTest.ifStatement" />
-      <item itemvalue="JUnit.IfContextControllerTest" />
       <item itemvalue="JUnit.LoopContextControllerTest.simpleLoop" />
       <item itemvalue="JUnit.LoopContextControllerTest" />
+      <item itemvalue="JUnit.IfContextControllerTest.multipleNestedContextInsideElse" />
+      <item itemvalue="JUnit.IfContextControllerTest.multipleLevels" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.IfContextControllerTest.multipleLevels" />
         <item itemvalue="JUnit.All in joyC" />
+        <item itemvalue="JUnit.IfContextControllerTest.multipleNestedContextInsideElse" />
         <item itemvalue="JUnit.LoopContextControllerTest" />
         <item itemvalue="JUnit.LoopContextControllerTest.simpleLoop" />
-        <item itemvalue="JUnit.IfContextControllerTest" />
-        <item itemvalue="JUnit.IfContextControllerTest.ifStatement" />
       </list>
     </recent_temporary>
   </component>
@@ -222,26 +220,26 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="491" height="466" key="DebuggerActiveHint/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575207138493" />
-    <state width="1820" height="172" key="GridCell.Tab.0.bottom" timestamp="1575225789724">
+    <state width="1820" height="172" key="GridCell.Tab.0.bottom" timestamp="1575226671461">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1820" height="343" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1575212724291" />
-    <state width="1820" height="172" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575225789724" />
-    <state width="1820" height="172" key="GridCell.Tab.0.center" timestamp="1575225789724">
+    <state width="1820" height="172" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575226671461" />
+    <state width="1820" height="172" key="GridCell.Tab.0.center" timestamp="1575226671461">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1820" height="343" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1575212724290" />
-    <state width="1820" height="172" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575225789724" />
-    <state width="1820" height="172" key="GridCell.Tab.0.left" timestamp="1575225789723">
+    <state width="1820" height="172" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575226671461" />
+    <state width="1820" height="172" key="GridCell.Tab.0.left" timestamp="1575226671461">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1820" height="343" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1575212724290" />
-    <state width="1820" height="172" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575225789723" />
-    <state width="1820" height="172" key="GridCell.Tab.0.right" timestamp="1575225789724">
+    <state width="1820" height="172" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575226671461" />
+    <state width="1820" height="172" key="GridCell.Tab.0.right" timestamp="1575226671461">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="1820" height="343" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1575212724290" />
-    <state width="1820" height="172" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575225789724" />
+    <state width="1820" height="172" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575226671461" />
     <state width="1820" height="343" key="GridCell.Tab.1.bottom" timestamp="1575212724291">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
