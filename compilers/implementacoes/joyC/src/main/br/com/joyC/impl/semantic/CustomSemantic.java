@@ -8,7 +8,6 @@ import main.br.com.joyC.impl.semantic.impl.IfContextControllerImpl;
 import main.br.com.joyC.impl.semantic.impl.LoopContextControllerImpl;
 import main.br.com.joyC.impl.semantic.interfaces.IfContextController;
 import main.br.com.joyC.impl.semantic.interfaces.LoopContextController;
-import org.apache.logging.log4j.message.Message;
 
 import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
@@ -17,7 +16,6 @@ import java.util.*;
 public class CustomSemantic extends Semantico {
     private final StringBuilder output = new StringBuilder();
     private final HashMap<String, IdentifierMetadata> symbolTable = new HashMap();
-    private final String MODULE_NAME = "_principal";
     private Token currentToken;
     private Stack<VariableType> varTypeStack = new Stack<>();
     private String operator;
@@ -174,6 +172,7 @@ public class CustomSemantic extends Semantico {
     }
 
     private void action16() {
+        String MODULE_NAME = "_principal";
         addLine("  .method static public void " + MODULE_NAME + "() {");
         addCommandLine(".entrypoint");
     }
@@ -393,7 +392,7 @@ public class CustomSemantic extends Semantico {
         } catch (InvocationTargetException err) {
             err.printStackTrace();
             var cause = err.getCause();
-            if (cause instanceof  SemanticError) {
+            if (cause instanceof SemanticError) {
                 var semanticError = (SemanticError) cause;
                 semanticError.position = currentToken.getPosition();
                 System.out.println(semanticError.position);
