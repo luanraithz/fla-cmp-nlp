@@ -19,4 +19,9 @@ public class Utils {
     static Boolean canSumTypes(VariableType type1, VariableType type2) {
         return isNumber(type1) && isNumber(type2);
     }
+
+    static Boolean canDivideTypes(VariableType type, VariableType type2) {
+        return isNumber(type) && isNumber(type2);
+    }
+
 }

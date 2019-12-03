@@ -46,6 +46,9 @@ public class CustomSemantic extends Semantico {
         var type2 = varTypeStack.pop();
         if (Utils.canSumTypes(type1, type2)) {
             var expressionType = type1 == VariableType.Float64 || type2 == VariableType.Float64 ? VariableType.Float64 : VariableType.Int64;
+            if (expressionType == VariableType.Float64) {
+                addCommandLine("conv.r8");
+            }
             varTypeStack.push(expressionType);
         } else {
             throw new SemanticError(Errors.incompatibleTypesInArithmeticExpression);
@@ -70,8 +73,8 @@ public class CustomSemantic extends Semantico {
     private void action4() throws SemanticError {
         var type1 = varTypeStack.pop();
         var type2 = varTypeStack.pop();
-        if (type1 == type2) {
-            varTypeStack.push(type1);
+        if (Utils.canDivideTypes(type1, type2)) {
+            varTypeStack.push(VariableType.Float64);
         } else {
             throw new SemanticError(Errors.incompatibleTypesInArithmeticExpression);
         }
@@ -320,8 +323,9 @@ public class CustomSemantic extends Semantico {
         if (!metadata.isArray) {
             throw new SemanticError("Variavel nao 'e um array :)");
         }
+        currentVarName = id;
         arrayContext = true;
-        addCommandLine("ldloc I_ch");
+        addCommandLine("ldloc " + id);
     }
 
     private void action38() {
