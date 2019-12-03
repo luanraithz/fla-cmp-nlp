@@ -20,9 +20,7 @@ public class LoopContextControllerTest {
         var pair = contextController.startContext();
         assertEquals(1, pair.left);
         assertEquals(2, pair.right);
-        pair = contextController.getCurrentContext();
-        assertEquals(1, pair.left);
-        assertEquals(2, pair.right);
+        assertEquals(2, contextController.getCurrentContext());
         var res = contextController.closeCurrentContext();
     }
 

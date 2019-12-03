@@ -8,8 +8,6 @@ import java.util.Stack;
 public class LoopContextControllerImpl implements LoopContextController {
     final private Stack<Pair<Integer, Integer>> contextStack;
     private Integer contextCount;
-    private Integer currentContext;
-    private Pair<Integer, Integer> currentPair;
     public LoopContextControllerImpl() {
         contextCount = 0;
         contextStack = new Stack<>();
@@ -18,7 +16,6 @@ public class LoopContextControllerImpl implements LoopContextController {
     @Override
     public Pair<Integer, Integer> startContext() {
         contextCount++;
-        currentContext = contextCount;
         var pair = new Pair<>(contextCount, contextCount + 1);
         contextStack.push(pair);
         contextCount++;
@@ -26,8 +23,8 @@ public class LoopContextControllerImpl implements LoopContextController {
     }
 
     @Override
-    public Pair<Integer, Integer> getCurrentContext() {
-        return contextStack.peek();
+    public Integer getCurrentContext() {
+        return contextStack.peek().right;
     }
 
     @Override

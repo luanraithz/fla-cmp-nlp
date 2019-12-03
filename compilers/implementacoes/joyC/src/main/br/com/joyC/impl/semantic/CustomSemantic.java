@@ -364,11 +364,11 @@ public class CustomSemantic extends Semantico {
     /* Action a ser chamada depois da palavra "isFalseDo" ou "isTrueDo" no comando de loop */
     private void action43() {
         ids.clear();
-        var currentContext = loopContextController.getCurrentContext();
+        var right = loopContextController.getCurrentContext();
         if(currentToken.getLexeme().equals("isTrueDo"))
-            addCommandLine("brfalse l" + currentContext.right);
+            addCommandLine("brfalse l" + right);
         else
-            addCommandLine("brtrue l" + currentContext.right);
+            addCommandLine("brtrue l" + right);
     }
 
     /* Action a ser chamada ao comando ser finalizado */

@@ -6,6 +6,7 @@ import main.br.com.joyC.impl.lexic.models.LexemeType;
 import main.br.com.joyC.impl.lexic.models.Output;
 import main.br.com.joyC.impl.models.LexicalContentError;
 import main.br.com.joyC.impl.utils.LineCounter;
+import org.intellij.lang.annotations.RegExp;
 import org.springframework.util.StringUtils;
 
 import java.text.MessageFormat;
@@ -24,6 +25,12 @@ public class MessageTranslator {
         var position = err.getPosition();
         String errorKey = null;
         var startSinceToken = entry.substring(position);
+        var limit = position + 1;
+        if (limit > entry.length()) {
+            limit--;
+        }
+        var rest = entry.substring(0, limit);
+        var lineCount = LineCounter.count(rest);
         try {
             var result = Parser.parse(startSinceToken);
             if (result.isEmpty()) {
@@ -32,14 +39,9 @@ public class MessageTranslator {
                 errorKey = result.get(0).lexeme;
             }
         } catch (LexicalContentError lexicalContentError) {
-            return lexicalContentError.getMessage();
+            lexicalContentError.setLine(lineCount);
+            return lexicalContentError.getMessage().replaceFirst( "\\d+", lineCount.toString());
         }
-        var limit = position + 1;
-        if (limit > entry.length()) {
-            limit--;
-        }
-        var rest = entry.substring(0, limit);
-        var lineCount = LineCounter.count(rest);
 
         return MessageFormat.format(format, lineCount, String.valueOf(errorKey));
     }
