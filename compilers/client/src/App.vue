@@ -57,6 +57,9 @@
             </v-row>
             <v-row>
                 <div class="wrapper">
+                    <span>
+                        Editando: {{ fileName }}
+                    </span>
                     <v-row>
                         <div class="content">
                             <prism-editor
@@ -128,7 +131,8 @@ type Data = {
   snackMessage: string,
   result: string,
   snackbar: boolean,
-  snackTimeout: number
+  snackTimeout: number,
+  fileName: string
 }
 
 export default Vue.extend({
@@ -170,6 +174,9 @@ export default Vue.extend({
           copy(selection || this.code);
           if (!selection) {
             this.reset()
+          } else {
+            const select = window.getSelection()
+            select && select.deleteFromDocument()
           }
           this.snack("Recortado!")
       },
@@ -207,6 +214,7 @@ export default Vue.extend({
         if (el instanceof Element) {
             el.addEventListener('change', async ({ target }: any) => {
                 const [file] = target.files
+                this.fileName = file.name
                 this.code = await file.text()
             })
         }
@@ -220,6 +228,7 @@ export default Vue.extend({
       snackMessage: '',
       snackbar: false,
       snackTimeout: -1,
+      fileName: ''
   }),
 });
 </script>
@@ -231,6 +240,10 @@ export default Vue.extend({
         overflow: auto !important;
         min-width: 900px;
     }
+    body .theme--light.v-application {
+        background-color: #f5f2f0;
+    }
+
     .output {
         width: 100%;
         padding: 0;
@@ -243,7 +256,7 @@ export default Vue.extend({
         height: 30px;
         width: 100%;
         padding: 5px;
-        background-color: #f0f0f0;
+        background: #f5f2f0;
         min-width: 900px;
         box-sizing: border-box;
     }
@@ -271,7 +284,8 @@ export default Vue.extend({
 
     .wrapper {
         width: 100%;
-        overflow: hidden;
+        overflow: scroll;
+        height: 70vh;
     }
     .index {
         width: 50px;
@@ -286,7 +300,6 @@ export default Vue.extend({
     }
     .content {
         width: 100%;
-        height: 70vh;
     }
     pre {
         height: 100%;
@@ -297,6 +310,8 @@ export default Vue.extend({
     }
     .content > div {
         padding-top: 0;
+        padding-left: 20px;
+        padding-right: 20px;
         margin-top: 0;
     }
     textarea {
