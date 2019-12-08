@@ -2,11 +2,8 @@ package main.br.com.joyC.impl.syntactic;
 
 import main.br.com.joyC.gaals.SyntaticError;
 import main.br.com.joyC.impl.lexic.Parser;
-import main.br.com.joyC.impl.lexic.models.LexemeType;
-import main.br.com.joyC.impl.lexic.models.Output;
 import main.br.com.joyC.impl.models.LexicalContentError;
 import main.br.com.joyC.impl.utils.LineCounter;
-import org.intellij.lang.annotations.RegExp;
 import org.springframework.util.StringUtils;
 
 import java.text.MessageFormat;
@@ -39,7 +36,6 @@ public class MessageTranslator {
                 errorKey = result.get(0).lexeme;
             }
         } catch (LexicalContentError lexicalContentError) {
-            lexicalContentError.setLine(lineCount);
             return lexicalContentError.getMessage().replaceFirst( "\\d+", lineCount.toString());
         }
 

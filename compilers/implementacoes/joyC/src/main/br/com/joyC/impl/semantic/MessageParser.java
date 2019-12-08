@@ -9,7 +9,6 @@ public class MessageParser {
     public static String parseError(String entry, SemanticError err) {
         var textUntilPosition = entry.substring(0, err.getPosition());
         var linesUntilError = LineCounter.count(textUntilPosition);
-        var message = "Erro na linha {0} - " + err.getMessage();
-        return MessageFormat.format(message, linesUntilError);
+        return MessageFormat.format("Erro na linha {0} - {1}", linesUntilError, err.getMessage());
     }
 }
