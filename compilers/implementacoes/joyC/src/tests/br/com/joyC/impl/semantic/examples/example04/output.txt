@@ -1,0 +1,25 @@
+.assembly extern mscorlib {}
+.assembly _codigo_objeto{}
+.module _codigo_objeto.exe
+
+.class public _UNICA {
+  .method static public void _principal() {
+    .entrypoint
+    .locals (float64 F_valor)
+    call string [mscorlib]System.Console::ReadLine()
+    call float64 [mscorlib]System.Double::Parse(string)
+    stloc F_valor
+    ldloc F_valor
+    ldc.r8 0.0
+    cgt
+    brfalse r1
+    ldstr "maior"
+    call void [mscorlib]System.Console::Write(string)
+    br r2
+    r1:
+    ldstr "menor ou igual"
+    call void [mscorlib]System.Console::Write(string)
+    r2:
+    ret
+  }
+}

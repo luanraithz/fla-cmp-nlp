@@ -1,0 +1,107 @@
+.assembly extern mscorlib {}
+.assembly _codigo_objeto{}
+.module _codigo_objeto.exe
+
+.class public _UNICA {
+  .method static public void _principal() {
+    .entrypoint
+    .locals (int64[] I_ch)
+    ldc.i8 6
+    newarr [mscorlib]System.Int64
+    stloc I_ch
+    .locals (int64 I_i)
+    .locals (int64 I_total)
+    ldc.i8 0
+    conv.r8
+    conv.i8
+    stloc I_i
+    l1:
+    ldloc I_i
+    conv.r8
+    ldc.i8 5
+    conv.r8
+    clt
+    brfalse l2
+    ldloc I_i
+    conv.r8
+    ldc.i8 1
+    conv.r8
+    add
+    conv.i8
+    call void [mscorlib]System.Console::Write(int64)
+    ldstr "a. disciplina: carga horaria? "
+    call void [mscorlib]System.Console::Write(string)
+    ldloc I_ch
+    ldloc I_i
+    conv.r8
+    conv.i8
+    call string [mscorlib]System.Console::ReadLine()
+    call int64 [mscorlib]System.Int64::Parse(string)
+    stelem int64
+    ldloc I_i
+    conv.r8
+    ldc.i8 1
+    conv.r8
+    add
+    conv.i8
+    stloc I_i
+    br l1
+    l2:
+    ldloc I_ch
+    ldc.i8 5
+    conv.r8
+    conv.i8
+    ldc.i8 18
+    conv.r8
+    conv.i8
+    stelem int64
+    ldc.i8 0
+    conv.r8
+    conv.i8
+    stloc I_i
+    ldc.i8 0
+    conv.r8
+    conv.i8
+    stloc I_total
+    l3:
+    ldloc I_i
+    conv.r8
+    ldc.i8 5
+    conv.r8
+    clt
+    brfalse l4
+    ldloc I_total
+    conv.r8
+    ldloc I_ch
+    ldloc I_i
+    conv.r8
+    conv.i8
+    ldelem int64
+    conv.r8
+    add
+    conv.i8
+    stloc I_total
+    ldloc I_i
+    conv.r8
+    ldc.i8 1
+    conv.r8
+    add
+    conv.i8
+    stloc I_i
+    br l3
+    l4:
+    ldstr "total de creditos: "
+    call void [mscorlib]System.Console::Write(string)
+    ldloc I_total
+    conv.r8
+    ldloc I_ch
+    ldc.i8 5
+    conv.r8
+    conv.i8
+    ldelem int64
+    conv.r8
+    div
+    call void [mscorlib]System.Console::Write(float64)
+    ret
+  }
+}

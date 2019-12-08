@@ -2,8 +2,6 @@ package main.br.com.joyC.impl.syntactic;
 
 import main.br.com.joyC.gaals.SyntaticError;
 import main.br.com.joyC.impl.lexic.Parser;
-import main.br.com.joyC.impl.lexic.models.LexemeType;
-import main.br.com.joyC.impl.lexic.models.Output;
 import main.br.com.joyC.impl.models.LexicalContentError;
 import main.br.com.joyC.impl.utils.LineCounter;
 import org.springframework.util.StringUtils;
@@ -24,6 +22,12 @@ public class MessageTranslator {
         var position = err.getPosition();
         String errorKey = null;
         var startSinceToken = entry.substring(position);
+        var limit = position + 1;
+        if (limit > entry.length()) {
+            limit--;
+        }
+        var rest = entry.substring(0, limit);
+        var lineCount = LineCounter.count(rest);
         try {
             var result = Parser.parse(startSinceToken);
             if (result.isEmpty()) {
@@ -32,10 +36,8 @@ public class MessageTranslator {
                 errorKey = result.get(0).lexeme;
             }
         } catch (LexicalContentError lexicalContentError) {
-            return lexicalContentError.getMessage();
+            return lexicalContentError.getMessage().replaceFirst( "\\d+", lineCount.toString());
         }
-        var rest = entry.substring(0, position);
-        var lineCount = LineCounter.count(rest);
 
         return MessageFormat.format(format, lineCount, String.valueOf(errorKey));
     }
@@ -105,7 +107,7 @@ public class MessageTranslator {
         messages.put("<types_dec1> inválido", genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado idComposto ]"));
         messages.put("<type_dec> inválido", genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado idComposto"));
         messages.put("<lista_de_campos> inválido", genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado " + SIMPLE_ID_MESSAGE));
-        messages.put("<lista_de_campos1> inválido", genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado ] ="));
+        messages.put("<lista_de_campos1> inválido", genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado ] ,"));
         messages.put("<campo> inválido", genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado " + SIMPLE_ID_MESSAGE));
         messages.put("<opt_var_decs> inválido",
                 genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado identificador if while output input :")
@@ -126,7 +128,7 @@ public class MessageTranslator {
                 genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado " + SIMPLE_ID_MESSAGE)
         );
         messages.put("<opt_arr_size> inválido",
-                genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado [ ; =")
+                genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado [ ; ,")
         );
         messages.put("<id_do_tipo_composto> inválido",
                 genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado idComposto")
@@ -153,10 +155,10 @@ public class MessageTranslator {
                 genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado identificador")
         );
         messages.put("<opt_expr> inválido",
-                genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado símbolo")
+                genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado [ ] ) ; , = . operador binário")
         );
         messages.put("<opt_field> inválido",
-                genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado símbolo")
+               genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado  ] ) ; , = . operador binário")
         );
         messages.put("<entrada_de_dados> inválido",
                 genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado input")
@@ -178,7 +180,7 @@ public class MessageTranslator {
         );
         messages.put("<lista_expressoes> inválido", MessageTranslator::parseExpressionError );
         messages.put("<lista_expressoes1> inválido",
-                genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado ) ;")
+                genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado ) ,")
         );
         messages.put("<comando_selecao> inválido",
                 genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado if")

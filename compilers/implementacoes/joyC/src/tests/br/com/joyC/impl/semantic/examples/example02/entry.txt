@@ -1,0 +1,3 @@
+main [
+    output (1, "\t", 2,5, "\t", "teste-comando output", "\n");
+]

@@ -12,24 +12,26 @@ import main.br.com.joyC.impl.utils.LineCounter;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Parser {
     public static List<Output> parse(String str) throws LexicalContentError {
-        var arr = new ArrayList<Output>();
         try {
-            for (Token t: rawParse(new StringReader(str))) {
+            var raw = rawParse(new StringReader(str));
+            var formatted = raw.stream().map(t -> {
                 var out = new Output();
                 out.position = t.getPosition();
-                var lexeme = LexemeType.fromInt(t.getId());
-                if (lexeme == LexemeType.t_palavraReservada) {
-                    throw new LexicalError("palavra reservada invalida", t.getPosition());
-                }
-                out.type = lexeme.getDesc();
+                out.type = LexemeType.fromInt(t.getId());
                 out.lexeme = t.getLexeme();
                 out.line = LineCounter.count(str.substring(0, t.getPosition() + 1));
-                arr.add(out);
+                return out;
+            }).collect(Collectors.toList());
+            var op = formatted.stream().filter(s -> s.type == LexemeType.t_palavraReservada).findFirst();
+            if (op.isPresent()) {
+                throw new LexicalError("palavra reservada invalida", op.get().position);
             }
-            return arr;
+            return formatted;
         } catch (LexicalError e) {
             throw LexicalErrorParser.toException(str, e);
         }
@@ -39,7 +41,7 @@ public class Parser {
         var lex = new Lexico();
 
         lex.setInput(reader);
-        ArrayList<Token> entries = new ArrayList<Token>();
+        ArrayList<Token> entries = new ArrayList<>();
         Token t;
         while ( (t = lex.nextToken()) != null )
         {

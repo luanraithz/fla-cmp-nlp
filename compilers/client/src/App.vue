@@ -57,14 +57,18 @@
             </v-row>
             <v-row>
                 <div class="wrapper">
+                    <span>
+                        Editando: {{ fileName }}
+                    </span>
                     <v-row>
                         <div class="content">
-                            <v-textarea
-                                :no-resize="true"
-                                name="language"
-                                v-model="content"
-                                >
-                            </v-textarea>
+                            <prism-editor
+                                language="js"
+                                :code="code"
+                                v-model="code"
+                                :line-numbers="true"
+                            >
+                            </prism-editor>
                         </div>
                     </v-row>
                 </div>
@@ -111,21 +115,24 @@
 import Vue from 'vue'
 import FileSaver from 'file-saver'
 import copy from 'copy-to-clipboard'
+import PrismEditor from 'vue-prism-editor'
 
 import TeamModal from './components/TeamModal.vue'
 import Button from './components/Button.vue'
-import { compileSyntactic } from './service'
+import { compileSemantic } from './service'
 import { formatData } from './utils/lexical'
+import getSelection from './utils/text-select'
 
 type Data = {
-  content: string,
+  code: string,
   status: string,
   message: '',
   error: string,
   snackMessage: string,
   result: string,
   snackbar: boolean,
-  snackTimeout: number
+  snackTimeout: number,
+  fileName: string
 }
 
 export default Vue.extend({
@@ -133,11 +140,12 @@ export default Vue.extend({
   components: {
       TeamModal,
       Button,
+      PrismEditor
   },
   methods: {
       reset: function() {
           this.error = ""
-          this.content = ""
+          this.code = ""
           this.result = ""
       },
       newFile: function() { this.reset() },
@@ -148,8 +156,8 @@ export default Vue.extend({
           }
       },
       saveFile: function() {
-          if (this.content) {
-              const file = new File([this.content], "result.joyc", { type: "text/plain;charset=utf-8"})
+          if (this.code) {
+              const file = new File([this.code], "result.joyc", { type: "text/plain;charset=utf-8"})
               this.snack("Salvando `result.joyC`")
               FileSaver.saveAs(file)
           } else {
@@ -157,15 +165,19 @@ export default Vue.extend({
           }
       },
       copySelection: function() {
-          if (this.content) {
-            copy(this.content);
-            this.snack("Copiado!")
-          }
+          copy(getSelection() || this.code);
+          this.snack("Copiado!")
       },
       pasteContent: function() { this.snack("Ainda não foi feito :)") },
       cutSelection: function() {
-          copy(this.content)
-          this.reset()
+          const selection = getSelection()
+          copy(selection || this.code);
+          if (!selection) {
+            this.reset()
+          } else {
+            const select = window.getSelection()
+            select && select.deleteFromDocument()
+          }
           this.snack("Recortado!")
       },
       snack: function(message: string) {
@@ -175,17 +187,20 @@ export default Vue.extend({
           this.snackTimeout = setTimeout(() => { this.snackbar = false }, 3000)
       },
       compile: async function() {
-          if (!this.content) {
+          if (!this.code) {
               this.snack("Nenhum programa para compilar.")
           } else {
               try {
-                  const { error, result } = await compileSyntactic(this.content)
+                  const { error, result } = await compileSemantic(this.code)
                   this.error = ""
                   this.result = ""
                   if (error) {
                       this.error = error.message
                   } else if(result) {
-                      this.result = result
+                      this.result = "Programa compilador com sucesso"
+                      const file = new File([result], "result.joyc", { type: "text/plain;charset=utf-8"})
+                      this.snack("Programa compilado dom sucesso, salvando `result.joyc`")
+                      FileSaver.saveAs(file)
                   }
               } catch (err) {
                   this.snack("Houve algum problema ao chamar a api")
@@ -199,12 +214,13 @@ export default Vue.extend({
         if (el instanceof Element) {
             el.addEventListener('change', async ({ target }: any) => {
                 const [file] = target.files
-                this.content = await file.text()
+                this.fileName = file.name
+                this.code = await file.text()
             })
         }
     },
   data: (): Data => ({
-      content: '',
+      code: '',
       status: '',
       message: '',
       error: '',
@@ -212,6 +228,7 @@ export default Vue.extend({
       snackMessage: '',
       snackbar: false,
       snackTimeout: -1,
+      fileName: ''
   }),
 });
 </script>
@@ -223,20 +240,23 @@ export default Vue.extend({
         overflow: auto !important;
         min-width: 900px;
     }
+    body .theme--light.v-application {
+        background-color: #f5f2f0;
+    }
+
     .output {
         width: 100%;
         padding: 0;
         border: 1px solid gray;
         min-width: 900px;
-        min-height: 100px;
-        max-height: 400px;
+        min-height: 20vh;
         overflow: auto;
     }
     .status {
         height: 30px;
         width: 100%;
         padding: 5px;
-        background-color: #f0f0f0;
+        background: #f5f2f0;
         min-width: 900px;
         box-sizing: border-box;
     }
@@ -254,11 +274,18 @@ export default Vue.extend({
         margin: 0 !important;
         padding-top: 0 !important;
         padding-bottom: 0 !important;
+        > :first-child {
+            min-height: 70px;
+        }
+        > :last-child {
+            min-height: 15vh;
+        }
     }
 
     .wrapper {
         width: 100%;
-        overflow: hidden;
+        overflow: scroll;
+        height: 70vh;
     }
     .index {
         width: 50px;
@@ -273,12 +300,18 @@ export default Vue.extend({
     }
     .content {
         width: 100%;
-        height: 400px;
-
     }
-
+    pre {
+        height: 100%;
+    }
+    code {
+        width: 100%;
+        height: 100%;
+    }
     .content > div {
         padding-top: 0;
+        padding-left: 20px;
+        padding-right: 20px;
         margin-top: 0;
     }
     textarea {

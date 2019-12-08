@@ -1,0 +1,10 @@
+main [ : I_valor;
+    input (I_valor);
+    while (I_valor < 0) isTrueDo [
+        input(I_valor);
+    ];
+    while (I_valor == 0) isFalseDo [
+        output(I_valor, " ");
+        I_valor = I_valor - 1;
+    ];
+]

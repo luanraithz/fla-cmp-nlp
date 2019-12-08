@@ -1,0 +1,6 @@
+main [ : I_base, I_altura, F_area;
+    output ("qual valor de base e altura: ");
+    input (I_base, I_altura);
+    F_area = I_base * I_altura / 2;
+    output (F_area);
+]

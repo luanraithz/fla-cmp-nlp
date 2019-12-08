@@ -1,27 +1,30 @@
 package main.br.com.joyC.impl.lexic.models;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public enum LexemeType {
 	EPSILON(0, ""),
 	DOLLAR (1, "SE"),
-	t_palavraReservada(2, ""),
-	t_input(3, ""),
-	t_isFalseDo(4, ""),
-	t_isTrueDo(5, ""),
-	t_main(6, ""),
-	t_output(7, ""),
-	t_true(8, ""),
-	t_types(9, ""),
-	t_while(10, ""),
-	t_if(11, ""),
-	t_false(12, ""),
-	t_idInt(13, ""),
-	t_idFloat(14, ""),
-	t_idString(15, ""),
-	t_idBool(16, ""),
-	t_idComposto(17, ""),
-	t_int(18, ""),
-	t_float(19, ""),
-	t_string(20, ""),
+	t_palavraReservada(2, "", true),
+	t_input(3, "", true),
+	t_isFalseDo(4, "", true),
+	t_isTrueDo(5, "", true),
+	t_main(6, "", true),
+	t_output(7, "", true),
+	t_true(8, "", true),
+	t_types(9, "", true),
+	t_while(10, "", true),
+	t_if(11, "", true),
+	t_false(12, "", true),
+	t_idInt(13, "", true),
+	t_idFloat(14, "", true),
+	t_idString(15, "", true),
+	t_idBool(16, "", true),
+	t_idComposto(17, "", true),
+	t_int(18, "", true),
+	t_float(19, "", true),
+	t_string(20, "", true),
 	t_TOKEN_21(21, "["),
 	t_TOKEN_22(22,"]"),
 	t_TOKEN_23(23,"("),
@@ -46,6 +49,7 @@ public enum LexemeType {
 	t_TOKEN_42(42,"*");
 	private Integer value;
 	private String desc;
+	public Boolean isWord;
 
 	public Integer getValue() {
 		return this.value;
@@ -56,8 +60,17 @@ public enum LexemeType {
 	}
 
 	LexemeType(Integer i, String desc) {
+		this(i, desc, false);
+	}
+
+	LexemeType(Integer i, String desc, Boolean isWord) {
 		this.value = i;
 		this.desc = desc;
+		this.isWord = isWord;
+	}
+
+	static public Boolean isSpecialSymbol(String s) {
+		return !s.matches("[0-9a-zA-z_]");
 	}
 
 	static public LexemeType fromInt(Integer i) {

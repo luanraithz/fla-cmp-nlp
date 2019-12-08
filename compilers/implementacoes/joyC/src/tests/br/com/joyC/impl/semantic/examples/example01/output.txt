@@ -1,0 +1,32 @@
+.assembly extern mscorlib {}
+.assembly _codigo_objeto{}
+.module _codigo_objeto.exe
+
+.class public _UNICA {
+  .method static public void _principal() {
+    .entrypoint
+    .locals (int64 I_base)
+    .locals (int64 I_altura)
+    .locals (float64 F_area)
+    ldstr "qual valor de base e altura: "
+    call void [mscorlib]System.Console::Write(string)
+    call string [mscorlib]System.Console::ReadLine()
+    call int64 [mscorlib]System.Int64::Parse(string)
+    stloc I_base
+    call string [mscorlib]System.Console::ReadLine()
+    call int64 [mscorlib]System.Int64::Parse(string)
+    stloc I_altura
+    ldloc I_base
+    conv.r8
+    ldloc I_altura
+    conv.r8
+    mul
+    ldc.i8 2
+    conv.r8
+    div
+    stloc F_area
+    ldloc F_area
+    call void [mscorlib]System.Console::Write(float64)
+    ret
+  }
+}
