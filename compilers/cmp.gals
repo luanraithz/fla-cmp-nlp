@@ -136,7 +136,7 @@ string: \"[^\"\n]*\"
 <lang> ::= #15 #16 <opt_tipos> main "[" <opt_var_decs> <lista_de_comandos> "]" #17;
 
 <opt_tipos> ::= î |  <tipos> ;
-<tipos> ::= types "[" <types_dec> "]" ";" ;
+<tipos> ::= types "[" <types_dec> "]" ;
 
 <types_dec> ::= <type_dec> <types_dec1> ;
 <types_dec1> ::= î | <type_dec> <types_dec1> ;

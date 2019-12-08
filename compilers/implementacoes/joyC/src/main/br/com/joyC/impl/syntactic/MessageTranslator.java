@@ -107,7 +107,7 @@ public class MessageTranslator {
         messages.put("<types_dec1> inválido", genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado idComposto ]"));
         messages.put("<type_dec> inválido", genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado idComposto"));
         messages.put("<lista_de_campos> inválido", genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado " + SIMPLE_ID_MESSAGE));
-        messages.put("<lista_de_campos1> inválido", genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado ] ="));
+        messages.put("<lista_de_campos1> inválido", genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado ] ,"));
         messages.put("<campo> inválido", genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado " + SIMPLE_ID_MESSAGE));
         messages.put("<opt_var_decs> inválido",
                 genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado identificador if while output input :")
@@ -128,7 +128,7 @@ public class MessageTranslator {
                 genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado " + SIMPLE_ID_MESSAGE)
         );
         messages.put("<opt_arr_size> inválido",
-                genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado [ ; =")
+                genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado [ ; ,")
         );
         messages.put("<id_do_tipo_composto> inválido",
                 genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado idComposto")
@@ -155,10 +155,10 @@ public class MessageTranslator {
                 genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado identificador")
         );
         messages.put("<opt_expr> inválido",
-                genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado símbolo")
+                genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado [ ] ) ; , = . operador binário")
         );
         messages.put("<opt_field> inválido",
-                genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado símbolo")
+               genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado  ] ) ; , = . operador binário")
         );
         messages.put("<entrada_de_dados> inválido",
                 genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado input")
@@ -180,7 +180,7 @@ public class MessageTranslator {
         );
         messages.put("<lista_expressoes> inválido", MessageTranslator::parseExpressionError );
         messages.put("<lista_expressoes1> inválido",
-                genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado ) ;")
+                genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado ) ,")
         );
         messages.put("<comando_selecao> inválido",
                 genericFormattedBuilder("Erro na linha {0} - encontrado {1} esperado if")

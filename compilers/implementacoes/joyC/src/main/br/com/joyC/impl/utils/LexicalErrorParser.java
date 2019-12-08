@@ -4,6 +4,9 @@ import main.br.com.joyC.gaals.LexicalError;
 import main.br.com.joyC.impl.lexic.models.LexemeType;
 import main.br.com.joyC.impl.lexic.models.TranslateResult;
 import main.br.com.joyC.impl.models.LexicalContentError;
+import org.jboss.logging.Messages;
+
+import java.text.MessageFormat;
 
 public class LexicalErrorParser {
     public static final String INVALID_COMPOSED_ID = "identificador composto inválido";
@@ -36,8 +39,9 @@ public class LexicalErrorParser {
             case "Erro identificando float":
                 return TranslateResult.of(INVALID_FLOAT_CONSTANT, true);
             case "Erro identificando palavraReservada":
-                return TranslateResult.of(INVALID_RESERVED_WORD
-                        , true);
+                return TranslateResult.of(INVALID_RESERVED_WORD , true);
+            case "Erro identificando <ignorar>":
+                return TranslateResult.constantOf("Bloco de comentário inválido");
             case "Caractere não esperado":
                 return TranslateResult.of(INVALID_SYMBOL);
             default:
@@ -64,6 +68,9 @@ public class LexicalErrorParser {
         if (result.isWord) {
             var s =  firstWord(entry.substring(position));
             return new LexicalContentError("Erro na linha " + line + " - " + s +  " " + result.message, position, line, lexeme);
+        }
+        if (result.constant) {
+            return new LexicalContentError(MessageFormat.format("Erro na linha {0} - {1}", line, result.message), position, line, lexeme);
         }
         return new LexicalContentError("Erro na linha " + line + " - " + lexeme +  " " + result.message, position, line, lexeme);
     }
