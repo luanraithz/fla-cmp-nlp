@@ -112,6 +112,7 @@
 
 <script lang="ts">
 
+declare module 'vue-prism-editor'
 import Vue from 'vue'
 import FileSaver from 'file-saver'
 import copy from 'copy-to-clipboard'
