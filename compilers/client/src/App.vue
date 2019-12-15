@@ -112,10 +112,10 @@
 
 <script lang="ts">
 
-declare module 'vue-prism-editor'
 import Vue from 'vue'
 import FileSaver from 'file-saver'
 import copy from 'copy-to-clipboard'
+// @ts-ignore
 import PrismEditor from 'vue-prism-editor'
 
 import TeamModal from './components/TeamModal.vue'
