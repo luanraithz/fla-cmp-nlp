@@ -14,7 +14,7 @@
     "core-js": "^2.6.5",
     "file-saver": "^2.0.2",
     "jest": "^24.9.0",
-    "prismjs": "^1.17.1",
+    "prismjs": "^1.21.0",
     "ramda": "^0.26.1",
     "vue": "^2.6.10",
     "vue-prism-editor": "^0.3.0",
