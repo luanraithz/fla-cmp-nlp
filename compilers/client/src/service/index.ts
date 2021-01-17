@@ -2,7 +2,7 @@ import axios from 'axios'
 import { LexicalError, LexicalResult } from './../types/lexical'
 import { SyntacticError } from './../types/syntactic'
 
-const BASE = "http://localhost:8080"
+const BASE = "https://api.compilers.luan.raithz.com"
 
 function compileLexical (content: string): Promise<{ error?: LexicalError, result?: LexicalResult }> {
     return axios.post(`${BASE}/lexical`, { content }).then(({ data }) => data)
