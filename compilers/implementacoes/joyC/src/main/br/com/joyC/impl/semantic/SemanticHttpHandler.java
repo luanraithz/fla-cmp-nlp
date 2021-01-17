@@ -14,7 +14,7 @@ import java.util.Map;
 public class SemanticHttpHandler {
 
     @RequestMapping(name = "Semantic Parser", method = RequestMethod.POST, value="/semantic", consumes = { "application/json" }, produces = { "application/json" })
-    @CrossOrigin(origins = { "http://semantic.cmp.luan.raithz.com","http://syntactic.cmp.luan.raithz.com", "http://cmp.luan.raithz.com", "http://localhost:3001" })
+    @CrossOrigin(origins = { "*" })
     public Map<String, Object> parse(@RequestBody Map<String, String> payload) {
         var content = payload.get("content");
         var result = new HashMap<String, Object>();
