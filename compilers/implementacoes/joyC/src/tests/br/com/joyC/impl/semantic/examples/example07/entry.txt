@@ -1,0 +1,10 @@
+main [
+   : I_valor01, F_valor02, S_disciplina;
+
+  output("digite valores (int, float, literal): ");
+  input (I_valor01, F_valor02, S_disciplina);
+
+  output("usando valor int: ", (I_valor01 * 10) / 100, "\n");
+  output("usando valor float: ", F_valor02 * 0,1, "\n");
+  output("usando valor literal: ", "\t", S_disciplina);
+]

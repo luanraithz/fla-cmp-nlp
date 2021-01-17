@@ -297,7 +297,9 @@ public class CustomSemantic extends Semantico {
             var metadata = symbolTable.get(id);
             var type = metadata.type;
             addCommandLine("call string [mscorlib]System.Console::ReadLine()");
-            addCommandLine(MessageFormat.format("call {0} [mscorlib]System.{1}::Parse(string)", type.getPrimitiveType(), type.getClassType()));
+            if (type != VariableType.String) {
+                addCommandLine(MessageFormat.format("call {0} [mscorlib]System.{1}::Parse(string)", type.getPrimitiveType(), type.getClassType()));
+            }
             if (metadata.isArray) {
                 addCommandLine(MessageFormat.format("stelem {0}", type.getPrimitiveType()));
             } else {

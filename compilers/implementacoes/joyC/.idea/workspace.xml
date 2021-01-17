@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="6cf5ed65-400d-49a1-84d5-1eb30f8ab1e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../cmp.gals" beforeDir="false" afterPath="$PROJECT_DIR$/../../cmp.gals" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/ParserConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/gaals/ParserConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/models/TranslateResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/models/TranslateResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/MessageTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/syntactic/MessageTranslator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/utils/LexicalErrorParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/utils/LexicalErrorParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/SemanticTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/SemanticTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,22 +29,32 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1U1gaxDdPyN9oUtfkuMGdFQ25xL" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/tests/br/com/joyC/impl/semantic/examples" />
+    </key>
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
@@ -52,7 +62,7 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.All in joyC">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.Main" />
       <module name="joyC" />
@@ -62,6 +72,19 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.br.com.joyC.Main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -106,21 +129,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoopContextControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="joyC" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.br.com.joyC.impl.semantic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests.br.com.joyC.impl.semantic" />
-      <option name="MAIN_CLASS_NAME" value="tests.br.com.joyC.impl.semantic.LoopContextControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ParserTest.invalidIdInt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joyC" />
       <extension name="coverage">
@@ -137,21 +145,45 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SemanticTest.test07" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="joyC" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.br.com.joyC.impl.semantic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests.br.com.joyC.impl.semantic" />
+      <option name="MAIN_CLASS_NAME" value="tests.br.com.joyC.impl.semantic.SemanticTest" />
+      <option name="METHOD_NAME" value="test07" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="joyC" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="main.br.com.joyC.Main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.All in joyC" />
-      <item itemvalue="JUnit.LoopContextControllerTest" />
       <item itemvalue="JUnit.IfContextControllerTest.multipleNestedContextInsideElse" />
       <item itemvalue="JUnit.IfContextControllerTest.multipleLevels" />
       <item itemvalue="JUnit.ParserTest.invalidIdInt" />
+      <item itemvalue="Spring Boot.Main" />
+      <item itemvalue="JUnit.SemanticTest.test07" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in joyC" />
+        <item itemvalue="JUnit.SemanticTest.test07" />
         <item itemvalue="JUnit.ParserTest.invalidIdInt" />
         <item itemvalue="JUnit.IfContextControllerTest.multipleLevels" />
         <item itemvalue="JUnit.IfContextControllerTest.multipleNestedContextInsideElse" />
-        <item itemvalue="JUnit.LoopContextControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -167,6 +199,7 @@
       </list>
     </option>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -177,128 +210,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574529582589</updated>
+      <workItem from="1610893406807" duration="526000" />
+      <workItem from="1610893952738" duration="1377000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="834" y="154" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575202087460">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="834" y="154" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575202087460" />
-    <state x="2885" y="11" width="928" height="1042" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1575836852204">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="645" y="38" width="630" height="1015" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1575201397420" />
-    <state x="2885" y="11" width="928" height="1042" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575836852204" />
-    <state x="965" y="38" width="928" height="1015" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1575409439332" />
-    <state x="2674" y="118" width="378" height="565" key="#com.intellij.ide.util.MemberChooser" timestamp="1575223828468">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2674" y="118" width="378" height="565" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575223828468" />
-    <state x="2190" y="282" width="529" height="417" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1575202075845">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2190" y="282" width="529" height="417" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575202075845" />
-    <state x="2623" y="-54" width="486" height="1070" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1575222404478">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2623" y="-54" width="486" height="1070" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575222404478" />
-    <state x="2611" y="263" width="528" height="491" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1575223942360">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2611" y="263" width="528" height="491" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575223942360" />
-    <state x="2700" y="207" width="346" height="568" key="#xdebugger.evaluate" timestamp="1575832464884">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2700" y="207" width="346" height="568" key="#xdebugger.evaluate/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575832464884" />
-    <state width="491" height="466" key="DebuggerActiveHint" timestamp="1575207138493">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="491" height="466" key="DebuggerActiveHint/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575207138493" />
-    <state width="1820" height="264" key="GridCell.Tab.0.bottom" timestamp="1575839368968">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1820" height="343" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1575212724291" />
-    <state width="1820" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575839368968" />
-    <state width="1820" height="239" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1575413459961" />
-    <state width="1820" height="264" key="GridCell.Tab.0.center" timestamp="1575839368967">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1820" height="343" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1575212724290" />
-    <state width="1820" height="264" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575839368967" />
-    <state width="1820" height="239" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1575413459960" />
-    <state width="1820" height="264" key="GridCell.Tab.0.left" timestamp="1575839368967">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1820" height="343" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1575212724290" />
-    <state width="1820" height="264" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575839368967" />
-    <state width="1820" height="239" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1575413459960" />
-    <state width="1820" height="264" key="GridCell.Tab.0.right" timestamp="1575839368968">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1820" height="343" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1575212724290" />
-    <state width="1820" height="264" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575839368968" />
-    <state width="1820" height="239" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1575413459960" />
-    <state width="1820" height="112" key="GridCell.Tab.1.bottom" timestamp="1575838281308">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1820" height="343" key="GridCell.Tab.1.bottom/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1575212724291" />
-    <state width="1820" height="112" key="GridCell.Tab.1.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575838281308" />
-    <state width="1820" height="332" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1575413432086" />
-    <state width="1820" height="112" key="GridCell.Tab.1.center" timestamp="1575838281308">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1820" height="343" key="GridCell.Tab.1.center/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1575212724291" />
-    <state width="1820" height="112" key="GridCell.Tab.1.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575838281308" />
-    <state width="1820" height="332" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1575413432085" />
-    <state width="1820" height="112" key="GridCell.Tab.1.left" timestamp="1575838281308">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1820" height="343" key="GridCell.Tab.1.left/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1575212724291" />
-    <state width="1820" height="112" key="GridCell.Tab.1.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575838281308" />
-    <state width="1820" height="332" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1575413432085" />
-    <state width="1820" height="112" key="GridCell.Tab.1.right" timestamp="1575838281308">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1820" height="343" key="GridCell.Tab.1.right/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1575212724291" />
-    <state width="1820" height="112" key="GridCell.Tab.1.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575838281308" />
-    <state width="1820" height="332" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1575413432086" />
-    <state width="933" height="521" key="XDebugger.FullValuePopup" timestamp="1575199740930">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="933" height="521" key="XDebugger.FullValuePopup/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575199740930" />
-    <state x="2526" y="32" width="666" height="665" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1575839251830">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2526" y="32" width="666" height="665" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575839251830" />
-    <state x="620" y="158" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1575409438972" />
-    <state x="2534" y="272" width="692" height="520" key="find.popup" timestamp="1575838118485">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2534" y="272" width="692" height="520" key="find.popup/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575838118485" />
-    <state x="614" y="272" width="692" height="520" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1575412146844" />
-    <state x="2542" y="245" width="672" height="677" key="run.anything.popup" timestamp="1574814650146">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2542" y="245" width="672" height="677" key="run.anything.popup/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1574814650146" />
-    <state x="2543" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1575839153814">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2543" y="240" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1575839153814" />
-    <state x="623" y="240" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1575413236499" />
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -342,6 +272,16 @@
           <url>file://$PROJECT_DIR$/src/main/br/com/joyC/impl/lexic/Parser.java</url>
           <line>45</line>
           <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java</url>
+          <line>217</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/br/com/joyC/impl/semantic/CustomSemantic.java</url>
+          <line>250</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

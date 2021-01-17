@@ -1,0 +1,51 @@
+.assembly extern mscorlib {}
+.assembly _codigo_objeto{}
+.module _codigo_objeto.exe
+
+.class public _UNICA {
+  .method static public void _principal() {
+    .entrypoint
+    .locals (int64 I_valor01)
+    .locals (float64 F_valor02)
+    .locals (string S_disciplina)
+    ldstr "digite valores (int, float, literal): "
+    call void [mscorlib]System.Console::Write(string)
+    call string [mscorlib]System.Console::ReadLine()
+    call int64 [mscorlib]System.Int64::Parse(string)
+    stloc I_valor01
+    call string [mscorlib]System.Console::ReadLine()
+    call float64 [mscorlib]System.Double::Parse(string)
+    stloc F_valor02
+    call string [mscorlib]System.Console::ReadLine()
+    stloc S_disciplina
+    ldstr "usando valor int: "
+    call void [mscorlib]System.Console::Write(string)
+    ldloc I_valor01
+    conv.r8
+    ldc.i8 10
+    conv.r8
+    mul
+    ldc.i8 100
+    conv.r8
+    div
+    call void [mscorlib]System.Console::Write(float64)
+    ldstr "\n"
+    call void [mscorlib]System.Console::Write(string)
+    ldstr "usando valor float: "
+    call void [mscorlib]System.Console::Write(string)
+    ldloc F_valor02
+    ldc.r8 0.1
+    conv.r8
+    mul
+    call void [mscorlib]System.Console::Write(float64)
+    ldstr "\n"
+    call void [mscorlib]System.Console::Write(string)
+    ldstr "usando valor literal: "
+    call void [mscorlib]System.Console::Write(string)
+    ldstr "\t"
+    call void [mscorlib]System.Console::Write(string)
+    ldloc S_disciplina
+    call void [mscorlib]System.Console::Write(string)
+    ret
+  }
+}

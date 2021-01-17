@@ -113,4 +113,18 @@ class SemanticTest {
             fail("Shouldn't throw error");
         }
     }
+
+    @Test
+    @DisplayName("teste_06 da lista do trabalho")
+    void test07() {
+        var entry = Utils.fromFile("example07/entry.txt");
+        try {
+            var result = Parser.parse(entry);
+            var expectedResult = Utils.fromFile("example07/output.txt");
+            Assertions.assertEquals(expectedResult, result);
+        } catch (LexicalError | SemanticError | SyntaticError lexicalError) {
+            lexicalError.printStackTrace();
+            fail("Shouldn't throw error");
+        }
+    }
 }
