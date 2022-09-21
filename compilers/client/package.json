@@ -18,7 +18,7 @@
     "ramda": "^0.26.1",
     "vue": "^2.6.10",
     "vue-prism-editor": "^0.3.0",
-    "vuetify": "^2.0.0"
+    "vuetify": "^2.6.10"
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.1",
